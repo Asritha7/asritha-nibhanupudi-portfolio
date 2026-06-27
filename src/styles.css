@@ -32,7 +32,7 @@
   --color-warm-fill: var(--warm-fill);
   --color-warm-fill-2: var(--warm-fill-2);
   --color-hairline: var(--hairline);
-  --color-border-contrast: var(--border-contrast);
+  --color-stroke: var(--border-contrast);
   --color-text-primary: var(--foreground);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
