@@ -254,7 +254,7 @@ function Portfolio() {
             </div>
             <ul className="reveal">
               {work.map((w) => (
-                <li key={w.n} className="group border-t border-stroke first:border-t-0">
+                <li key={w.n} className="group border-t border-hairline first:border-t-0">
                   <a href="#contact" className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
                     <span className="mono-label">{w.n}</span>
                     <div className="min-w-0">
@@ -274,7 +274,7 @@ function Portfolio() {
             <summary className="mono-label cursor-pointer hover:!text-terra">+ Earlier &amp; academic projects</summary>
             <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-text-secondary sm:grid-cols-2 lg:grid-cols-3">
               {earlier.map((p) => (
-                <li key={p} className="border-b border-stroke py-2">{p}</li>
+                <li key={p} className="border-b border-hairline py-2">{p}</li>
               ))}
             </ul>
           </details>
@@ -291,7 +291,7 @@ function Portfolio() {
             </div>
             <ol className="relative">
               {experience.map((e, i) => (
-                <li key={i} className="reveal relative border-l border-stroke pb-12 pl-8 last:pb-0">
+                <li key={i} className="reveal relative border-l border-hairline pb-12 pl-8 last:pb-0">
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent-terra)" }} />
                   <p className="mono-label">{e.date} · {e.place}</p>
                   <h3 className="font-serif-display mt-2 text-[22px] md:text-[26px]">
