@@ -32,8 +32,7 @@ const work = [
   { n: "04", title: "Cypress Automation Framework", desc: "150+ modular tests, ~60% less regression effort, integrated into GitLab CI.", tags: ["Cypress", "GitLab CI"], year: "2025" },
   { n: "05", title: "GitLab CI/CD Pipeline Optimisation", desc: "~30% faster deployments, improved release consistency.", tags: ["GitLab", "CI/CD"], year: "2025" },
   { n: "06", title: "Keycloak / OpenSearch Automation", desc: "Identity flows via REST APIs + shell scripting, ~50% less manual ops.", tags: ["Keycloak", "OpenSearch", "Bash"], year: "2025" },
-  { n: "07", title: "Keycloak / OpenSearch Automation", desc: "Identity flows via REST APIs + shell scripting, ~50% less manual ops.", tags: ["Keycloak", "OpenSearch", "Bash"], year: "2025" },
-  { n: "08", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 — microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
+  { n: "07", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 — microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
 ];
 
 const earlier = [
