@@ -216,7 +216,7 @@ function Portfolio() {
         </section>
 
         {/* Now */}
-        <section id="now" className="border-t border-stroke py-20">
+        <section id="now" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label" style={{ color: "var(--accent-terra-dark)" }}>Now —</span>
@@ -244,7 +244,7 @@ function Portfolio() {
         </section>
 
         {/* Work */}
-        <section id="work" className="border-t border-stroke py-20">
+        <section id="work" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">01 — Work</span>
@@ -281,7 +281,7 @@ function Portfolio() {
         </section>
 
         {/* Experience */}
-        <section id="experience" className="border-t border-stroke py-20">
+        <section id="experience" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">02 — Experience</span>
@@ -305,7 +305,7 @@ function Portfolio() {
         </section>
 
         {/* Skills */}
-        <section className="border-t border-stroke py-20">
+        <section className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">03 — Toolkit</span>
@@ -331,7 +331,7 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section id="about" className="border-t border-stroke py-20">
+        <section id="about" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:gap-16">
             <div className="reveal">
               <span className="mono-label">04 — About</span>
