@@ -137,7 +137,7 @@ function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <header className="sticky top-0 z-50 border-b border-stroke bg-background/85 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
           <a href="#top" className="mono-label !text-text-primary">Asritha Nibhanupudi</a>
           <nav className="hidden items-center gap-7 md:flex">
@@ -216,7 +216,7 @@ function Portfolio() {
         </section>
 
         {/* Now */}
-        <section id="now" className="border-t border-stroke py-20">
+        <section id="now" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label" style={{ color: "var(--accent-terra-dark)" }}>Now —</span>
@@ -244,7 +244,7 @@ function Portfolio() {
         </section>
 
         {/* Work */}
-        <section id="work" className="border-t border-stroke py-20">
+        <section id="work" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">01 — Work</span>
@@ -254,7 +254,7 @@ function Portfolio() {
             </div>
             <ul className="reveal">
               {work.map((w) => (
-                <li key={w.n} className="group border-t border-stroke first:border-t-0">
+                <li key={w.n} className="group border-t border-hairline first:border-t-0">
                   <a href="#contact" className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
                     <span className="mono-label">{w.n}</span>
                     <div className="min-w-0">
@@ -274,14 +274,14 @@ function Portfolio() {
             <summary className="mono-label cursor-pointer hover:!text-terra">+ Earlier &amp; academic projects</summary>
             <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-text-secondary sm:grid-cols-2 lg:grid-cols-3">
               {earlier.map((p) => (
-                <li key={p} className="border-b border-stroke py-2">{p}</li>
+                <li key={p} className="border-b border-hairline py-2">{p}</li>
               ))}
             </ul>
           </details>
         </section>
 
         {/* Experience */}
-        <section id="experience" className="border-t border-stroke py-20">
+        <section id="experience" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">02 — Experience</span>
@@ -291,7 +291,7 @@ function Portfolio() {
             </div>
             <ol className="relative">
               {experience.map((e, i) => (
-                <li key={i} className="reveal relative border-l border-stroke pb-12 pl-8 last:pb-0">
+                <li key={i} className="reveal relative border-l border-hairline pb-12 pl-8 last:pb-0">
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent-terra)" }} />
                   <p className="mono-label">{e.date} · {e.place}</p>
                   <h3 className="font-serif-display mt-2 text-[22px] md:text-[26px]">
@@ -305,7 +305,7 @@ function Portfolio() {
         </section>
 
         {/* Skills */}
-        <section className="border-t border-stroke py-20">
+        <section className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">03 — Toolkit</span>
@@ -331,66 +331,77 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section id="about" className="border-t border-stroke py-20">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:gap-16">
+        <section id="about" className="border-t border-hairline py-20">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_340px] md:gap-14">
             <div className="reveal">
-              <span className="mono-label">04 — About</span>
+              <span className="mono-label">About</span>
               <h2 className="font-serif-display mt-4 text-[clamp(28px,3.6vw,38px)]">
-                Calm, precise, and a little <em className="italic" style={{ color: "var(--accent-terra)" }}>obsessed</em> with reliability.
+                I build the quiet infrastructure that keeps financial platforms running — and I care about doing it well.
               </h2>
-              <div className="mt-8 max-w-[60ch] space-y-5 text-[18px] text-text-secondary">
+              <div className="mt-8 max-w-[58ch] space-y-5 text-[18px] text-text-secondary">
                 <p>
-                  I grew up taking things apart — circuit boards, scripts, anything that hinted at a system. That curiosity carried into an ECE degree at VNR VJIET and then into building software that quietly holds production together.
+                  I'm a software engineer at Goldman Sachs on the AWM Subledger Technology team, working across cloud platform engineering, API gateway infrastructure, and observability. Previously at Oracle, I focused on automation, CI/CD, and infrastructure reliability — building modular Cypress frameworks, tuning GitLab pipelines, and designing test strategies for Apache Kafka and the Strimzi Operator that caught regressions before they reached production.
                 </p>
                 <p>
-                  Today, I work on cloud-native platforms and infrastructure at Goldman Sachs, with a soft spot for the unglamorous work: clean pipelines, careful migrations, observability that actually answers your questions at 3am.
-                </p>
-                <p>
-                  I co-authored an IEEE ICMACC 2024 paper on RFID + PIN multi-level authentication, and I'm always eager to connect with engineers and industry leaders about backend development, cloud-native platforms, and the future of engineering.
+                  My background is in Electronics &amp; Communications Engineering (B.Tech, VNR VJIET). I'm always eager to connect with engineers and industry leaders about backend development, cloud-native platforms, and the future of engineering.
                 </p>
               </div>
             </div>
-            <aside className="reveal">
-              <div className="overflow-hidden rounded-[3px] border border-hairline bg-warm-fill">
-                <img
-                  src={portrait}
-                  alt="Asritha Nibhanupudi"
-                  loading="lazy"
-                  width={1200}
-                  height={1600}
-                  className="aspect-[4/5] h-auto w-full object-cover"
-                />
+            <aside className="reveal space-y-5">
+              <a
+                href={links.research}
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-[3px] bg-terra p-6 text-[#F8F0E8] transition-colors hover:bg-terra-dark md:p-7"
+              >
+                <p className="mono-label !text-[#F8F0E8]/80">Published Research</p>
+                <h3 className="font-serif-display mt-4 text-[22px] leading-snug">
+                  Multi-level authentication combining RFID and PIN-based access control
+                </h3>
+                <p className="mt-4 text-[14px] opacity-90">IEEE ICMACC 2024 · Co-authored</p>
+                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-[#F8F0E8] group-hover:underline">
+                  Read paper →
+                </span>
+              </a>
+              <div className="rounded-[3px] border border-hairline bg-panel p-6 md:p-7">
+                <p className="mono-label">Quick Facts</p>
+                <dl className="mt-5 space-y-3 text-[14px]">
+                  <div className="flex justify-between"><dt className="mono-label">Based in</dt><dd className="text-text-secondary">Bengaluru, India</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">Degree</dt><dd className="text-text-secondary">B.Tech ECE</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">University</dt><dd className="text-text-secondary">VNR VJIET</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">Focus</dt><dd className="text-text-secondary">Cloud-native platforms</dd></div>
+                </dl>
               </div>
-              <dl className="mt-5 space-y-3 border-t border-stroke pt-5 text-[14px]">
-                <div className="flex justify-between"><dt className="mono-label">Based</dt><dd>Bengaluru, IN</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Role</dt><dd>Analyst, SE</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Degree</dt><dd>B.Tech ECE</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Research</dt><dd>IEEE ICMACC '24</dd></div>
-              </dl>
             </aside>
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="border-t border-stroke py-24">
+      </main>
+
+      {/* Contact + Footer */}
+      <div className="bg-dark-background text-dark-foreground">
+        <section id="contact" className="mx-auto max-w-[1280px] px-6 py-24 md:px-[46px] md:py-32">
           <div className="reveal mx-auto max-w-[900px] text-center md:text-left">
-            <span className="mono-label">05 — Contact</span>
+            <span className="mono-label !text-dark-foreground/60">Get in Touch</span>
             <h2 className="font-serif-display mt-6 text-[clamp(40px,7vw,76px)]">
               Let's build something{" "}
               <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em>.
             </h2>
-            <p className="mt-6 max-w-[55ch] text-[19px] text-text-secondary md:mx-0">
-              Open to conversations about backend systems, cloud platforms, and the engineering culture that holds them together.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3 md:justify-start">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 md:justify-start">
               <a href={links.email} className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
-                Say hello →
+                Email me →
               </a>
-              <a href="/resume.pdf" download className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill">
-                Download résumé
+              <a href="/resume.pdf" download className="rounded-[3px] border border-dark-foreground/30 bg-dark-background px-5 py-3 text-[15px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
+                Résumé
               </a>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3">
+          </div>
+        </section>
+
+        <footer className="border-t border-dark-foreground/10">
+          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-8 md:px-[46px]">
+            <p className="mono-label !text-dark-foreground/60">© 2026 ASRITHA NIBHANUPUDI · BENGALURU</p>
+            <ul className="flex flex-wrap gap-x-7 gap-y-2">
               {[
                 { href: links.github, label: "GitHub" },
                 { href: links.linkedin, label: "LinkedIn" },
@@ -398,22 +409,15 @@ function Portfolio() {
                 { href: links.research, label: "Research" },
               ].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} target={l.href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" className="mono-label border-b border-transparent !text-text-secondary transition-colors hover:!text-terra hover:border-terra">
+                  <a href={l.href} target={l.href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" className="mono-label inline-flex items-center gap-1 !text-dark-foreground/70 transition-colors hover:!text-dark-foreground">
                     {l.label} ↗
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-stroke">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-6 py-8 md:px-[46px]">
-          <p className="mono-label">© 2026 — Asritha Nibhanupudi</p>
-          <p className="mono-label">Set in Newsreader, Hanken Grotesk &amp; JetBrains Mono.</p>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 }
