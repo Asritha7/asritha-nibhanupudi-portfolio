@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 const portrait = portraitAsset.url;
@@ -91,6 +91,32 @@ const links = {
   email: "mailto:nibhanupudiasritha@gmail.com",
 };
 
+type ThemeMode = "light" | "dark";
+
+function useThemePreference() {
+  const [theme, setTheme] = useState<ThemeMode>("light");
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("portfolio-theme");
+    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    setTheme(saved === "dark" || saved === "light" ? saved : preferred);
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [ready, theme]);
+
+  return {
+    theme,
+    toggleTheme: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
+  };
+}
+
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(".reveal");
@@ -131,6 +157,8 @@ function useParallax() {
 function Portfolio() {
   useReveal();
   useParallax();
+  const { theme, toggleTheme } = useThemePreference();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -151,9 +179,51 @@ function Portfolio() {
               </span>
               <span className="mono-label !text-text-primary !text-[11px]">Available</span>
             </span>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5 transition-colors hover:!text-terra hover:bg-warm-fill"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            >
+              {theme === "dark" ? "Light" : "Dark"}
+            </button>
           </nav>
-          <a href="#contact" className="mono-label md:hidden">Menu</a>
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            >
+              {theme === "dark" ? "Light" : "Dark"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+            >
+              Menu
+            </button>
+          </div>
         </div>
+        {menuOpen ? (
+          <nav id="mobile-nav" className="border-t border-hairline bg-background px-6 py-4 md:hidden">
+            <div className="grid grid-cols-2 gap-3">
+              {nav.map((n) => (
+                <a
+                  key={n.id}
+                  href={`#${n.id}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 transition-colors hover:!text-terra hover:bg-warm-fill"
+                >
+                  {n.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        ) : null}
       </header>
 
       <main id="top" className="mx-auto max-w-[1280px] px-6 md:px-[46px]">
@@ -253,7 +323,7 @@ function Portfolio() {
             <ul className="reveal">
               {work.map((w) => (
                 <li key={w.n} className="group border-t border-hairline first:border-t-0">
-                  <div className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
+                    <div className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-warm-fill">
                     <span className="mono-label">{w.n}</span>
                     <div className="min-w-0">
                       <h3 className="font-serif-display text-[22px] md:text-[26px]">{w.title}</h3>
@@ -350,14 +420,14 @@ function Portfolio() {
                 href={links.research}
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-[3px] bg-terra p-6 text-[#F8F0E8] transition-colors hover:bg-terra-dark md:p-7"
+                className="group block rounded-[3px] bg-terra p-6 text-dark-foreground transition-colors hover:bg-terra-dark md:p-7"
               >
-                <p className="mono-label !text-[#F8F0E8]/80">Published Research</p>
+                <p className="mono-label !text-dark-foreground/80">Published Research</p>
                 <h3 className="font-serif-display mt-4 text-[22px] leading-snug">
                   Multi-level authentication combining RFID and PIN-based access control
                 </h3>
                 <p className="mt-4 text-[14px] opacity-90">IEEE ICMACC 2024 · Co-authored</p>
-                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-[#F8F0E8] group-hover:underline">
+                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-dark-foreground group-hover:underline">
                   Read paper →
                 </span>
               </a>
