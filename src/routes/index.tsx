@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 const portrait = portraitAsset.url;
@@ -8,9 +9,9 @@ const resume = resumeAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Asritha Nibhanupudi — Software Engineer" },
+      { title: "Asritha Nibhanupudi - Software Engineer" },
       { name: "description", content: "Software engineer working across cloud platform engineering, API gateway infrastructure, and observability. Currently at Goldman Sachs." },
-      { property: "og:title", content: "Asritha Nibhanupudi — Software Engineer" },
+      { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { property: "og:description", content: "Cloud platform engineering, distributed systems, and observability." },
     ],
   }),
@@ -32,7 +33,7 @@ const work = [
   { n: "04", title: "Cypress Automation Framework", desc: "150+ modular tests, ~60% less regression effort, integrated into GitLab CI.", tags: ["Cypress", "GitLab CI"], year: "2025" },
   { n: "05", title: "GitLab CI/CD Pipeline Optimisation", desc: "~30% faster deployments, improved release consistency.", tags: ["GitLab", "CI/CD"], year: "2025" },
   { n: "06", title: "Keycloak / OpenSearch Automation", desc: "Identity flows via REST APIs + shell scripting, ~50% less manual ops.", tags: ["Keycloak", "OpenSearch", "Bash"], year: "2025" },
-  { n: "07", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 — microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
+  { n: "07", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 - microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
 ];
 
 const earlier = [
@@ -42,35 +43,34 @@ const earlier = [
   "YouTube Comment Analysis (Python)",
   "Website Blocker (Python)",
   "PCB Design & Fabrication (KiCad)",
-  "CodeCademy landing-page clone",
 ];
 
 const experience = [
   {
     role: "Analyst, Systems Engineering",
     org: "Goldman Sachs",
-    date: "May 2026 — Present",
+    date: "May 2026 - Present",
     place: "Bengaluru · On-site",
     body: "Subledger Technology platform for Asset & Wealth Management. Cloud platform engineering across hybrid API gateway infra and AWS-native microservices (CDK, Fargate, Aurora, Lambda). Onboarding Prometheus + Grafana observability for Java microservices.",
   },
   {
-    role: "Software Engineer — Automation & Infrastructure",
+    role: "Software Engineer - Automation & Infrastructure",
     org: "Oracle",
-    date: "Aug 2024 — Apr 2026",
+    date: "Aug 2024 - Apr 2026",
     place: "Hyderabad",
     body: "CI/CD & release engineering on GitLab (~30% faster deploys). 150+ Cypress tests (~60% less regression). Kafka/Strimzi test strategy across version upgrades. Kubernetes deployments. Keycloak/OpenSearch automation. \"Best Efforts\" nominee; mentored juniors on CI/CD & K8s debugging.",
   },
   {
     role: "Project Intern",
     org: "Oracle",
-    date: "Jan 2024 — Jul 2024",
+    date: "Jan 2024 - Jul 2024",
     place: "Hyderabad",
     body: "Modular Cypress components for enterprise pipelines; root-cause analysis reducing bug leakage by ~20%.",
   },
   {
-    role: "Web Developer — Intern",
+    role: "Web Developer - Intern",
     org: "Oasis Infobyte",
-    date: "Jul 2023 — Aug 2023",
+    date: "Jul 2023 - Aug 2023",
     place: "Remote",
     body: "Responsive front-end components & landing pages (HTML/CSS/JS); shipped projects to GitHub.",
   },
@@ -165,7 +165,7 @@ function Portfolio() {
       {/* Top bar */}
       <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
-          <a href="#top" className="mono-label !text-text-primary">Asritha Nibhanupudi</a>
+          <a href="#top" className="mono-label !font-bold !text-text-primary">Asritha Nibhanupudi</a>
           <nav className="hidden items-center gap-7 md:flex">
             {nav.map((n) => (
               <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra">
