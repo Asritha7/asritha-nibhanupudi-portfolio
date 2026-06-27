@@ -205,8 +205,8 @@ function Portfolio() {
                 <img
                   src={portrait}
                   alt="Portrait of Asritha Nibhanupudi"
-                  width={768}
-                  height={960}
+                  width={1200}
+                  height={1600}
                   className="aspect-[4/5] h-auto w-full object-cover"
                 />
               </div>
@@ -356,8 +356,8 @@ function Portfolio() {
                   src={portrait}
                   alt="Asritha Nibhanupudi"
                   loading="lazy"
-                  width={768}
-                  height={960}
+                  width={1200}
+                  height={1600}
                   className="aspect-[4/5] h-auto w-full object-cover"
                 />
               </div>
