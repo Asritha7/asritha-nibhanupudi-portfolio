@@ -137,7 +137,7 @@ function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-stroke bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
           <a href="#top" className="mono-label !text-text-primary">Asritha Nibhanupudi</a>
           <nav className="hidden items-center gap-7 md:flex">
@@ -216,7 +216,7 @@ function Portfolio() {
         </section>
 
         {/* Now */}
-        <section id="now" className="border-t border-hairline py-20">
+        <section id="now" className="border-t border-stroke py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label" style={{ color: "var(--accent-terra-dark)" }}>Now —</span>
@@ -244,7 +244,7 @@ function Portfolio() {
         </section>
 
         {/* Work */}
-        <section id="work" className="border-t border-hairline py-20">
+        <section id="work" className="border-t border-stroke py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">01 — Work</span>
@@ -254,7 +254,7 @@ function Portfolio() {
             </div>
             <ul className="reveal">
               {work.map((w) => (
-                <li key={w.n} className="group border-t border-hairline first:border-t-0">
+                <li key={w.n} className="group border-t border-stroke first:border-t-0">
                   <a href="#contact" className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
                     <span className="mono-label">{w.n}</span>
                     <div className="min-w-0">
@@ -274,14 +274,14 @@ function Portfolio() {
             <summary className="mono-label cursor-pointer hover:!text-terra">+ Earlier &amp; academic projects</summary>
             <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-text-secondary sm:grid-cols-2 lg:grid-cols-3">
               {earlier.map((p) => (
-                <li key={p} className="border-b border-hairline py-2">{p}</li>
+                <li key={p} className="border-b border-stroke py-2">{p}</li>
               ))}
             </ul>
           </details>
         </section>
 
         {/* Experience */}
-        <section id="experience" className="border-t border-hairline py-20">
+        <section id="experience" className="border-t border-stroke py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">02 — Experience</span>
@@ -291,7 +291,7 @@ function Portfolio() {
             </div>
             <ol className="relative">
               {experience.map((e, i) => (
-                <li key={i} className="reveal relative border-l border-hairline pb-12 pl-8 last:pb-0">
+                <li key={i} className="reveal relative border-l border-stroke pb-12 pl-8 last:pb-0">
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent-terra)" }} />
                   <p className="mono-label">{e.date} · {e.place}</p>
                   <h3 className="font-serif-display mt-2 text-[22px] md:text-[26px]">
@@ -305,7 +305,7 @@ function Portfolio() {
         </section>
 
         {/* Skills */}
-        <section className="border-t border-hairline py-20">
+        <section className="border-t border-stroke py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">03 — Toolkit</span>
@@ -331,7 +331,7 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section id="about" className="border-t border-hairline py-20">
+        <section id="about" className="border-t border-stroke py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:gap-16">
             <div className="reveal">
               <span className="mono-label">04 — About</span>
@@ -361,7 +361,7 @@ function Portfolio() {
                   className="aspect-[4/5] h-auto w-full object-cover"
                 />
               </div>
-              <dl className="mt-5 space-y-3 border-t border-hairline pt-5 text-[14px]">
+              <dl className="mt-5 space-y-3 border-t border-stroke pt-5 text-[14px]">
                 <div className="flex justify-between"><dt className="mono-label">Based</dt><dd>Bengaluru, IN</dd></div>
                 <div className="flex justify-between"><dt className="mono-label">Role</dt><dd>Analyst, SE</dd></div>
                 <div className="flex justify-between"><dt className="mono-label">Degree</dt><dd>B.Tech ECE</dd></div>
@@ -372,7 +372,7 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="border-t border-hairline py-24">
+        <section id="contact" className="border-t border-stroke py-24">
           <div className="reveal mx-auto max-w-[900px] text-center md:text-left">
             <span className="mono-label">05 — Contact</span>
             <h2 className="font-serif-display mt-6 text-[clamp(40px,7vw,76px)]">
@@ -408,7 +408,7 @@ function Portfolio() {
         </section>
       </main>
 
-      <footer className="border-t border-hairline">
+      <footer className="border-t border-stroke">
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-6 py-8 md:px-[46px]">
           <p className="mono-label">© 2026 — Asritha Nibhanupudi</p>
           <p className="mono-label">Set in Newsreader, Hanken Grotesk &amp; JetBrains Mono.</p>

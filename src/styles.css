@@ -32,6 +32,7 @@
   --color-warm-fill: var(--warm-fill);
   --color-warm-fill-2: var(--warm-fill-2);
   --color-hairline: var(--hairline);
+  --color-stroke: var(--border-contrast);
   --color-text-primary: var(--foreground);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
@@ -52,6 +53,7 @@
   --warm-fill: #F1E6D6;
   --warm-fill-2: #EFE3D4;
   --hairline: #ECE0D2;
+  --border-contrast: #3D3429;
   --text-secondary: #5F564D;
   --text-muted: #8A7F74;
   --accent-terra: #C75A37;
