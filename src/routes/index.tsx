@@ -376,26 +376,32 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="border-t border-stroke py-24">
+      </main>
+
+      {/* Contact + Footer */}
+      <div className="bg-dark-background text-dark-foreground">
+        <section id="contact" className="mx-auto max-w-[1280px] px-6 py-24 md:px-[46px] md:py-32">
           <div className="reveal mx-auto max-w-[900px] text-center md:text-left">
-            <span className="mono-label">05 — Contact</span>
+            <span className="mono-label !text-dark-foreground/60">Get in Touch</span>
             <h2 className="font-serif-display mt-6 text-[clamp(40px,7vw,76px)]">
               Let's build something{" "}
               <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em>.
             </h2>
-            <p className="mt-6 max-w-[55ch] text-[19px] text-text-secondary md:mx-0">
-              Open to conversations about backend systems, cloud platforms, and the engineering culture that holds them together.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3 md:justify-start">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 md:justify-start">
               <a href={links.email} className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
-                Say hello →
+                Email me →
               </a>
-              <a href="/resume.pdf" download className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill">
-                Download résumé
+              <a href="/resume.pdf" download className="rounded-[3px] border border-dark-foreground/30 bg-dark-background px-5 py-3 text-[15px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
+                Résumé
               </a>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3">
+          </div>
+        </section>
+
+        <footer className="border-t border-dark-foreground/10">
+          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-8 md:px-[46px]">
+            <p className="mono-label !text-dark-foreground/60">© 2026 ASRITHA NIBHANUPUDI · BENGALURU</p>
+            <ul className="flex flex-wrap gap-x-7 gap-y-2">
               {[
                 { href: links.github, label: "GitHub" },
                 { href: links.linkedin, label: "LinkedIn" },
@@ -403,22 +409,15 @@ function Portfolio() {
                 { href: links.research, label: "Research" },
               ].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} target={l.href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" className="mono-label border-b border-transparent !text-text-secondary transition-colors hover:!text-terra hover:border-terra">
+                  <a href={l.href} target={l.href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" className="mono-label inline-flex items-center gap-1 !text-dark-foreground/70 transition-colors hover:!text-dark-foreground">
                     {l.label} ↗
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-stroke">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-6 py-8 md:px-[46px]">
-          <p className="mono-label">© 2026 — Asritha Nibhanupudi</p>
-          <p className="mono-label">Set in Newsreader, Hanken Grotesk &amp; JetBrains Mono.</p>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 }
