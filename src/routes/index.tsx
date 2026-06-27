@@ -427,7 +427,7 @@ function Portfolio() {
                   Multi-level authentication combining RFID and PIN-based access control
                 </h3>
                 <p className="mt-4 text-[14px] opacity-90">IEEE ICMACC 2024 · Co-authored</p>
-                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-[#F8F0E8] group-hover:underline">
+                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-dark-foreground group-hover:underline">
                   Read paper →
                 </span>
               </a>
