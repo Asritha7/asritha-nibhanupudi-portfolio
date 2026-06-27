@@ -32,8 +32,7 @@ const work = [
   { n: "04", title: "Cypress Automation Framework", desc: "150+ modular tests, ~60% less regression effort, integrated into GitLab CI.", tags: ["Cypress", "GitLab CI"], year: "2025" },
   { n: "05", title: "GitLab CI/CD Pipeline Optimisation", desc: "~30% faster deployments, improved release consistency.", tags: ["GitLab", "CI/CD"], year: "2025" },
   { n: "06", title: "Keycloak / OpenSearch Automation", desc: "Identity flows via REST APIs + shell scripting, ~50% less manual ops.", tags: ["Keycloak", "OpenSearch", "Bash"], year: "2025" },
-  { n: "07", title: "AI-assisted Legacy Test Automation (UIM)", desc: "Automated high-volume legacy regression suites.", tags: ["AI", "QA"], year: "2025" },
-  { n: "08", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 — microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
+  { n: "07", title: "RFID + PIN Multi-level Authentication", desc: "Published research, IEEE ICMACC 2024 — microcontroller-based secure access.", tags: ["IEEE", "Embedded"], year: "2024" },
 ];
 
 const earlier = [
@@ -58,11 +57,11 @@ const experience = [
     body: "Subledger Technology platform for Asset & Wealth Management. Cloud platform engineering across hybrid API gateway infra and AWS-native microservices (CDK, Fargate, Aurora, Lambda). Onboarding Prometheus + Grafana observability for Java microservices.",
   },
   {
-    role: "Software Engineer — QA Automation & Infrastructure",
+    role: "Software Engineer — Automation & Infrastructure",
     org: "Oracle",
     date: "Aug 2024 — Apr 2026",
     place: "Hyderabad",
-    body: "CI/CD & release engineering on GitLab (~30% faster deploys). 150+ Cypress tests (~60% less regression). Kafka/Strimzi test strategy across version upgrades. Kubernetes deployments. Keycloak/OpenSearch automation. AI-assisted legacy test automation. \"Best Efforts\" nominee; mentored juniors on CI/CD & K8s debugging.",
+    body: "CI/CD & release engineering on GitLab (~30% faster deploys). 150+ Cypress tests (~60% less regression). Kafka/Strimzi test strategy across version upgrades. Kubernetes deployments. Keycloak/OpenSearch automation. \"Best Efforts\" nominee; mentored juniors on CI/CD & K8s debugging.",
   },
   {
     role: "Project Intern",
@@ -83,7 +82,7 @@ const experience = [
 const skills = [
   { label: "Cloud & Platform", items: ["AWS", "CDK", "ECS Fargate", "Aurora PostgreSQL", "Lambda", "Nginx"] },
   { label: "Distributed & Infra", items: ["Kubernetes", "Apache Kafka", "Strimzi", "Linux"] },
-  { label: "CI/CD & QA", items: ["GitLab CI/CD", "Cypress", "Keycloak", "OpenSearch"] },
+  { label: "CI/CD & Automation", items: ["GitLab CI/CD", "Cypress", "Keycloak", "OpenSearch"] },
   { label: "Observability", items: ["Prometheus", "Grafana"] },
   { label: "Languages", items: ["TypeScript", "Python", "Java", "C++", "REST APIs"] },
 ];
