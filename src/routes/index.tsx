@@ -43,9 +43,6 @@ const earlier = [
   "Website Blocker (Python)",
   "PCB Design & Fabrication (KiCad)",
   "CodeCademy landing-page clone",
-  "Temperature Converter",
-  "Digital Clock",
-  "Dark / Light toggle",
 ];
 
 const experience = [
@@ -256,17 +253,17 @@ function Portfolio() {
             <ul className="reveal">
               {work.map((w) => (
                 <li key={w.n} className="group border-t border-hairline first:border-t-0">
-                  <a href="#contact" className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
+                  <div className="grid grid-cols-[40px_1fr_auto] items-baseline gap-6 py-6 transition-colors group-hover:bg-[#F4E9DA]">
                     <span className="mono-label">{w.n}</span>
                     <div className="min-w-0">
                       <h3 className="font-serif-display text-[22px] md:text-[26px]">{w.title}</h3>
                       <p className="mt-2 text-[16px] text-text-secondary">{w.desc}</p>
                       <p className="mono-label mt-3">{w.tags.join(" · ")}</p>
                     </div>
-                    <span className="mono-label whitespace-nowrap transition-transform group-hover:-translate-x-1 group-hover:!text-terra">
-                      {w.year} →
+                    <span className="mono-label whitespace-nowrap">
+                      {w.year}
                     </span>
-                  </a>
+                  </div>
                 </li>
               ))}
             </ul>
