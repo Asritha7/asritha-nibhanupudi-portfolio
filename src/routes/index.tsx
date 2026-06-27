@@ -182,20 +182,20 @@ function Portfolio() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5 transition-colors hover:!text-terra hover:bg-warm-fill"
+              className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary transition-colors hover:text-terra hover:bg-warm-fill"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
             >
-              {theme === "dark" ? "Light" : "Dark"}
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </nav>
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
               onClick={toggleTheme}
-              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5"
+              className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary transition-colors hover:text-terra hover:bg-warm-fill"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
             >
-              {theme === "dark" ? "Light" : "Dark"}
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button
               type="button"
@@ -237,7 +237,7 @@ function Portfolio() {
               systems behind asset &amp; wealth management.
             </h1>
             <p className="mt-8 max-w-[58ch] text-[19px] text-text-secondary">
-              I'm a software engineer working across cloud platform engineering, API gateway infrastructure, and observability — building on AWS and on-prem systems that stay quiet under pressure.
+              I'm a software engineer working across cloud platform engineering, API gateway infrastructure, and observability - building on AWS and on-prem systems that stay quiet under pressure.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a href="#work" className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
@@ -278,7 +278,7 @@ function Portfolio() {
                   className="aspect-[4/5] h-auto w-full object-cover"
                 />
               </div>
-              <p className="mono-label mt-3">B.Tech ECE — VNR VJIET · Bengaluru, India</p>
+              <p className="mono-label mt-3">B.Tech ECE - VNR VJIET · Bengaluru, India</p>
             </div>
           </aside>
         </section>
@@ -287,7 +287,7 @@ function Portfolio() {
         <section id="now" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label" style={{ color: "var(--accent-terra-dark)" }}>Now —</span>
+              <span className="mono-label" style={{ color: "var(--accent-terra-dark)" }}>Now -</span>
             </div>
             <div className="reveal">
               <p className="font-serif-display text-[clamp(24px,3.4vw,34px)] italic">
@@ -315,7 +315,7 @@ function Portfolio() {
         <section id="work" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">01 — Work</span>
+              <span className="mono-label">01 - Work</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Selected <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
               </h2>
@@ -352,7 +352,7 @@ function Portfolio() {
         <section id="experience" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">02 — Experience</span>
+              <span className="mono-label">02 - Experience</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 A short <em className="italic" style={{ color: "var(--accent-terra)" }}>timeline</em>.
               </h2>
@@ -363,7 +363,7 @@ function Portfolio() {
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent-terra)" }} />
                   <p className="mono-label">{e.date} · {e.place}</p>
                   <h3 className="font-serif-display mt-2 text-[22px] md:text-[26px]">
-                    {e.role} <span className="text-text-secondary"> — {e.org}</span>
+                    {e.role} <span className="text-text-secondary"> - {e.org}</span>
                   </h3>
                   <p className="mt-3 max-w-[62ch] text-[16.5px] text-text-secondary">{e.body}</p>
                 </li>
@@ -376,7 +376,7 @@ function Portfolio() {
         <section className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">03 — Toolkit</span>
+              <span className="mono-label">03 - Toolkit</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Tools I <em className="italic" style={{ color: "var(--accent-terra)" }}>reach for</em>.
               </h2>
@@ -404,11 +404,11 @@ function Portfolio() {
             <div className="reveal">
               <span className="mono-label">About</span>
               <h2 className="font-serif-display mt-4 text-[clamp(28px,3.6vw,38px)]">
-                I build the quiet infrastructure that keeps financial platforms running — and I care about doing it well.
+                I build the quiet infrastructure that keeps financial platforms running - and I care about doing it well.
               </h2>
               <div className="mt-8 max-w-[58ch] space-y-5 text-[18px] text-text-secondary">
                 <p>
-                  I'm a software engineer at Goldman Sachs on the AWM Subledger Technology team, working across cloud platform engineering, API gateway infrastructure, and observability. Previously at Oracle, I focused on automation, CI/CD, and infrastructure reliability — building modular Cypress frameworks, tuning GitLab pipelines, and designing test strategies for Apache Kafka and the Strimzi Operator that caught regressions before they reached production.
+                  I'm a software engineer at Goldman Sachs on the AWM Subledger Technology team, working across cloud platform engineering, API gateway infrastructure, and observability. Previously at Oracle, I focused on automation, CI/CD, and infrastructure reliability - building modular Cypress frameworks, tuning GitLab pipelines, and designing test strategies for Apache Kafka and the Strimzi Operator that caught regressions before they reached production.
                 </p>
                 <p>
                   My background is in Electronics &amp; Communications Engineering (B.Tech, VNR VJIET). I'm always eager to connect with engineers and industry leaders about backend development, cloud-native platforms, and the future of engineering.
