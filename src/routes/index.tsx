@@ -332,41 +332,46 @@ function Portfolio() {
 
         {/* About */}
         <section id="about" className="border-t border-hairline py-20">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:gap-16">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_340px] md:gap-14">
             <div className="reveal">
-              <span className="mono-label">04 — About</span>
+              <span className="mono-label">About</span>
               <h2 className="font-serif-display mt-4 text-[clamp(28px,3.6vw,38px)]">
-                Calm, precise, and a little <em className="italic" style={{ color: "var(--accent-terra)" }}>obsessed</em> with reliability.
+                I build the quiet infrastructure that keeps financial platforms running — and I care about doing it well.
               </h2>
-              <div className="mt-8 max-w-[60ch] space-y-5 text-[18px] text-text-secondary">
+              <div className="mt-8 max-w-[58ch] space-y-5 text-[18px] text-text-secondary">
                 <p>
-                  I grew up taking things apart — circuit boards, scripts, anything that hinted at a system. That curiosity carried into an ECE degree at VNR VJIET and then into building software that quietly holds production together.
+                  I'm a software engineer at Goldman Sachs on the AWM Subledger Technology team, working across cloud platform engineering, API gateway infrastructure, and observability. Previously at Oracle, I focused on automation, CI/CD, and infrastructure reliability — building modular Cypress frameworks, tuning GitLab pipelines, and designing test strategies for Apache Kafka and the Strimzi Operator that caught regressions before they reached production.
                 </p>
                 <p>
-                  Today, I work on cloud-native platforms and infrastructure at Goldman Sachs, with a soft spot for the unglamorous work: clean pipelines, careful migrations, observability that actually answers your questions at 3am.
-                </p>
-                <p>
-                  I co-authored an IEEE ICMACC 2024 paper on RFID + PIN multi-level authentication, and I'm always eager to connect with engineers and industry leaders about backend development, cloud-native platforms, and the future of engineering.
+                  My background is in Electronics &amp; Communications Engineering (B.Tech, VNR VJIET). I'm always eager to connect with engineers and industry leaders about backend development, cloud-native platforms, and the future of engineering.
                 </p>
               </div>
             </div>
-            <aside className="reveal">
-              <div className="overflow-hidden rounded-[3px] border border-hairline bg-warm-fill">
-                <img
-                  src={portrait}
-                  alt="Asritha Nibhanupudi"
-                  loading="lazy"
-                  width={1200}
-                  height={1600}
-                  className="aspect-[4/5] h-auto w-full object-cover"
-                />
+            <aside className="reveal space-y-5">
+              <a
+                href={links.research}
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-[3px] bg-terra p-6 text-[#F8F0E8] transition-colors hover:bg-terra-dark md:p-7"
+              >
+                <p className="mono-label !text-[#F8F0E8]/80">Published Research</p>
+                <h3 className="font-serif-display mt-4 text-[22px] leading-snug">
+                  Multi-level authentication combining RFID and PIN-based access control
+                </h3>
+                <p className="mt-4 text-[14px] opacity-90">IEEE ICMACC 2024 · Co-authored</p>
+                <span className="mono-label mt-5 inline-flex items-center gap-1 !text-[#F8F0E8] group-hover:underline">
+                  Read paper →
+                </span>
+              </a>
+              <div className="rounded-[3px] border border-hairline bg-panel p-6 md:p-7">
+                <p className="mono-label">Quick Facts</p>
+                <dl className="mt-5 space-y-3 text-[14px]">
+                  <div className="flex justify-between"><dt className="mono-label">Based in</dt><dd className="text-text-secondary">Bengaluru, India</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">Degree</dt><dd className="text-text-secondary">B.Tech ECE</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">University</dt><dd className="text-text-secondary">VNR VJIET</dd></div>
+                  <div className="flex justify-between"><dt className="mono-label">Focus</dt><dd className="text-text-secondary">Cloud-native platforms</dd></div>
+                </dl>
               </div>
-              <dl className="mt-5 space-y-3 border-t border-stroke pt-5 text-[14px]">
-                <div className="flex justify-between"><dt className="mono-label">Based</dt><dd>Bengaluru, IN</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Role</dt><dd>Analyst, SE</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Degree</dt><dd>B.Tech ECE</dd></div>
-                <div className="flex justify-between"><dt className="mono-label">Research</dt><dd>IEEE ICMACC '24</dd></div>
-              </dl>
             </aside>
           </div>
         </section>
