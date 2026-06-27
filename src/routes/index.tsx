@@ -92,7 +92,7 @@ const links = {
   github: "https://github.com/Asritha7",
   linkedin: "https://linkedin.com/in/asritha-nibhanupudi",
   research: "https://ieeexplore.ieee.org/document/10893942",
-  email: "mailto:asritha.nibhanupudi@example.com",
+  email: "mailto:nibhanupudiasritha@gmail.com",
 };
 
 function useReveal() {
