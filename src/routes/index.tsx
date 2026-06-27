@@ -137,7 +137,7 @@ function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <header className="sticky top-0 z-50 border-b border-stroke bg-background/85 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
           <a href="#top" className="mono-label !text-text-primary">Asritha Nibhanupudi</a>
           <nav className="hidden items-center gap-7 md:flex">
