@@ -246,7 +246,7 @@ function Portfolio() {
         <section id="work" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">§ 01 — Work</span>
+              <span className="mono-label">01 — Work</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Selected <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
               </h2>
@@ -283,7 +283,7 @@ function Portfolio() {
         <section id="experience" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">§ 02 — Experience</span>
+              <span className="mono-label">02 — Experience</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 A short <em className="italic" style={{ color: "var(--accent-terra)" }}>timeline</em>.
               </h2>
@@ -307,7 +307,7 @@ function Portfolio() {
         <section className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">§ 03 — Toolkit</span>
+              <span className="mono-label">03 — Toolkit</span>
               <h2 className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Tools I <em className="italic" style={{ color: "var(--accent-terra)" }}>reach for</em>.
               </h2>
@@ -333,7 +333,7 @@ function Portfolio() {
         <section id="about" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">§ 04 — About</span>
+              <span className="mono-label">04 — About</span>
               <h2 className="font-serif-display mt-4 text-[clamp(28px,3.6vw,38px)]">
                 Calm, precise, and a little <em className="italic" style={{ color: "var(--accent-terra)" }}>obsessed</em> with reliability.
               </h2>
@@ -373,7 +373,7 @@ function Portfolio() {
         {/* Contact */}
         <section id="contact" className="border-t border-hairline py-24">
           <div className="reveal mx-auto max-w-[900px] text-center md:text-left">
-            <span className="mono-label">§ 05 — Contact</span>
+            <span className="mono-label">05 — Contact</span>
             <h2 className="font-serif-display mt-6 text-[clamp(40px,7vw,76px)]">
               Let's build something{" "}
               <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em>.
