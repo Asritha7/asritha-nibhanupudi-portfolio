@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import portrait from "@/assets/portrait.jpg";
+import portraitAsset from "@/assets/portrait.jpg.asset.json";
+const portrait = portraitAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -88,7 +89,7 @@ const skills = [
 const links = {
   github: "https://github.com/Asritha7",
   linkedin: "https://linkedin.com/in/asritha-nibhanupudi",
-  research: "https://ieeexplore.ieee.org/",
+  research: "https://ieeexplore.ieee.org/document/10893942",
   email: "mailto:asritha.nibhanupudi@example.com",
 };
 
