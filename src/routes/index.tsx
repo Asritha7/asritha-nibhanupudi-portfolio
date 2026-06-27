@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
+import resumeAsset from "@/assets/resume.pdf.asset.json";
 const portrait = portraitAsset.url;
+const resume = resumeAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -175,7 +177,7 @@ function Portfolio() {
               <a href="#work" className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
                 View selected work →
               </a>
-              <a href="/resume.pdf" download className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill">
+              <a href={resume} download className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill">
                 Download résumé
               </a>
             </div>
@@ -391,7 +393,7 @@ function Portfolio() {
               <a href={links.email} className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
                 Email me →
               </a>
-              <a href="/resume.pdf" download className="rounded-[3px] border border-dark-foreground/30 bg-dark-background px-5 py-3 text-[15px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
+              <a href={resume} download className="rounded-[3px] border border-dark-foreground/30 bg-dark-background px-5 py-3 text-[15px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
                 Résumé
               </a>
             </div>
