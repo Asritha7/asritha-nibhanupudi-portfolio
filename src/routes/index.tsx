@@ -669,6 +669,7 @@ function Portfolio() {
           className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-hairline bg-panel text-text-primary shadow-md transition-all duration-300 hover:bg-warm-fill hover:text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra ${nearBottom ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
           aria-label="Back to top"
           aria-hidden={!nearBottom}
+          tabIndex={nearBottom ? 0 : -1}
         >
           <ArrowUp size={22} />
         </button>
