@@ -422,7 +422,57 @@ function Portfolio() {
         </section>
 
 
-        {/* Research + earlier */}
+        {/* Public engineering work - real GitHub repos only */}
+        <section id="public-work" aria-labelledby="public-heading" className="border-t border-hairline py-20">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
+            <div className="reveal">
+              <span className="mono-label">05 - Public code</span>
+              <h2 id="public-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
+                Public engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
+              </h2>
+              <p className="mt-3 text-[15px] text-text-secondary">
+                A small set of public repositories. Professional work at Oracle is confidential and is not on GitHub.
+              </p>
+              <a
+                href={LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mono-label mt-4 inline-flex items-center gap-1 hover:!text-terra"
+              >
+                View full GitHub profile ↗
+              </a>
+            </div>
+            <ul className="reveal grid grid-cols-1 gap-4">
+              {PUBLIC_REPOS.map((r) => (
+                <li
+                  key={r.name}
+                  className="rounded-[3px] border border-hairline bg-panel p-5 md:p-6"
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 className="font-serif-display text-[18px] md:text-[20px]">{r.name}</h3>
+                    <span className="mono-label !text-[11px]">{r.type}</span>
+                  </div>
+                  <p className="mt-2 text-[15px] text-text-secondary">{r.description}</p>
+                  <ul className="mono-label mt-3 flex flex-wrap gap-x-3 gap-y-1.5">
+                    {r.tech.map((t) => (
+                      <li key={t} className="!text-[11px]">· {t}</li>
+                    ))}
+                  </ul>
+                  <a
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mono-label mt-4 inline-flex items-center gap-1 hover:!text-terra"
+                  >
+                    View repository ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Research */}
         <section aria-labelledby="research-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
@@ -431,7 +481,7 @@ function Portfolio() {
                 Published <em className="italic" style={{ color: "var(--accent-terra)" }}>research</em>.
               </h2>
             </div>
-            <div className="reveal space-y-6">
+            <div className="reveal">
               <a
                 href={RESEARCH.href}
                 target="_blank"
@@ -444,25 +494,10 @@ function Portfolio() {
                   Read paper →
                 </span>
               </a>
-              <details className="rounded-[3px] border border-hairline bg-panel p-5">
-                <summary className="mono-label cursor-pointer hover:!text-terra">+ Earlier projects</summary>
-                <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-text-secondary sm:grid-cols-2">
-                  {EARLIER_PROJECTS.map((p) => (
-                    <li key={p.label} className="border-b border-hairline py-2">
-                      {p.href ? (
-                        <a href={p.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:!text-terra">
-                          {p.label} ↗
-                        </a>
-                      ) : (
-                        p.label
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </details>
             </div>
           </div>
         </section>
+
       </main>
 
       {/* Contact + footer */}
