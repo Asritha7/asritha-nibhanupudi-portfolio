@@ -161,7 +161,7 @@ function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Top bar */}
       <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
@@ -226,34 +226,6 @@ function Portfolio() {
         ) : null}
       </header>
 
-      <div
-        className="marquee-strip overflow-hidden border-y border-hairline"
-        style={{ background: "#F6ECE0", paddingTop: 16, paddingBottom: 16 }}
-        aria-label="Technologies"
-      >
-        <div className="marquee-track">
-          {[0, 1].map((i) => (
-            <div
-              key={i}
-              aria-hidden={i === 1 ? true : undefined}
-              className="flex shrink-0 items-center whitespace-nowrap pr-12"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 13,
-                letterSpacing: "0.06em",
-                color: "var(--text-muted)",
-              }}
-            >
-              {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","C++","Linux"].map((t, j, arr) => (
-                <span key={t} className="flex items-center">
-                  <span>{t}</span>
-                  <span className="px-4 opacity-60">·</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
 
       <main id="top" className="mx-auto max-w-[1280px] px-6 md:px-[46px]">
 
