@@ -740,7 +740,6 @@ export const PROJECT_ROUTE: Record<string, string> = {
   "keycloak-identity-flow": "/work/keycloak-identity-flow",
   "kafka-strimzi-upgrade": "/work/kafka-strimzi-upgrade",
   "kubernetes-cicd-reliability": "/work/kubernetes-cicd-reliability",
-  "uim-sensitive-attribute-encryption": "/work/uim-sensitive-attribute-encryption",
   "rfid-pin-authentication-research": "/work/rfid-pin-authentication-research",
 };
 
