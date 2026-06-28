@@ -769,6 +769,7 @@ export const TESTIMONIALS: Testimonial[] = [];
 
 // Map slug to typed route path for type-safe <Link to=...>
 export const PROJECT_ROUTE: Record<string, string> = {
+  "aws-microservices-cdk-ecs": "/work/aws-microservices-cdk-ecs",
   "automation-framework": "/work/automation-framework",
   "keycloak-identity-flow": "/work/keycloak-identity-flow",
   "kafka-strimzi-upgrade": "/work/kafka-strimzi-upgrade",
