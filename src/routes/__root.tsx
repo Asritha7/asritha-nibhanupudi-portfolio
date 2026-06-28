@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import faviconAsset from "../assets/favicon.png.asset.json";
+import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_URL = "https://asritha.dev";
 const OG_IMAGE_URL = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
