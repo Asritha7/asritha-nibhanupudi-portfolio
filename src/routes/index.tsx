@@ -234,38 +234,35 @@ function Portfolio() {
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">01 - Case studies</span>
+              <span className="mono-label">01 - Featured work</span>
               <h2 id="work-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Featured <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Three software engineering projects, each as a problem and the decisions behind it.
+                A selection of software engineering work across backend systems, APIs, distributed
+                systems, cloud infrastructure, automation, observability, and security.
               </p>
             </div>
             <ul className="reveal grid grid-cols-1 gap-5">
               {CASE_STUDIES.map((c, i) => (
                 <li key={c.slug}>
                   <Link
-                    to={
-                      c.slug === "api-infrastructure"
-                        ? "/work/api-infrastructure"
-                        : c.slug === "observability"
-                        ? "/work/observability"
-                        : "/work/kafka-kubernetes"
-                    }
+                    to={PROJECT_ROUTE[c.slug]}
                     className="group block rounded-[3px] border border-hairline bg-panel p-6 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra md:p-8"
                   >
                     <div className="flex items-baseline justify-between gap-4">
-                      <span className="mono-label">0{i + 1}</span>
+                      <span className="mono-label">0{i + 1} · {c.projectType}</span>
                       <span className="mono-label">{c.year}</span>
                     </div>
                     <h3 className="font-serif-display mt-3 text-[22px] md:text-[26px]">{c.title}</h3>
-                    <p className="mt-3 text-[16px] text-text-secondary">{c.blurb}</p>
+                    <p className="mt-3 text-[16px] text-text-secondary">{c.shortDescription}</p>
+                    <p className="mt-2 text-[15px] text-text-secondary">
+                      <span className="text-text-primary">My contribution: </span>
+                      {c.contribution}
+                    </p>
                     <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
-                      {c.tags.map((t) => (
-                        <li key={t} className="!text-[11px]">
-                          · {t}
-                        </li>
+                      {c.tags.slice(0, 5).map((t) => (
+                        <li key={t} className="!text-[11px]">· {t}</li>
                       ))}
                     </ul>
                     <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
@@ -276,7 +273,56 @@ function Portfolio() {
               ))}
             </ul>
           </div>
+
+          {/* More selected work (compact) */}
+          <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
+            <div className="reveal">
+              <span className="mono-label">More selected work</span>
+              <h3 className="font-serif-display mt-4 text-[clamp(22px,2.4vw,26px)]">
+                Breadth across <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em>.
+              </h3>
+              <p className="mt-3 text-[14.5px] text-text-secondary">
+                Shorter writeups across security, distributed systems, and research.
+              </p>
+            </div>
+            <ul className="reveal grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {ADDITIONAL_PROJECTS.slice(0, 3).map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    to={PROJECT_ROUTE[p.slug]}
+                    className="group flex h-full flex-col rounded-[3px] border border-hairline bg-panel p-5 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                  >
+                    <span className="mono-label !text-[11px]">{p.projectType.toUpperCase()}</span>
+                    <h4 className="font-serif-display mt-2 text-[18px] leading-snug">{p.title}</h4>
+                    <p className="mt-2 text-[14px] text-text-secondary">{p.shortDescription}</p>
+                    <p className="mt-2 text-[13.5px] text-text-secondary">
+                      <span className="text-text-primary">Contribution: </span>
+                      {p.contribution}
+                    </p>
+                    <ul className="mono-label mt-3 flex flex-wrap gap-x-2 gap-y-1.5">
+                      {p.tags.slice(0, 4).map((t) => (
+                        <li key={t} className="!text-[10.5px]">· {t}</li>
+                      ))}
+                    </ul>
+                    <span className="mono-label mt-auto pt-4 inline-flex items-center gap-1 group-hover:!text-terra">
+                      Read details →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-10 flex justify-end md:pl-[236px]">
+            <Link
+              to="/work"
+              className="mono-label inline-flex items-center gap-2 rounded-[3px] border border-hairline bg-panel px-4 py-2.5 hover:bg-warm-fill hover:!text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra"
+            >
+              View all work →
+            </Link>
+          </div>
         </section>
+
 
         {/* Experience */}
         <section id="experience" aria-labelledby="exp-heading" className="border-t border-hairline py-20">
