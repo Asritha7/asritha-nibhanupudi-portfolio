@@ -558,7 +558,7 @@ export const EXPERIENCE = [
       "Software engineering on the Subledger Technology platform for Asset & Wealth Management - cloud platform, API infrastructure, and observability.",
     contributions: [
       "Contributed to a hybrid API gateway layer spanning on-prem and multi-region AWS",
-      "Built AWS-native microservices using CDK (TypeScript), ECS Fargate, Aurora PostgreSQL, and Lambda",
+      "Contributed to AWS-native microservices using CDK (TypeScript), ECS Fargate, Aurora PostgreSQL, and Lambda",
       "Onboarded Java microservices to Prometheus and Grafana for consistent service-level visibility",
       "Implemented routing, auth, and integration tests as infrastructure-as-code",
     ],
