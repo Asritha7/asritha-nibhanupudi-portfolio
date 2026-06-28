@@ -482,21 +482,22 @@ function Portfolio() {
         </section>
 
 
-        {/* Public engineering work - real GitHub repos only */}
+        {/* Public Projects - real GitHub repos only */}
         <section id="public-work" aria-labelledby="public-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
               <span className="mono-label">05 - Public code</span>
               <h2 id="public-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
-                Public engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
+                Public <em className="italic" style={{ color: "var(--accent-terra)" }}>Projects</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                A small set of public repositories. Professional work at Oracle is confidential and is not on GitHub.
+                Earlier projects and technical experiments available publicly on GitHub.
               </p>
               <a
                 href={LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track("github_opened")}
                 className="mono-label mt-4 inline-flex items-center gap-1 hover:!text-terra"
               >
                 View full GitHub profile ↗
@@ -522,6 +523,7 @@ function Portfolio() {
                     href={r.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => track("github_opened", { repo: r.name })}
                     className="mono-label mt-4 inline-flex items-center gap-1 hover:!text-terra"
                   >
                     View repository ↗
@@ -531,6 +533,7 @@ function Portfolio() {
             </ul>
           </div>
         </section>
+
 
         {/* Research */}
         <section aria-labelledby="research-heading" className="border-t border-hairline py-20">
