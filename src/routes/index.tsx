@@ -609,21 +609,18 @@ function ContactForm() {
         disabled={state === "submitting"}
         className="mt-6 w-full rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-terra)]"
       >
-        {state === "submitting" ? "Opening…" : "Send message →"}
+        {state === "submitting" ? "Sending…" : "Send message →"}
       </button>
 
-      <p className="mono-label mt-4 !text-[11px] !text-dark-foreground/50">
-        Your message opens in your email app. Nothing is stored on this site.
-      </p>
-
       {state === "success" ? (
-        <p role="status" className="mono-label mt-3 !text-[var(--accent-terra)]">Opening your email app… thank you!</p>
+        <p role="status" className="mono-label mt-4 !text-[var(--accent-terra)]">Thank you! Your message has been sent.</p>
       ) : null}
       {state === "error" ? (
-        <p role="alert" className="mono-label mt-3 !text-[var(--accent-terra)]">
+        <p role="alert" className="mono-label mt-4 !text-[var(--accent-terra)]">
           Something went wrong. Email me directly at <a href={LINKS.email} className="underline">{SITE.email}</a>.
         </p>
       ) : null}
     </form>
   );
 }
+
