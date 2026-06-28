@@ -9,7 +9,7 @@ const resume = resumeAsset.url;
 
 const INDEX_DESC =
   "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
-const INDEX_URL = "http://asritha.dev";
+const INDEX_URL = "https://asritha.dev";
 const INDEX_OG_IMAGE = `https://asritha.dev${ogImageAsset.url}`;
 
 export const Route = createFileRoute("/")({
