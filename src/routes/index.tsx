@@ -573,6 +573,28 @@ function Portfolio() {
           </div>
         </section>
 
+        {TESTIMONIALS.length > 0 ? (
+          <section aria-labelledby="testimonials-heading" className="border-t border-hairline py-20">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
+              <div className="reveal">
+                <span className="mono-label">07 - Words</span>
+                <h2 id="testimonials-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
+                  What people have <em className="italic" style={{ color: "var(--accent-terra)" }}>said</em>.
+                </h2>
+              </div>
+              <ul className="reveal grid grid-cols-1 gap-4">
+                {TESTIMONIALS.filter((t) => t.permissionConfirmed).map((t, i) => (
+                  <li key={i} className="rounded-[3px] border border-hairline bg-panel p-6">
+                    <p className="font-serif-display text-[18px] leading-snug">"{t.quote}"</p>
+                    <p className="mono-label mt-4">{t.attribution} · {t.relationship}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
+
+
       </main>
 
       {/* Contact + footer */}
