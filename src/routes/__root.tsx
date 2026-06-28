@@ -11,7 +11,14 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import faviconAsset from "../assets/favicon.png.asset.json";
+import ogImageAsset from "../assets/og-image.jpg.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+const SITE_URL = "https://asritha.dev";
+const OG_IMAGE_URL = `${SITE_URL}${ogImageAsset.url}`;
+const SITE_DESC =
+  "Software engineer at Goldman Sachs working across cloud platform engineering, API gateway infrastructure, distributed systems, and observability. Based in Bengaluru.";
+
 
 function NotFoundComponent() {
   return (
