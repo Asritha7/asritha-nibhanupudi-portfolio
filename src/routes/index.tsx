@@ -407,7 +407,7 @@ function Portfolio() {
                   <p className="mono-label pt-1">{g.label}</p>
                   <ul className="flex flex-wrap gap-2">
                     {g.items.map((t) => (
-                      <li key={t} className="rounded-[3px] border border-hairline bg-panel px-3 py-1.5 text-[14px] text-text-primary">
+                      <li key={t} className="inline-flex items-center rounded-[3px] border border-hairline bg-panel px-3 py-1.5 text-[14px] leading-none text-text-primary">
                         {t}
                       </li>
                     ))}
