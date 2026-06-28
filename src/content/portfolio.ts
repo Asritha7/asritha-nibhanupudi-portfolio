@@ -609,47 +609,42 @@ export const EXPERIENCE = [
 export const PRINCIPLES = [
   {
     title: "Reliability before unnecessary complexity",
-    body: "Choose the simplest design that meets the reliability goal. Complexity is a cost paid every on-call shift.",
+    body: "I prefer the simplest design that satisfies the reliability requirement. In automation and deployment workflows, every additional configuration path creates another opportunity for drift.",
   },
   {
-    title: "Observability is part of the system design",
-    body: "Metrics, logs, and traces are decided alongside the API and the data model - not added after the first incident.",
+    title: "Make failures understandable",
+    body: "I treat logs and metrics as part of implementation because they determine how quickly a failed deployment or integration can be understood.",
   },
   {
     title: "Automate repeatable engineering work",
-    body: "If a step has to happen more than twice, it belongs in code or a pipeline. Manual rehearsals don't scale.",
+    body: "If a step has to happen more than twice across environments, it belongs in code or a pipeline rather than in a runbook.",
   },
   {
     title: "Make technical trade-offs explicit",
-    body: "Every design choice rules something out. Writing down what - and why - keeps the team honest later.",
+    body: "Every design choice rules something out. Writing down what was chosen and why keeps the next person able to revisit the decision honestly.",
   },
   {
-    title: "Build systems that are understandable and maintainable",
-    body: "Code, infrastructure, and dashboards are read more often than they are written. Optimise for the next engineer.",
+    title: "Build software that others can maintain",
+    body: "Code, infrastructure, and dashboards are read more often than they are written. I optimise for the next engineer to pick the work up safely.",
   },
 ];
 
 export const CAPABILITIES: { label: string; items: string[] }[] = [
-  { label: "Programming", items: ["C++", "Python", "JavaScript", "TypeScript", "SQL", "Bash", "Java"] },
   {
-    label: "Backend & APIs",
-    items: ["REST APIs", "Authentication", "Authorization", "Service integration"],
+    label: "Software Development",
+    items: ["TypeScript", "JavaScript", "Python", "Java", "SQL", "Bash"],
   },
   {
-    label: "Cloud & Infrastructure",
-    items: ["AWS", "Kubernetes", "Docker", "Linux", "Infrastructure automation"],
+    label: "Cloud and Service Infrastructure",
+    items: ["AWS", "CDK", "ECS Fargate", "Kubernetes", "Docker", "Linux"],
   },
   {
-    label: "Distributed Systems",
-    items: ["Kafka", "Asynchronous processing", "Fault tolerance"],
+    label: "Distributed Systems and Integrations",
+    items: ["Kafka", "REST APIs", "Authentication", "Authorization", "Asynchronous processing"],
   },
   {
-    label: "Engineering Productivity",
-    items: ["CI/CD", "Git", "GitHub", "GitLab", "Automation", "Debugging"],
-  },
-  {
-    label: "Observability",
-    items: ["Prometheus", "Grafana", "Metrics", "Logging", "Alerting"],
+    label: "Delivery and Reliability",
+    items: ["GitLab CI", "GitHub", "Cypress", "Prometheus", "Grafana", "Logging", "Debugging"],
   },
 ];
 
