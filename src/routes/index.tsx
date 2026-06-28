@@ -6,17 +6,24 @@ import resumeAsset from "@/assets/resume.pdf.asset.json";
 const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
+const INDEX_DESC =
+  "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
+const INDEX_URL = "https://asritha.dev/";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Asritha Nibhanupudi - Software Engineer" },
-      { name: "description", content: "Software engineer working across cloud platform engineering, API gateway infrastructure, and observability. Currently at Goldman Sachs." },
+      { name: "description", content: INDEX_DESC },
       { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
-      { property: "og:description", content: "Cloud platform engineering, distributed systems, and observability." },
+      { property: "og:description", content: INDEX_DESC },
+      { property: "og:url", content: INDEX_URL },
     ],
+    links: [{ rel: "canonical", href: INDEX_URL }],
   }),
   component: Portfolio,
 });
+
 
 const nav = [
   { id: "work", label: "Work" },
