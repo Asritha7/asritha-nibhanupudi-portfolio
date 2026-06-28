@@ -507,21 +507,32 @@ function ContactForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (website) return; // honeypot tripped - silently drop
     if (!validate()) return;
     setState("submitting");
     try {
-      const subject = `Portfolio inquiry from ${name.trim()}`;
-      const body = `${message.trim()}\n\n-\nFrom: ${name.trim()} <${email.trim()}>`;
-      const href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = href;
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+          website,
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
       setState("success");
+      setName("");
+      setEmail("");
+      setMessage("");
     } catch {
       setState("error");
     }
   };
+
 
   const fieldClass =
     "w-full rounded-[3px] border border-dark-foreground/25 bg-dark-foreground/[0.04] px-4 py-3 text-[15px] text-dark-foreground placeholder:text-dark-foreground/40 outline-none transition-colors focus:border-[var(--accent-terra)] focus:bg-dark-foreground/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-terra)]";
