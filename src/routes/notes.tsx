@@ -56,7 +56,41 @@ function NotesIndex() {
               <NoteBlock label="Why it was difficult">{n.whyDifficult}</NoteBlock>
               <NoteBlock label="Approach">{n.approach}</NoteBlock>
               <NoteBlock label="Technical decision">{n.technicalDecision}</NoteBlock>
+
+              {n.practicalSteps?.length ? (
+                <div className="mt-6">
+                  <p className="mono-label !text-text-primary !text-[12px]">Practical steps</p>
+                  <ol className="mt-3 space-y-2 text-[16.5px] leading-relaxed text-text-secondary">
+                    {n.practicalSteps.map((s, i) => (
+                      <li key={i} className="flex gap-3">
+                        <span className="mono-label !text-[12px] !text-terra shrink-0 pt-1">{String(i + 1).padStart(2, "0")}</span>
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ) : null}
+
+              {n.checklists?.length
+                ? n.checklists.map((c) => (
+                    <div key={c.heading} className="mt-6">
+                      <p className="mono-label !text-text-primary !text-[12px]">{c.heading}</p>
+                      <ul className="mt-3 space-y-2 text-[16.5px] leading-relaxed text-text-secondary">
+                        {c.items.map((it, i) => (
+                          <li key={i} className="flex gap-3">
+                            <span className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent-terra)" }} />
+                            <span>{it}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))
+                : null}
+
               <NoteBlock label="Limitation or mistake">{n.limitation}</NoteBlock>
+              {n.whenNotToApply ? (
+                <NoteBlock label="When this approach does not apply">{n.whenNotToApply}</NoteBlock>
+              ) : null}
               <NoteBlock label="General lesson">{n.lesson}</NoteBlock>
             </li>
           ))}
