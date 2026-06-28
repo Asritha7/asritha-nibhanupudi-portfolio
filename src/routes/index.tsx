@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
-import resumeAsset from "@/assets/resume.pdf.asset.json";
 const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
