@@ -285,6 +285,34 @@ function Portfolio() {
           </aside>
         </section>
 
+        <div
+          className="marquee-strip relative left-1/2 -translate-x-1/2 w-screen overflow-hidden border-y border-hairline bg-[var(--marquee-bg)] py-4"
+          aria-label="Technologies"
+        >
+          <div className="marquee-track">
+            {[0, 1].map((i) => (
+              <div
+                key={i}
+                aria-hidden={i === 1 ? true : undefined}
+                className="flex shrink-0 items-center whitespace-nowrap pr-12"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 13,
+                  letterSpacing: "0.06em",
+                  color: "var(--text-muted)",
+                }}
+              >
+                {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","C++","Linux"].map((t, j, arr) => (
+                  <span key={t} className="flex items-center">
+                    <span>{t}</span>
+                    <span className="px-4 opacity-60">·</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Now */}
         <section id="now" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr] md:gap-16">
