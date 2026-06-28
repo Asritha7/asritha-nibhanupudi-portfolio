@@ -126,14 +126,16 @@ export const PROJECTS: Project[] = [
   // ---------------- FEATURED ----------------
   {
     slug: "aws-microservices-cdk-ecs",
-    title: "AWS-Native Microservices on CDK and ECS Fargate",
+    title: "AWS Microservice Infrastructure and Integration",
     projectType: "Professional Work",
     year: "2026",
     shortDescription:
-      "Built AWS-native microservices for a financial subledger platform using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda - with routing, auth, and integration tests defined as infrastructure-as-code.",
+      "Contributed to AWS-native microservices and their infrastructure-as-code, working across TypeScript CDK, ECS Fargate, Aurora PostgreSQL, Lambda, routing, authentication, and integration validation.",
     myContribution:
       "Implemented service scaffolding and infrastructure-as-code in TypeScript CDK; built containerised services on ECS Fargate backed by Aurora PostgreSQL, with Lambda for event-driven work and integration tests wired into the pipeline.",
-    ownershipWording: "Implemented and contributed to",
+    ownershipWording: "Contributed to",
+    scopeNote:
+      "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
     professionalContext:
       "Subledger Technology platform inside Asset & Wealth Management. The wider platform spans on-prem and multi-region AWS; this work focused on the AWS-native microservices slice and its supporting infrastructure-as-code, not on owning the broader platform.",
     problem:
@@ -177,25 +179,25 @@ export const PROJECTS: Project[] = [
       "Encoding routing and auth as IaC without making service authors' day-to-day changes painful",
     ],
     outcome:
-      "Services landed with a consistent, reviewable deployment shape on AWS, and routing, auth, and integration tests lived alongside the service code in version control rather than in console configuration.",
+      "Services in the scope I contributed to landed with a consistent, reviewable deployment shape on AWS, and routing, auth, and integration tests lived alongside the service code in version control rather than in console configuration.",
     learned:
-      "Infrastructure that is reviewable in the same diff as the code is dramatically easier to reason about than infrastructure managed in a console. The cost of writing CDK pays itself back the first time you ship the same change across regions.",
+      "Infrastructure that is reviewable in the same diff as the code is easier to reason about than infrastructure managed in a console, particularly when the same change has to ship across regions.",
     wouldImprove:
       "I would invest more in a shared CDK construct library that captures the routing, auth, and integration-test scaffolding as one reusable unit, so a new service can opt into the platform defaults with a few lines instead of copying patterns across stacks.",
     ownership: {
-      team: ["Owned the broader Subledger Technology platform spanning on-prem and multi-region AWS"],
+      team: ["The wider Subledger Technology platform spanning on-prem and multi-region AWS is owned by the broader team, not by me"],
       implemented: [
-        "Service infrastructure-as-code in TypeScript CDK",
-        "Containerised services on ECS Fargate backed by Aurora PostgreSQL",
-        "Lambda-based handlers for event-driven and asynchronous edges",
-        "Integration tests running against real AWS resources from CI",
+        "Service infrastructure-as-code in TypeScript CDK within my scope",
+        "Containerised services on ECS Fargate backed by Aurora PostgreSQL within my scope",
+        "Lambda-based handlers for event-driven and asynchronous edges within my scope",
+        "Integration tests running against real AWS resources from CI for the services I worked on",
       ],
       contributedTo: [
         "The hybrid API gateway layer that spans on-prem and multi-region AWS",
         "Conventions for routing and auth expressed as IaC",
       ],
-      investigated: ["Aurora failover and Lambda cold-start behaviour on critical paths"],
-      validated: ["Service behaviour end-to-end via integration tests gated in CI"],
+      investigated: ["Aurora failover and Lambda cold-start behaviour on critical paths within my scope"],
+      validated: ["Service behaviour end-to-end via integration tests gated in CI for the services I worked on"],
     },
     confidential: true,
     featured: true,
