@@ -58,8 +58,10 @@ const nav = [
   { id: "experience", label: "Experience" },
   { id: "principles", label: "Principles" },
   { id: "capabilities", label: "Capabilities" },
+  { id: "notes", label: "Notes", route: "/notes" as const },
   { id: "contact", label: "Contact" },
 ];
+
 
 type ThemeMode = "light" | "amber" | "dark";
 const THEME_ORDER: ThemeMode[] = ["light", "amber", "dark"];
