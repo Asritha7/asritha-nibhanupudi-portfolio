@@ -739,7 +739,7 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
     limitation:
       "The checklist is only as good as the post-upgrade comparison. Without a structured diff of operator and broker state before and after, subtle regressions can still slip through.",
     lesson:
-      "Operator-side reconciliation is often where upgrade pain hides, not the broker itself. Validation only helps when it clearly separates 'flaky' from 'broken'.",
+      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. Validation only helps when it clearly separates 'flaky' from 'broken'.",
     checklists: [
       {
         heading: "Before upgrade",
