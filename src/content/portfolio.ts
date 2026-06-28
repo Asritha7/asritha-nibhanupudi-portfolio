@@ -102,6 +102,84 @@ export type Project = {
 export const PROJECTS: Project[] = [
   // ---------------- FEATURED ----------------
   {
+    slug: "aws-microservices-cdk-ecs",
+    title: "AWS-Native Microservices on CDK and ECS Fargate",
+    projectType: "Professional Work",
+    year: "2026",
+    shortDescription:
+      "Built AWS-native microservices for a financial subledger platform using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda - with routing, auth, and integration tests defined as infrastructure-as-code.",
+    myContribution:
+      "Implemented service scaffolding and infrastructure-as-code in TypeScript CDK; built containerised services on ECS Fargate backed by Aurora PostgreSQL, with Lambda for event-driven work and integration tests wired into the pipeline.",
+    ownershipWording: "Implemented and contributed to",
+    professionalContext:
+      "Subledger Technology platform inside Asset & Wealth Management. The wider platform spans on-prem and multi-region AWS; this work focused on the AWS-native microservices slice and its supporting infrastructure-as-code, not on owning the broader platform.",
+    problem:
+      "New services needed a consistent, repeatable way to ship on AWS - networking, container runtime, database access, auth, and tests - without each team re-inventing the deployment shape per service.",
+    constraints: [
+      "Everything provisioned through code review, not the AWS console",
+      "Services had to fit a hybrid model that spans on-prem and multi-region AWS",
+      "Database access patterns had to suit a financial workload (durability, predictable failover)",
+      "Integration tests had to run in CI against a representative environment, not against mocks only",
+    ],
+    approach: [
+      "Defined service infrastructure in TypeScript CDK so reviewers could read the deployment shape in the same pull request as the code",
+      "Ran services on ECS Fargate to avoid managing EC2 capacity and to keep deployments declarative",
+      "Used Aurora PostgreSQL as the system of record, with schema and access patterns expressed through migrations",
+      "Used Lambda for event-driven and asynchronous edges where running a long-lived container was overkill",
+      "Wired routing and auth into the gateway layer as IaC rather than per-service ad-hoc configuration",
+      "Added integration tests that exercise real AWS resources from CI to catch wiring mistakes before promotion",
+    ],
+    decision: {
+      decision:
+        "Express routing, auth, and integration-test scaffolding as part of the service's CDK stack instead of treating them as separate, hand-managed environment config.",
+      why: "When routing and auth were managed outside the service, drift between environments was easy and reviewers could not see in one place what a service actually exposed. Putting it in CDK made the exposed surface reviewable in the same diff as the code.",
+      tradeoff:
+        "Service authors had to learn the CDK conventions used by the platform, and small routing tweaks now went through code review instead of a console change - slower per change, but auditable.",
+    },
+    alternatives: [
+      "Console-driven networking, gateway routing, and auth configuration (faster initially, but invisible to source control and prone to drift between environments)",
+      "Plain CloudFormation YAML instead of CDK (works, but loses the type-checking and shared abstractions that make TypeScript CDK reviewable across teams)",
+      "Running services on EC2 instead of ECS Fargate (more control, but adds capacity management without a clear benefit for this workload)",
+    ],
+    edgeCases: [
+      "Cold-start behaviour for Lambda paths on the asynchronous edges",
+      "Aurora failover behaviour during planned maintenance windows",
+      "Integration tests that passed in CI but pointed at a misconfigured environment resource",
+      "Gateway routes that worked in one region but not another because of a region-scoped IaC parameter",
+    ],
+    technologies: ["AWS", "AWS CDK (TypeScript)", "ECS Fargate", "Aurora PostgreSQL", "AWS Lambda", "API Gateway"],
+    challenges: [
+      "Keeping the AWS-native slice consistent with on-prem services in the hybrid model",
+      "Making integration tests against real AWS resources reliable enough to gate releases",
+      "Encoding routing and auth as IaC without making service authors' day-to-day changes painful",
+    ],
+    outcome:
+      "Services landed with a consistent, reviewable deployment shape on AWS, and routing, auth, and integration tests lived alongside the service code in version control rather than in console configuration.",
+    learned:
+      "Infrastructure that is reviewable in the same diff as the code is dramatically easier to reason about than infrastructure managed in a console. The cost of writing CDK pays itself back the first time you ship the same change across regions.",
+    wouldImprove:
+      "I would invest more in a shared CDK construct library that captures the routing, auth, and integration-test scaffolding as one reusable unit, so a new service can opt into the platform defaults with a few lines instead of copying patterns across stacks.",
+    ownership: {
+      team: ["Owned the broader Subledger Technology platform spanning on-prem and multi-region AWS"],
+      implemented: [
+        "Service infrastructure-as-code in TypeScript CDK",
+        "Containerised services on ECS Fargate backed by Aurora PostgreSQL",
+        "Lambda-based handlers for event-driven and asynchronous edges",
+        "Integration tests running against real AWS resources from CI",
+      ],
+      contributedTo: [
+        "The hybrid API gateway layer that spans on-prem and multi-region AWS",
+        "Conventions for routing and auth expressed as IaC",
+      ],
+      investigated: ["Aurora failover and Lambda cold-start behaviour on critical paths"],
+      validated: ["Service behaviour end-to-end via integration tests gated in CI"],
+    },
+    confidential: true,
+    featured: true,
+    categories: ["Cloud", "Backend", "APIs"],
+    tags: ["AWS", "CDK", "ECS Fargate", "Aurora PostgreSQL", "Lambda", "TypeScript"],
+  },
+  {
     slug: "automation-framework",
     title: "Automation Framework and Release Workflow",
     projectType: "Professional Work",
