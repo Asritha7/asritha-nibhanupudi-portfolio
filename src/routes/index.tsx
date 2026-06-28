@@ -10,11 +10,11 @@ import {
   CASE_STUDIES,
   ADDITIONAL_PROJECTS,
   PROJECT_ROUTE,
+  projectCtaLabel,
   EXPERIENCE,
   PRINCIPLES,
   CAPABILITIES,
   RESEARCH,
-  PUBLIC_REPOS,
   EARLIER_PROJECTS,
 } from "@/content/portfolio";
 
