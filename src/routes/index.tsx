@@ -10,11 +10,11 @@ import {
   CASE_STUDIES,
   ADDITIONAL_PROJECTS,
   PROJECT_ROUTE,
+  projectCtaLabel,
   EXPERIENCE,
   PRINCIPLES,
   CAPABILITIES,
   RESEARCH,
-  PUBLIC_REPOS,
   EARLIER_PROJECTS,
 } from "@/content/portfolio";
 
@@ -236,17 +236,17 @@ function Portfolio() {
           </aside>
         </section>
 
-        {/* Featured case studies */}
+        {/* Featured Engineering Work */}
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">01 - Featured work</span>
+              <span className="mono-label">01 - Featured Engineering Work</span>
               <h2 id="work-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
-                Featured <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
+                Featured Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                A selection of software engineering work across backend systems, APIs, distributed
-                systems, cloud infrastructure, automation, observability, and security.
+                Selected professional engineering work. Each item is labelled by type and links to a sanitized
+                case study that distinguishes what the wider team owned from what I personally contributed.
               </p>
             </div>
             <ul className="reveal grid grid-cols-1 gap-5">
@@ -264,15 +264,18 @@ function Portfolio() {
                     <p className="mt-3 text-[16px] text-text-secondary">{c.shortDescription}</p>
                     <p className="mt-2 text-[15px] text-text-secondary">
                       <span className="text-text-primary">My contribution: </span>
-                      {c.contribution}
+                      {c.myContribution}
                     </p>
                     <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
                       {c.tags.slice(0, 5).map((t) => (
                         <li key={t} className="!text-[11px]">· {t}</li>
                       ))}
                     </ul>
+                    {c.confidential ? (
+                      <p className="mono-label mt-3 !text-[11px]">Sanitized · confidential professional work</p>
+                    ) : null}
                     <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
-                      Read case study →
+                      {projectCtaLabel(c)} →
                     </span>
                   </Link>
                 </li>
@@ -280,19 +283,19 @@ function Portfolio() {
             </ul>
           </div>
 
-          {/* More selected work (compact) */}
+          {/* Additional Engineering and Research */}
           <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">More selected work</span>
+              <span className="mono-label">Additional Engineering and Research</span>
               <h3 className="font-serif-display mt-4 text-[clamp(22px,2.4vw,26px)]">
-                Breadth across <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em>.
+                Additional engineering and <em className="italic" style={{ color: "var(--accent-terra)" }}>research</em>.
               </h3>
               <p className="mt-3 text-[14.5px] text-text-secondary">
-                Shorter writeups across security, distributed systems, and research.
+                Shorter writeups across engineering implementation and published research.
               </p>
             </div>
-            <ul className="reveal grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {ADDITIONAL_PROJECTS.slice(0, 3).map((p) => (
+            <ul className="reveal grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {ADDITIONAL_PROJECTS.map((p) => (
                 <li key={p.slug}>
                   <Link
                     to={PROJECT_ROUTE[p.slug]}
@@ -303,7 +306,7 @@ function Portfolio() {
                     <p className="mt-2 text-[14px] text-text-secondary">{p.shortDescription}</p>
                     <p className="mt-2 text-[13.5px] text-text-secondary">
                       <span className="text-text-primary">Contribution: </span>
-                      {p.contribution}
+                      {p.myContribution}
                     </p>
                     <ul className="mono-label mt-3 flex flex-wrap gap-x-2 gap-y-1.5">
                       {p.tags.slice(0, 4).map((t) => (
@@ -311,7 +314,7 @@ function Portfolio() {
                       ))}
                     </ul>
                     <span className="mono-label mt-auto pt-4 inline-flex items-center gap-1 group-hover:!text-terra">
-                      Read details →
+                      {projectCtaLabel(p)} →
                     </span>
                   </Link>
                 </li>
@@ -363,8 +366,8 @@ function Portfolio() {
                       ))}
                     </ul>
                   ) : null}
-                  {"note" in e && e.note ? (
-                    <p className="mono-label mt-3 !text-[11px]">{e.note}</p>
+                  {"note" in e && (e as { note?: string }).note ? (
+                    <p className="mono-label mt-3 !text-[11px]">{(e as { note?: string }).note}</p>
                   ) : null}
                 </li>
               ))}
@@ -418,31 +421,6 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Public engineering work */}
-        <section aria-labelledby="repos-heading" className="border-t border-hairline py-20">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
-            <div className="reveal">
-              <span className="mono-label">05 - Open source</span>
-              <h2 id="repos-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
-                Public <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em> work.
-              </h2>
-              <p className="mt-3 text-[15px] text-text-secondary">
-                Repositories in progress. Each will ship with architecture notes, tests, and deployment instructions.
-              </p>
-            </div>
-            <ul className="reveal grid grid-cols-1 gap-4">
-              {PUBLIC_REPOS.map((r) => (
-                <li key={r.title} className="rounded-[3px] border border-hairline bg-panel p-5 md:p-6">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif-display text-[18px]">{r.title}</h3>
-                    <span className="mono-label !text-[11px]">{r.status}</span>
-                  </div>
-                  <p className="mt-2 text-[15.5px] text-text-secondary">{r.blurb}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
 
         {/* Research + earlier */}
         <section aria-labelledby="research-heading" className="border-t border-hairline py-20">
