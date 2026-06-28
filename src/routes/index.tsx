@@ -7,7 +7,7 @@ const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
 const INDEX_DESC =
-  "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
+  "Software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems.";
 const INDEX_URL = "https://asritha.dev";
 const INDEX_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
 
@@ -21,8 +21,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { property: "og:description", content: INDEX_DESC },
       { property: "og:image", content: INDEX_OG_IMAGE },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
+      { property: "og:image:width", content: "1344" },
+      { property: "og:image:height", content: "768" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "twitter:domain", content: "asritha.dev" },
       { property: "twitter:url", content: INDEX_URL },
