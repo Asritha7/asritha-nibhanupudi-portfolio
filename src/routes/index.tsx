@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Sun, Moon, Sunset } from "lucide-react";
+import { Sun, Moon, Sunset, ArrowUp } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import {
