@@ -69,13 +69,8 @@ bun run lint
 
 ## Environment Variables
 
-Create a `.env` file at the project root (do **not** commit it):
+Secrets such as the Resend API key are managed through the Lovable Cloud dashboard and are not committed to this repository. For local development, create a `.env` file at the project root (do **not** commit it) and add any required keys there. The contact form uses the configured Resend sender and recipient addresses.
 
-```
-RESEND_API_KEY=your_resend_api_key
-```
-
-The contact form (`src/routes/api/public/contact.ts`) sends mail from `contact@asritha.dev` (verified Resend domain) to `nibhanupudiasritha@gmail.com`.
 
 ## Deployment
 
