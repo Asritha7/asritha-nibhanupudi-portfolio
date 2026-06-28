@@ -84,6 +84,8 @@ The site is deployed to Cloudflare Workers via the [Lovable](https://lovable.dev
 - Production: **https://asritha.dev**
 - Lovable URL: `asritha-nibhanupudi-portfolio.lovable.app`
 
+Source code is synced to GitHub at **https://github.com/Asritha7/asritha-nibhanupudi-portfolio**.
+
 HTML responses send `Cache-Control: no-cache` so every refresh sees the latest deployment; hashed JS/CSS assets remain cacheable.
 
 ## Editing Content
