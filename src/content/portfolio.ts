@@ -262,7 +262,7 @@ export const PROJECTS: Project[] = [
     wouldImprove:
       "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that on-call reviewers see triage hints instead of a raw failure log.",
     ownership: {
-      team: ["Owned the broader release process and infrastructure"],
+      team: ["The broader release process and infrastructure was owned by the wider team"],
       implemented: [
         "Reusable framework primitives for waits, polling, and retries",
         "REST API and shell-script integration helpers",
@@ -331,7 +331,7 @@ export const PROJECTS: Project[] = [
     wouldImprove:
       "I would add an explicit environment-diff report that compares realm and client configuration across environments on every pipeline run, so drift surfaces visually rather than only via failing flows.",
     ownership: {
-      team: ["Owned the identity-provider deployment and operational responsibility"],
+      team: ["The identity-provider deployment and operational responsibility sat with the wider team"],
       implemented: [
         "Scripted realm and client setup against the Keycloak Admin REST API",
         "Automated authentication-flow validation using REST APIs and Cypress",
@@ -403,7 +403,7 @@ export const PROJECTS: Project[] = [
     wouldImprove:
       "I would automate the comparison of operator state and broker state before and after the upgrade into a single diff artifact attached to the pipeline run, instead of relying on kubectl inspection by hand.",
     ownership: {
-      team: ["Owned the Kafka and Strimzi architecture and the upgrade itself"],
+      team: ["The Kafka and Strimzi architecture and the upgrade itself were owned by the wider team"],
       contributedTo: [
         "Upgrade validation across versions",
         "Pre- and post-upgrade verification steps in CI/CD",
@@ -477,7 +477,7 @@ export const PROJECTS: Project[] = [
     wouldImprove:
       "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so on-call engineers do not have to recreate that context by hand.",
     ownership: {
-      team: ["Owned the broader Kubernetes platform and pipeline infrastructure"],
+      team: ["The broader Kubernetes platform and pipeline infrastructure was owned by the wider team"],
       contributedTo: ["Deployment workflow improvements based on recurring patterns"],
       investigated: [
         "Pod startup failures and CrashLoopBackOff loops",
