@@ -82,7 +82,7 @@ The contact form (`src/routes/api/public/contact.ts`) sends mail from `contact@a
 The site is deployed to Cloudflare Workers via the [Lovable](https://lovable.dev) platform and served at:
 
 - Production: **https://asritha.dev**
-- Lovable URL: `amazing-me-project.lovable.app`
+- Lovable URL: `asritha-nibhanupudi-portfolio.lovable.app`
 
 HTML responses send `Cache-Control: no-cache` so every refresh sees the latest deployment; hashed JS/CSS assets remain cacheable.
 
