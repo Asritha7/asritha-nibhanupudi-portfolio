@@ -610,23 +610,23 @@ export const EXPERIENCE = [
 export const PRINCIPLES = [
   {
     title: "Reliability before unnecessary complexity",
-    body: "I prefer the simplest design that satisfies the reliability requirement. In automation and deployment workflows, every additional configuration path creates another opportunity for drift.",
+    body: "I prefer the simplest design that satisfies the reliability requirement. In automation and deployment workflows, each additional configuration path creates another opportunity for inconsistency.",
   },
   {
     title: "Make failures understandable",
-    body: "I treat logs and metrics as part of implementation because they determine how quickly a failed deployment or integration can be understood.",
+    body: "I treat useful logs, metrics, and failure messages as part of implementation because they determine how quickly a failed integration or deployment can be diagnosed.",
   },
   {
     title: "Automate repeatable engineering work",
-    body: "If a step has to happen more than twice across environments, it belongs in code or a pipeline rather than in a runbook.",
+    body: "When a release, validation, or configuration step must be performed repeatedly, I look for a safe way to encode it in a script, framework, or pipeline.",
   },
   {
-    title: "Make technical trade-offs explicit",
-    body: "Every design choice rules something out. Writing down what was chosen and why keeps the next person able to revisit the decision honestly.",
+    title: "Make trade-offs explicit",
+    body: "I prefer documenting what a solution improves and what it makes more expensive, slower, or harder to maintain.",
   },
   {
-    title: "Build software that others can maintain",
-    body: "Code, infrastructure, and dashboards are read more often than they are written. I optimise for the next engineer to pick the work up safely.",
+    title: "Build software others can maintain",
+    body: "I value reusable components, clear failure behaviour, and code that another engineer can understand without relying on undocumented context.",
   },
 ];
 
@@ -637,15 +637,15 @@ export const CAPABILITIES: { label: string; items: string[] }[] = [
   },
   {
     label: "Cloud and Service Infrastructure",
-    items: ["AWS", "CDK", "ECS Fargate", "Kubernetes", "Docker", "Linux"],
+    items: ["AWS", "AWS CDK", "ECS Fargate", "Kubernetes", "Docker", "Linux"],
   },
   {
     label: "Distributed Systems and Integrations",
-    items: ["Kafka", "REST APIs", "Authentication", "Authorization", "Asynchronous processing"],
+    items: ["Kafka", "REST APIs", "Authentication", "Authorization", "Service integration", "Asynchronous processing"],
   },
   {
     label: "Delivery and Reliability",
-    items: ["GitLab CI", "GitHub", "Cypress", "Prometheus", "Grafana", "Logging", "Debugging"],
+    items: ["GitLab CI", "GitHub", "Cypress", "Prometheus", "Grafana", "Logging", "Deployment debugging"],
   },
 ];
 
