@@ -184,12 +184,19 @@ function Portfolio() {
         {menuOpen ? (
           <nav id="mobile-nav" aria-label="Mobile" className="border-t border-hairline bg-background px-6 py-4 md:hidden">
             <div className="grid grid-cols-2 gap-3">
-              {nav.map((n) => (
-                <a key={n.id} href={`#${n.id}`} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
-                  {n.label}
-                </a>
-              ))}
+              {nav.map((n) =>
+                "route" in n && n.route ? (
+                  <Link key={n.id} to={n.route} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
+                    {n.label}
+                  </Link>
+                ) : (
+                  <a key={n.id} href={`#${n.id}`} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
+                    {n.label}
+                  </a>
+                ),
+              )}
             </div>
+
           </nav>
         ) : null}
       </header>
