@@ -586,7 +586,7 @@ function Portfolio() {
                 {TESTIMONIALS.filter((t) => t.permissionConfirmed).map((t, i) => (
                   <li key={i} className="rounded-[3px] border border-hairline bg-panel p-6">
                     <p className="font-serif-display text-[18px] leading-snug">"{t.quote}"</p>
-                    <p className="mono-label mt-4">{t.attribution} · {t.relationship}</p>
+                    <p className="mono-label mt-4">{t.name} · {t.relationship}</p>
                   </li>
                 ))}
               </ul>
