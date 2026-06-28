@@ -270,7 +270,7 @@ function Portfolio() {
         {(() => {
           const MARQUEE = [
             "Python", "Java", "SQL", "REST APIs", "Kafka", "Kubernetes", "Strimzi",
-            "Docker", "Linux", "AWS", "OCI", "Keycloak", "OAuth2 / OIDC",
+            "Linux", "AWS", "Keycloak", "OAuth2 / OIDC",
             "Prometheus", "Grafana", "Jenkins", "GitLab CI", "Git",
           ];
           const row = [...MARQUEE, ...MARQUEE];
