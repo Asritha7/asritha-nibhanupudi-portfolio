@@ -236,6 +236,32 @@ function Portfolio() {
           </aside>
         </section>
 
+        {/* Tech marquee */}
+        {(() => {
+          const MARQUEE = [
+            "Python", "Java", "SQL", "REST APIs", "Kafka", "Kubernetes", "Strimzi",
+            "Docker", "Linux", "AWS", "OCI", "Keycloak", "OAuth2 / OIDC",
+            "Prometheus", "Grafana", "Jenkins", "GitLab CI", "Git",
+          ];
+          const row = [...MARQUEE, ...MARQUEE];
+          return (
+            <div
+              aria-hidden="true"
+              className="marquee-strip overflow-hidden border-y border-hairline"
+              style={{ background: "var(--marquee-bg)" }}
+            >
+              <div className="marquee-track flex gap-10 py-4 whitespace-nowrap">
+                {row.map((t, i) => (
+                  <span key={i} className="mono-label !text-[12px]">
+                    {t} <span className="opacity-50">·</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+
         {/* Featured Engineering Work */}
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
