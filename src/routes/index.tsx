@@ -15,7 +15,7 @@ import {
   PRINCIPLES,
   CAPABILITIES,
   RESEARCH,
-  EARLIER_PROJECTS,
+  PUBLIC_REPOS,
 } from "@/content/portfolio";
 
 const portrait = portraitAsset.url;
