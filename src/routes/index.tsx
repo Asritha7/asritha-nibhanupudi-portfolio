@@ -24,6 +24,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Asritha Nibhanupudi - Software Engineer at Goldman Sachs" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@handle" },
       { name: "twitter:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { name: "twitter:description", content: INDEX_DESC },
       { name: "twitter:image", content: INDEX_OG_IMAGE },
