@@ -452,7 +452,7 @@ export const PROJECTS: Project[] = [
     decision: {
       decision:
         "Start every deployment investigation from Kubernetes events and pod descriptions rather than from CI pipeline logs.",
-      why: "CI logs were showing symptoms; the actual cause (image pull, readiness probe, config map mismatch) was almost always visible in events much earlier.",
+      why: "CI logs were showing symptoms; in the failures I investigated, the actual cause (image pull, readiness probe, config map mismatch) was typically visible in events much earlier.",
       tradeoff:
         "Investigations took an extra cluster-context step before opening the CI log, which felt slower for the first few minutes but converged on the real cause faster overall.",
     },
