@@ -14,9 +14,10 @@ import faviconAsset from "../assets/favicon.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_URL = "https://asritha.dev";
-const OG_IMAGE_URL = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
+const OG_IMAGE_URL = "https://asritha.dev/og-image.jpg";
 const SITE_DESC =
-  "Software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems.";
+  "Software engineer at Goldman Sachs building API gateway infrastructure, cloud tooling, and observability for distributed systems.";
+
 
 
 
@@ -64,6 +65,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#C75A37" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Asritha Nibhanupudi" },
+      { property: "og:locale", content: "en_US" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
