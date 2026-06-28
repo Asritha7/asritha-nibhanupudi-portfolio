@@ -95,6 +95,13 @@ function useThemePreference() {
 
 function useReveal() {
   useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      document.querySelectorAll<HTMLElement>(".reveal").forEach((el) => el.classList.add("reveal-in"));
+      return;
+    }
     const els = document.querySelectorAll<HTMLElement>(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
@@ -111,6 +118,7 @@ function useReveal() {
     return () => io.disconnect();
   }, []);
 }
+
 
 function Portfolio() {
   useReveal();
