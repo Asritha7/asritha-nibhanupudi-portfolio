@@ -130,9 +130,9 @@ export const PROJECTS: Project[] = [
     projectType: "Professional Work",
     year: "2026",
     shortDescription:
-      "Contributed to AWS-native microservices and their infrastructure-as-code, working across TypeScript CDK, ECS Fargate, Aurora PostgreSQL, Lambda, routing, authentication, and integration validation.",
+      "Contributed to an AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda, including infrastructure definitions, routing, authentication and integration validation.",
     myContribution:
-      "Implemented service scaffolding and infrastructure-as-code in TypeScript CDK; built containerised services on ECS Fargate backed by Aurora PostgreSQL, with Lambda for event-driven work and integration tests wired into the pipeline.",
+      "Implemented and contributed to defined service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda.",
     ownershipWording: "Contributed to",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
@@ -260,7 +260,7 @@ export const PROJECTS: Project[] = [
     learned:
       "Many recurring failures in this framework came from inconsistent asynchronous handling or shared automation behaviour rather than application regressions. Fixing the framework's async model once paid off across every workflow that used it.",
     wouldImprove:
-      "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that on-call reviewers see triage hints instead of a raw failure log.",
+      "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that reviewers receive triage hints instead of only a raw failure log.",
     ownership: {
       team: ["The broader release process and infrastructure was owned by the wider team"],
       implemented: [
@@ -399,7 +399,7 @@ export const PROJECTS: Project[] = [
     outcome:
       "Provided upgrade validation evidence that supported safer Kafka and Strimzi rollouts on Kubernetes and made operator-side regressions easier to spot during rehearsal.",
     learned:
-      "Operator-side reconciliation is often where upgrade pain hides, not the broker itself. Validation is only useful when it clearly separates 'flaky' from 'broken'.",
+      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. Validation is only useful when it clearly separates 'flaky' from 'broken'.",
     wouldImprove:
       "I would automate the comparison of operator state and broker state before and after the upgrade into a single diff artifact attached to the pipeline run, instead of relying on kubectl inspection by hand.",
     ownership: {
@@ -532,8 +532,8 @@ export const PROJECTS: Project[] = [
 // Backwards-compat aliases.
 export type CaseStudy = Project;
 export const CASE_STUDIES: Project[] = PROJECTS.filter((p) => p.featured);
-// Additional homepage section excludes research - research has its own dedicated section.
-export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter((p) => !p.featured);
+// Additional homepage section excludes Published Research - research has its own dedicated section.
+export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter((p) => !p.featured && p.projectType !== "Published Research");
 
 export const PROJECT_CATEGORIES: ProjectCategory[] = [
   "Backend",
@@ -739,7 +739,7 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
     limitation:
       "The checklist is only as good as the post-upgrade comparison. Without a structured diff of operator and broker state before and after, subtle regressions can still slip through.",
     lesson:
-      "Operator-side reconciliation is often where upgrade pain hides, not the broker itself. Validation only helps when it clearly separates 'flaky' from 'broken'.",
+      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. Validation only helps when it clearly separates 'flaky' from 'broken'.",
     checklists: [
       {
         heading: "Before upgrade",
