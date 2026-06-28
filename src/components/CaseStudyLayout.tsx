@@ -126,11 +126,49 @@ export function CaseStudyLayout({ study }: { study: Project }) {
           </Section>
         ) : null}
 
+        {study.engineeringMoment ? <EngineeringMomentSection moment={study.engineeringMoment} /> : null}
+
+        {study.beforeState || study.afterState ? (
+          <Section heading="Before and after">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {study.beforeState ? (
+                <div className="rounded-[3px] border border-hairline bg-panel p-4">
+                  <p className="mono-label !text-text-primary !text-[12px]">Before</p>
+                  <p className="mt-2 text-[15.5px]">{study.beforeState}</p>
+                </div>
+              ) : null}
+              {study.afterState ? (
+                <div className="rounded-[3px] border border-hairline bg-panel p-4">
+                  <p className="mono-label !text-text-primary !text-[12px]">After</p>
+                  <p className="mt-2 text-[15.5px]">{study.afterState}</p>
+                </div>
+              ) : null}
+            </div>
+          </Section>
+        ) : null}
+
         {study.outcome ? (
           <Section heading="Verified outcome">
             <p>{study.outcome}</p>
           </Section>
         ) : null}
+
+        {(() => {
+          const approved = study.verifiedMetrics?.filter((m) => m.approvedForPublicUse) ?? [];
+          if (!approved.length) return null;
+          return (
+            <Section heading="Verified metrics">
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {approved.map((m, i) => (
+                  <li key={i} className="rounded-[3px] border border-hairline bg-panel p-4">
+                    <p className="mono-label !text-text-primary !text-[12px]">{m.label}</p>
+                    <p className="mt-2 font-serif-display text-[22px]">{m.value}</p>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          );
+        })()}
 
         {study.confirmedMetrics?.length ? (
           <Section heading="Confirmed measures">
