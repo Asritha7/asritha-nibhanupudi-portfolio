@@ -366,8 +366,8 @@ function Portfolio() {
                       ))}
                     </ul>
                   ) : null}
-                  {"note" in e && e.note ? (
-                    <p className="mono-label mt-3 !text-[11px]">{e.note}</p>
+                  {"note" in e && (e as { note?: string }).note ? (
+                    <p className="mono-label mt-3 !text-[11px]">{(e as { note?: string }).note}</p>
                   ) : null}
                 </li>
               ))}
@@ -421,31 +421,6 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Public engineering work */}
-        <section aria-labelledby="repos-heading" className="border-t border-hairline py-20">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
-            <div className="reveal">
-              <span className="mono-label">05 - Open source</span>
-              <h2 id="repos-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
-                Public <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em> work.
-              </h2>
-              <p className="mt-3 text-[15px] text-text-secondary">
-                Repositories in progress. Each will ship with architecture notes, tests, and deployment instructions.
-              </p>
-            </div>
-            <ul className="reveal grid grid-cols-1 gap-4">
-              {PUBLIC_REPOS.map((r) => (
-                <li key={r.title} className="rounded-[3px] border border-hairline bg-panel p-5 md:p-6">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif-display text-[18px]">{r.title}</h3>
-                    <span className="mono-label !text-[11px]">{r.status}</span>
-                  </div>
-                  <p className="mt-2 text-[15.5px] text-text-secondary">{r.blurb}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
 
         {/* Research + earlier */}
         <section aria-labelledby="research-heading" className="border-t border-hairline py-20">
