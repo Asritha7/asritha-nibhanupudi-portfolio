@@ -165,7 +165,7 @@ function Portfolio() {
       {/* Top bar */}
       <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
-          <a href="#top" className="mono-label !font-bold !text-text-primary">Asritha Nibhanupudi</a>
+          <a href="#top" className="mono-label !font-bold !text-text-primary !text-xl">Asritha Nibhanupudi</a>
           <nav className="hidden items-center gap-7 md:flex">
             {nav.map((n) => (
               <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra">
