@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Sun, Moon, Sunset } from "lucide-react";
+import { Sun, Moon, Sunset, ArrowUp } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import {
@@ -93,6 +93,28 @@ function useThemePreference() {
   };
 }
 
+function useNearBottom(threshold = 240) {
+  const [nearBottom, setNearBottom] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = window.innerHeight;
+      setNearBottom(scrollTop + clientHeight >= scrollHeight - threshold);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [threshold]);
+
+  return nearBottom;
+}
+
 function useReveal() {
   useEffect(() => {
     if (
@@ -124,6 +146,7 @@ function Portfolio() {
   useReveal();
   const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
+  const nearBottom = useNearBottom();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -638,6 +661,18 @@ function Portfolio() {
             </ul>
           </div>
         </footer>
+
+        {/* Scroll-to-top button */}
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-hairline bg-panel text-text-primary shadow-md transition-all duration-300 hover:bg-warm-fill hover:text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra ${nearBottom ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
+          aria-label="Back to top"
+          aria-hidden={!nearBottom}
+          tabIndex={nearBottom ? 0 : -1}
+        >
+          <ArrowUp size={22} />
+        </button>
       </div>
     </div>
   );
