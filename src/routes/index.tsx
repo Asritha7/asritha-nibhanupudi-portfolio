@@ -231,16 +231,17 @@ function Portfolio() {
             </ul>
             <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
               {[
-                { href: LINKS.github, label: "GitHub" },
-                { href: LINKS.linkedin, label: "LinkedIn" },
-                { href: LINKS.research, label: "Research" },
-                { href: LINKS.email, label: "Email" },
+                { href: LINKS.github, label: "GitHub", event: "github_opened" as const },
+                { href: LINKS.linkedin, label: "LinkedIn", event: "linkedin_opened" as const },
+                { href: LINKS.research, label: "Research", event: "research_opened" as const },
+                { href: LINKS.email, label: "Email", event: "contact_started" as const },
               ].map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
                     target={l.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
+                    onClick={() => track(l.event)}
                     className="mono-label inline-flex items-center gap-1 border-b border-transparent !text-text-secondary transition-colors hover:!text-terra hover:border-terra focus-visible:!text-terra"
                   >
                     {l.label} ↗
@@ -248,6 +249,7 @@ function Portfolio() {
                 </li>
               ))}
             </ul>
+
           </div>
           <aside className="reveal">
             <div className="overflow-hidden rounded-[3px] border border-hairline bg-warm-fill">
