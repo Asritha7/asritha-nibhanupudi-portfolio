@@ -17,7 +17,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 const SITE_URL = "https://asritha.dev";
 const OG_IMAGE_URL = `${SITE_URL}${ogImageAsset.url}`;
 const SITE_DESC =
-  "Software engineer at Goldman Sachs working across cloud platform engineering, API gateway infrastructure, distributed systems, and observability. Based in Bengaluru.";
+  "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
+
 
 
 function NotFoundComponent() {
@@ -64,27 +65,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Asritha Nibhanupudi - Software Engineer" },
-      { name: "description", content: SITE_DESC },
-      { name: "author", content: "Asritha Nibhanupudi" },
-      { name: "theme-color", content: "#C45A3A" },
-      { property: "og:site_name", content: "Asritha Nibhanupudi" },
-      { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
-      { property: "og:description", content: SITE_DESC },
-      { property: "og:type", content: "website" },
-      { property: "og:locale", content: "en_US" },
-      { property: "og:image", content: OG_IMAGE_URL },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:type", content: "image/jpeg" },
-      { property: "og:image:alt", content: "Asritha Nibhanupudi - Software Engineer portfolio" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@asritha7" },
-      { name: "twitter:creator", content: "@asritha7" },
-      { name: "twitter:title", content: "Asritha Nibhanupudi - Software Engineer" },
-      { name: "twitter:description", content: SITE_DESC },
-      { name: "twitter:image", content: OG_IMAGE_URL },
-      { name: "twitter:image:alt", content: "Asritha Nibhanupudi - Software Engineer portfolio" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -120,6 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
+
 
   shellComponent: RootShell,
   component: RootComponent,
