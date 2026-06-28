@@ -492,20 +492,26 @@ function Portfolio() {
       {/* Contact + Footer */}
       <div className="bg-dark-background text-dark-foreground">
         <section id="contact" className="mx-auto max-w-[1280px] px-6 py-24 md:px-[46px] md:py-32">
-          <div className="reveal mx-auto max-w-[900px] text-center md:text-left">
-            <span className="mono-label !text-dark-foreground/60">Get in Touch</span>
-            <h2 className="font-serif-display mt-6 text-[clamp(40px,7vw,76px)]">
-              Let's build something{" "}
-              <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em>.
-            </h2>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-              <a href={links.email} className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
-                Email me →
-              </a>
-              <a href={resume} download className="rounded-[3px] border border-dark-foreground/30 bg-dark-background px-5 py-3 text-[15px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
-                Résumé
-              </a>
+          <div className="reveal grid grid-cols-1 gap-14 md:grid-cols-[1fr_1fr] md:gap-20">
+            <div>
+              <span className="mono-label !text-dark-foreground/60">Get in Touch</span>
+              <h2 className="font-serif-display mt-6 text-[clamp(40px,6vw,68px)]">
+                Let's build something{" "}
+                <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em>.
+              </h2>
+              <p className="mt-6 max-w-[42ch] text-[17px] text-dark-foreground/70">
+                Drop a note about a role, a project, or anything you're building. I read every message.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={links.email} className="rounded-[3px] border border-dark-foreground/30 px-4 py-2.5 text-[14px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
+                  Email directly
+                </a>
+                <a href={resume} download className="rounded-[3px] border border-dark-foreground/30 px-4 py-2.5 text-[14px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
+                  Résumé
+                </a>
+              </div>
             </div>
+            <ContactForm />
           </div>
         </section>
 
@@ -529,6 +535,7 @@ function Portfolio() {
           </div>
         </footer>
       </div>
+
     </div>
   );
 }
