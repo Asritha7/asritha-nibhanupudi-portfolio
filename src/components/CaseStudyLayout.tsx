@@ -36,6 +36,13 @@ export function CaseStudyLayout({ study }: { study: Project }) {
           </p>
         ) : null}
 
+        {study.scopeNote ? (
+          <p className="mt-4 rounded-[3px] border border-hairline bg-panel p-4 text-[14px] text-text-secondary">
+            <span className="mono-label !text-text-primary !text-[11px]">Scope note · </span>
+            {study.scopeNote}
+          </p>
+        ) : null}
+
         {study.professionalContext ? (
           <Section heading="Context">
             <p>{study.professionalContext}</p>
