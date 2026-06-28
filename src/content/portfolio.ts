@@ -194,8 +194,10 @@ export const PROJECTS: Project[] = [
         "Integration tests running against real AWS resources from CI for the services I worked on",
       ],
       contributedTo: [
-        "The hybrid API gateway layer that spans on-prem and multi-region AWS",
         "Conventions for routing and auth expressed as IaC",
+      ],
+      integrated: [
+        "The hybrid API gateway layer that spans on-prem and multi-region AWS, from the service side",
       ],
       investigated: ["Aurora failover and Lambda cold-start behaviour on critical paths within my scope"],
       validated: ["Service behaviour end-to-end via integration tests gated in CI for the services I worked on"],
