@@ -27,7 +27,6 @@ dist-ssr
 *.secret
 secrets.*
 config.local.*
-*.local
 
 # Wrangler / Cloudflare
 .wrangler/
