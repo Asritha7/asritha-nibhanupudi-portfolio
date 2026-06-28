@@ -302,7 +302,7 @@ function Portfolio() {
                   color: "var(--text-muted)",
                 }}
               >
-                {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","C++","Linux"].map((t, j, arr) => (
+                {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","SQL","C++","Linux"].map((t, j, arr) => (
                   <span key={t} className="flex items-center">
                     <span>{t}</span>
                     <span className="px-4 opacity-60">·</span>
