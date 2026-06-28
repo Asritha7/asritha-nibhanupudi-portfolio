@@ -6,6 +6,8 @@ const BASE_URL = "https://asritha.dev";
 const entries = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/work", changefreq: "weekly", priority: "0.9" },
+  { path: "/notes", changefreq: "monthly", priority: "0.6" },
+  { path: "/work/aws-microservices-cdk-ecs", changefreq: "monthly", priority: "0.8" },
   { path: "/work/automation-framework", changefreq: "monthly", priority: "0.8" },
   { path: "/work/keycloak-identity-flow", changefreq: "monthly", priority: "0.8" },
   { path: "/work/kafka-strimzi-upgrade", changefreq: "monthly", priority: "0.8" },
