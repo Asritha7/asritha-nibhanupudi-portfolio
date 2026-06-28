@@ -130,7 +130,7 @@ export const PROJECTS: Project[] = [
     projectType: "Professional Work",
     year: "2026",
     shortDescription:
-      "Contributed to an AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda, including infrastructure definitions, routing, authentication and integration validation.",
+      "Contributed to a defined AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda, including infrastructure definitions, routing, authentication, and integration validation.",
     myContribution:
       "Implemented and contributed to defined service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda.",
     ownershipWording: "Contributed to",
