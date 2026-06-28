@@ -742,6 +742,40 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
       "The checklist is only as good as the post-upgrade comparison. Without a structured diff of operator and broker state before and after, subtle regressions can still slip through.",
     lesson:
       "Operator-side reconciliation is often where upgrade pain hides, not the broker itself. Validation only helps when it clearly separates 'flaky' from 'broken'.",
+    checklists: [
+      {
+        heading: "Before upgrade",
+        items: [
+          "Record current Kafka and Strimzi versions",
+          "Capture relevant topic and consumer-group state",
+          "Check operator reconciliation status",
+          "Confirm broker and application health",
+          "Review compatibility requirements for the target versions",
+        ],
+      },
+      {
+        heading: "During upgrade",
+        items: [
+          "Observe operator rollout progression",
+          "Watch reconciliation events as they occur",
+          "Verify broker restart behaviour pod-by-pod",
+          "Monitor producer and consumer behaviour through the rollout",
+          "Record unexpected warnings or errors as they appear",
+        ],
+      },
+      {
+        heading: "After upgrade",
+        items: [
+          "Produce and consume validation messages",
+          "Confirm consumer offsets and group stability",
+          "Verify application connectivity end-to-end",
+          "Check deployment and operator health",
+          "Revalidate rollback assumptions before signing off",
+        ],
+      },
+    ],
+    whenNotToApply:
+      "When the upgrade is part of a fully managed Kafka offering where operator and broker behaviour are not surfaced to the consumer of the service.",
   },
   {
     slug: "investigating-kubernetes-deployment-failures",
