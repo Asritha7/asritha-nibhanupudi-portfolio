@@ -338,15 +338,15 @@ function Portfolio() {
             </ul>
           </div>
 
-          {/* Additional Engineering and Research */}
+          {/* Additional Engineering */}
           <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">Additional Engineering and Research</span>
+              <span className="mono-label">Additional Engineering</span>
               <h3 className="font-serif-display mt-4 text-[clamp(22px,2.4vw,26px)]">
-                Additional engineering and <em className="italic" style={{ color: "var(--accent-terra)" }}>research</em>.
+                Additional <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em>.
               </h3>
               <p className="mt-3 text-[14.5px] text-text-secondary">
-                Shorter writeups across engineering implementation and published research.
+                Shorter writeups across engineering implementation work.
               </p>
             </div>
             <ul className="reveal grid grid-cols-1 gap-4 sm:grid-cols-2">
