@@ -713,6 +713,17 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
       "Scripts only cover the configuration that has been encoded. Anything still set by hand in the admin UI can still drift; the discipline only works if every change goes through the scripts.",
     lesson:
       "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
+    practicalSteps: [
+      "Obtain an administrative token against the realm",
+      "Read the existing realm or client configuration",
+      "Compare the existing values against the desired configuration",
+      "Create missing resources (realm, client, role) only when absent",
+      "Update only the approved properties that differ from desired",
+      "Validate redirect URIs and authentication settings before exit",
+      "Fail with a specific diagnostic message when a mismatch cannot be reconciled",
+    ],
+    whenNotToApply:
+      "When the identity-provider configuration is owned by a separate team that does not want change driven through scripts, or when the workflow genuinely needs a one-time export-and-import rather than ongoing reconciliation.",
   },
   {
     slug: "validating-kafka-strimzi-upgrades",
