@@ -462,7 +462,7 @@ export const PROJECTS: Project[] = [
       validated: ["Configuration consistency across environments"],
     },
     confidential: true,
-    featured: true,
+    featured: false,
     categories: ["Cloud", "Automation"],
     tags: ["Kubernetes", "GitLab CI", "YAML", "Debugging"],
   },
