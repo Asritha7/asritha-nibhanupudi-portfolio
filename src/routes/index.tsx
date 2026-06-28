@@ -213,13 +213,14 @@ function Portfolio() {
             </h1>
             <p className="mt-8 max-w-[58ch] text-[19px] text-text-secondary">{HERO.description}</p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a href="#work" className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
+              <Link to="/work" className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
                 View my work →
-              </a>
-              <a href={resume} download className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
+              </Link>
+              <a href={resume} download onClick={() => track("resume_downloaded")} className="rounded-[3px] border border-hairline bg-panel px-5 py-3 text-[15px] font-medium transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
                 Download résumé
               </a>
             </div>
+
             <ul className="mt-8 flex flex-wrap gap-2">
               <li className="rounded-[3px] border border-hairline bg-panel px-3 py-1.5 mono-label !text-text-primary !text-[11px]">
                 Based in {SITE.location}
