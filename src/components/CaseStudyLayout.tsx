@@ -10,9 +10,8 @@ export function CaseStudyLayout({ study, diagram }: { study: CaseStudy; diagram?
           <Link to="/" className="mono-label !font-bold !text-text-primary !text-base">
             Asritha Nibhanupudi
           </Link>
-          <Link to="/" hash="work" className="mono-label hover:!text-terra">
-            ← Back to work
-          </Link>
+          <BackToWorkLink label="← Back to work" />
+
         </div>
       </header>
 
