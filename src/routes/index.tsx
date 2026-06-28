@@ -37,12 +37,12 @@ const work = [
 ];
 
 const earlier = [
-  "SONAR Rock vs Mine (Python/ML)",
-  "Soil Moisture Monitoring (ESP32)",
-  "Audio Transmission via Li-Fi",
-  "YouTube Comment Analysis (Python)",
-  "Website Blocker (Python)",
-  "PCB Design & Fabrication (KiCad)",
+  { label: "SONAR Rock vs Mine (Python/ML)", href: links.github },
+  { label: "Soil Moisture Monitoring (ESP32)", href: "" },
+  { label: "Audio Transmission via Li-Fi", href: "" },
+  { label: "YouTube Comment Analysis (Python)", href: links.github },
+  { label: "Website Blocker (Python)", href: "" },
+  { label: "PCB Design & Fabrication (KiCad)", href: "" },
 ];
 
 const experience = [
