@@ -260,7 +260,7 @@ export const PROJECTS: Project[] = [
     learned:
       "Many recurring failures in this framework came from inconsistent asynchronous handling or shared automation behaviour rather than application regressions. Fixing the framework's async model once paid off across every workflow that used it.",
     wouldImprove:
-      "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that on-call reviewers see triage hints instead of a raw failure log.",
+      "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that reviewers receive triage hints instead of only a raw failure log.",
     ownership: {
       team: ["The broader release process and infrastructure was owned by the wider team"],
       implemented: [
