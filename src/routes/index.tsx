@@ -142,14 +142,47 @@ function useReveal() {
 }
 
 
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState<string>("");
+  useEffect(() => {
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+function smoothScrollTo(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 76;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+}
+
 function Portfolio() {
   useReveal();
   const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
   const nearBottom = useNearBottom();
+  const sectionIds = nav.filter((n) => !("route" in n && n.route)).map((n) => n.id);
+  const activeSection = useActiveSection(sectionIds);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background text-foreground">
+
       {/* skip link */}
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[3px] focus:bg-terra focus:px-3 focus:py-2 focus:text-panel">
         Skip to content
@@ -167,11 +200,19 @@ function Portfolio() {
                   {n.label}
                 </Link>
               ) : (
-                <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra">
+                <a
+                  key={n.id}
+                  href={`#${n.id}`}
+                  onClick={(e) => { e.preventDefault(); smoothScrollTo(n.id); history.replaceState(null, "", `#${n.id}`); }}
+                  aria-current={activeSection === n.id ? "true" : undefined}
+                  data-active={activeSection === n.id ? "true" : undefined}
+                  className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra data-[active=true]:!text-terra data-[active=true]:underline data-[active=true]:underline-offset-[6px] data-[active=true]:decoration-2"
+                >
                   {n.label}
                 </a>
               ),
             )}
+
 
             <button
               type="button"
@@ -205,7 +246,7 @@ function Portfolio() {
           </div>
         </div>
         {menuOpen ? (
-          <nav id="mobile-nav" aria-label="Mobile" className="border-t border-hairline bg-background px-6 py-4 md:hidden">
+          <nav id="mobile-nav" aria-label="Mobile" className="max-h-[70vh] overflow-y-auto border-t border-hairline bg-background px-6 py-4 md:hidden">
             <div className="grid grid-cols-2 gap-3">
               {nav.map((n) =>
                 "route" in n && n.route ? (
@@ -213,10 +254,18 @@ function Portfolio() {
                     {n.label}
                   </Link>
                 ) : (
-                  <a key={n.id} href={`#${n.id}`} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
+                  <a
+                    key={n.id}
+                    href={`#${n.id}`}
+                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); setTimeout(() => smoothScrollTo(n.id), 10); history.replaceState(null, "", `#${n.id}`); }}
+                    aria-current={activeSection === n.id ? "true" : undefined}
+                    data-active={activeSection === n.id ? "true" : undefined}
+                    className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill data-[active=true]:!text-terra data-[active=true]:border-terra"
+                  >
                     {n.label}
                   </a>
                 ),
+
               )}
             </div>
 
