@@ -486,12 +486,12 @@ function Portfolio() {
         <section id="public-work" aria-labelledby="public-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">05 - Public code</span>
+              <span className="mono-label">05 - Earlier public projects</span>
               <h2 id="public-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
-                Public <em className="italic" style={{ color: "var(--accent-terra)" }}>Projects</em>.
+                Earlier Public <em className="italic" style={{ color: "var(--accent-terra)" }}>Projects</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Earlier projects and technical experiments available publicly on GitHub.
+                Earlier learning projects and technical experiments available publicly on GitHub.
               </p>
               <a
                 href={LINKS.github}
@@ -607,7 +607,7 @@ function Portfolio() {
                 Let's talk about <em className="italic" style={{ color: "var(--accent-terra)" }}>software</em>.
               </h2>
               <p className="mt-6 max-w-[42ch] text-[17px] text-dark-foreground/70">
-                Open to software engineering roles and collaborations. Reach out about a project, a role, or anything you're building.
+                Open to engineering conversations, collaborations, and interesting software problems. Reach out about a project, a role, or anything you're building.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href={LINKS.email} className="rounded-[3px] border border-dark-foreground/30 px-4 py-2.5 text-[14px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">

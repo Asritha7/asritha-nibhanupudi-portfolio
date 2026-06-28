@@ -36,6 +36,13 @@ export function CaseStudyLayout({ study }: { study: Project }) {
           </p>
         ) : null}
 
+        {study.scopeNote ? (
+          <p className="mt-4 rounded-[3px] border border-hairline bg-panel p-4 text-[14px] text-text-secondary">
+            <span className="mono-label !text-text-primary !text-[11px]">Scope note · </span>
+            {study.scopeNote}
+          </p>
+        ) : null}
+
         {study.professionalContext ? (
           <Section heading="Context">
             <p>{study.professionalContext}</p>
@@ -119,11 +126,49 @@ export function CaseStudyLayout({ study }: { study: Project }) {
           </Section>
         ) : null}
 
+        {study.engineeringMoment ? <EngineeringMomentSection moment={study.engineeringMoment} /> : null}
+
+        {study.beforeState || study.afterState ? (
+          <Section heading="Before and after">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {study.beforeState ? (
+                <div className="rounded-[3px] border border-hairline bg-panel p-4">
+                  <p className="mono-label !text-text-primary !text-[12px]">Before</p>
+                  <p className="mt-2 text-[15.5px]">{study.beforeState}</p>
+                </div>
+              ) : null}
+              {study.afterState ? (
+                <div className="rounded-[3px] border border-hairline bg-panel p-4">
+                  <p className="mono-label !text-text-primary !text-[12px]">After</p>
+                  <p className="mt-2 text-[15.5px]">{study.afterState}</p>
+                </div>
+              ) : null}
+            </div>
+          </Section>
+        ) : null}
+
         {study.outcome ? (
           <Section heading="Verified outcome">
             <p>{study.outcome}</p>
           </Section>
         ) : null}
+
+        {(() => {
+          const approved = study.verifiedMetrics?.filter((m) => m.approvedForPublicUse) ?? [];
+          if (!approved.length) return null;
+          return (
+            <Section heading="Verified metrics">
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {approved.map((m, i) => (
+                  <li key={i} className="rounded-[3px] border border-hairline bg-panel p-4">
+                    <p className="mono-label !text-text-primary !text-[12px]">{m.label}</p>
+                    <p className="mt-2 font-serif-display text-[22px]">{m.value}</p>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          );
+        })()}
 
         {study.confirmedMetrics?.length ? (
           <Section heading="Confirmed measures">
@@ -239,6 +284,28 @@ function OwnershipSection({ ownership }: { ownership: NonNullable<Project["owner
                 </li>
               ))}
             </ul>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function EngineeringMomentSection({ moment }: { moment: NonNullable<Project["engineeringMoment"]> }) {
+  const blocks: Array<[string, string]> = [
+    ["Symptom", moment.symptom],
+    ["Initial assumption", moment.initialAssumption],
+    ["Investigation", moment.investigation],
+    ["Root cause", moment.rootCause],
+    ["Change made", moment.changeMade],
+  ];
+  return (
+    <Section heading="A concrete engineering moment">
+      <div className="space-y-4">
+        {blocks.map(([label, body]) => (
+          <div key={label}>
+            <p className="mono-label !text-text-primary !text-[12px]">{label}</p>
+            <p className="mt-2">{body}</p>
           </div>
         ))}
       </div>
