@@ -357,8 +357,10 @@ function Portfolio() {
                 <li key={p.slug}>
                   <Link
                     to={PROJECT_ROUTE[p.slug]}
+                    onClick={() => track(p.projectType === "Published Research" ? "research_opened" : "case_study_opened", { slug: p.slug })}
                     className="group flex h-full flex-col rounded-[3px] border border-hairline bg-panel p-5 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
                   >
+
                     <span className="mono-label !text-[11px]">{p.projectType.toUpperCase()}</span>
                     <h4 className="font-serif-display mt-2 text-[18px] leading-snug">{p.title}</h4>
                     <p className="mt-2 text-[14px] text-text-secondary">{p.shortDescription}</p>
