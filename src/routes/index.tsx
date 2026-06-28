@@ -247,7 +247,7 @@ function Portfolio() {
           return (
             <div
               aria-hidden="true"
-              className="marquee-strip overflow-hidden border-y border-hairline"
+              className="marquee-strip full-bleed overflow-hidden border-y border-hairline"
               style={{ background: "var(--marquee-bg)" }}
             >
               <div className="marquee-track flex gap-10 py-4 whitespace-nowrap">
