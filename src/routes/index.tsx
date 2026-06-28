@@ -607,7 +607,7 @@ function Portfolio() {
                 Let's talk about <em className="italic" style={{ color: "var(--accent-terra)" }}>software</em>.
               </h2>
               <p className="mt-6 max-w-[42ch] text-[17px] text-dark-foreground/70">
-                Open to software engineering roles and collaborations. Reach out about a project, a role, or anything you're building.
+                Open to engineering conversations, collaborations, and interesting software problems. Reach out about a project, a role, or anything you're building.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href={LINKS.email} className="rounded-[3px] border border-dark-foreground/30 px-4 py-2.5 text-[14px] font-medium text-dark-foreground transition-colors hover:bg-dark-foreground/10">
