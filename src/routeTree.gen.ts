@@ -13,7 +13,6 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
-import { Route as WorkUimSensitiveAttributeEncryptionRouteImport } from './routes/work.uim-sensitive-attribute-encryption'
 import { Route as WorkRfidPinAuthenticationResearchRouteImport } from './routes/work.rfid-pin-authentication-research'
 import { Route as WorkKubernetesCicdReliabilityRouteImport } from './routes/work.kubernetes-cicd-reliability'
 import { Route as WorkKeycloakIdentityFlowRouteImport } from './routes/work.keycloak-identity-flow'
@@ -42,12 +41,6 @@ const WorkIndexRoute = WorkIndexRouteImport.update({
   path: '/work/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkUimSensitiveAttributeEncryptionRoute =
-  WorkUimSensitiveAttributeEncryptionRouteImport.update({
-    id: '/work/uim-sensitive-attribute-encryption',
-    path: '/work/uim-sensitive-attribute-encryption',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const WorkRfidPinAuthenticationResearchRoute =
   WorkRfidPinAuthenticationResearchRouteImport.update({
     id: '/work/rfid-pin-authentication-research',
@@ -98,7 +91,6 @@ export interface FileRoutesByFullPath {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
-  '/work/uim-sensitive-attribute-encryption': typeof WorkUimSensitiveAttributeEncryptionRoute
   '/work/': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
@@ -112,7 +104,6 @@ export interface FileRoutesByTo {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
-  '/work/uim-sensitive-attribute-encryption': typeof WorkUimSensitiveAttributeEncryptionRoute
   '/work': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
@@ -127,7 +118,6 @@ export interface FileRoutesById {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
-  '/work/uim-sensitive-attribute-encryption': typeof WorkUimSensitiveAttributeEncryptionRoute
   '/work/': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
@@ -143,7 +133,6 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
-    | '/work/uim-sensitive-attribute-encryption'
     | '/work/'
     | '/api/public/contact'
   fileRoutesByTo: FileRoutesByTo
@@ -157,7 +146,6 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
-    | '/work/uim-sensitive-attribute-encryption'
     | '/work'
     | '/api/public/contact'
   id:
@@ -171,7 +159,6 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
-    | '/work/uim-sensitive-attribute-encryption'
     | '/work/'
     | '/api/public/contact'
   fileRoutesById: FileRoutesById
@@ -186,7 +173,6 @@ export interface RootRouteChildren {
   WorkKeycloakIdentityFlowRoute: typeof WorkKeycloakIdentityFlowRoute
   WorkKubernetesCicdReliabilityRoute: typeof WorkKubernetesCicdReliabilityRoute
   WorkRfidPinAuthenticationResearchRoute: typeof WorkRfidPinAuthenticationResearchRoute
-  WorkUimSensitiveAttributeEncryptionRoute: typeof WorkUimSensitiveAttributeEncryptionRoute
   WorkIndexRoute: typeof WorkIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
 }
@@ -219,13 +205,6 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work/'
       preLoaderRoute: typeof WorkIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/work/uim-sensitive-attribute-encryption': {
-      id: '/work/uim-sensitive-attribute-encryption'
-      path: '/work/uim-sensitive-attribute-encryption'
-      fullPath: '/work/uim-sensitive-attribute-encryption'
-      preLoaderRoute: typeof WorkUimSensitiveAttributeEncryptionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work/rfid-pin-authentication-research': {
@@ -291,8 +270,6 @@ const rootRouteChildren: RootRouteChildren = {
   WorkKubernetesCicdReliabilityRoute: WorkKubernetesCicdReliabilityRoute,
   WorkRfidPinAuthenticationResearchRoute:
     WorkRfidPinAuthenticationResearchRoute,
-  WorkUimSensitiveAttributeEncryptionRoute:
-    WorkUimSensitiveAttributeEncryptionRoute,
   WorkIndexRoute: WorkIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
 }
