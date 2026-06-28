@@ -11,11 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import faviconAsset from "../assets/favicon.png.asset.json";
-import ogImageAsset from "../assets/og-image.jpg.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_URL = "https://asritha.dev";
-const OG_IMAGE_URL = `${SITE_URL}${ogImageAsset.url}`;
+const OG_IMAGE_URL = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
 const SITE_DESC =
   "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
 

@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
-import ogImageAsset from "@/assets/og-image.jpg.asset.json";
 const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
 const INDEX_DESC =
   "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
 const INDEX_URL = "https://asritha.dev";
-const INDEX_OG_IMAGE = `https://asritha.dev${ogImageAsset.url}`;
+const INDEX_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
 
 export const Route = createFileRoute("/")({
   head: () => ({
