@@ -81,7 +81,7 @@ const skills = [
   { label: "Distributed & Infra", items: ["Kubernetes", "Apache Kafka", "Strimzi", "Linux"] },
   { label: "CI/CD & Automation", items: ["GitLab CI/CD", "Cypress", "Keycloak", "OpenSearch"] },
   { label: "Observability", items: ["Prometheus", "Grafana"] },
-  { label: "Languages", items: ["TypeScript", "Python", "Java", "C++", "REST APIs"] },
+  { label: "Languages", items: ["TypeScript", "Python", "Java", "SQL", "C++", "REST APIs"] },
 ];
 
 const links = {
@@ -302,7 +302,7 @@ function Portfolio() {
                   color: "var(--text-muted)",
                 }}
               >
-                {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","C++","Linux"].map((t, j, arr) => (
+                {["AWS","CDK","ECS Fargate","Aurora PostgreSQL","Lambda","Kubernetes","Apache Kafka","Strimzi","Nginx","GitLab CI","Cypress","Prometheus","Grafana","TypeScript","Python","Java","SQL","C++","Linux"].map((t, j, arr) => (
                   <span key={t} className="flex items-center">
                     <span>{t}</span>
                     <span className="px-4 opacity-60">·</span>
