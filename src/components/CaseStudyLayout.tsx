@@ -290,3 +290,25 @@ function OwnershipSection({ ownership }: { ownership: NonNullable<Project["owner
     </Section>
   );
 }
+
+function EngineeringMomentSection({ moment }: { moment: NonNullable<Project["engineeringMoment"]> }) {
+  const blocks: Array<[string, string]> = [
+    ["Symptom", moment.symptom],
+    ["Initial assumption", moment.initialAssumption],
+    ["Investigation", moment.investigation],
+    ["Root cause", moment.rootCause],
+    ["Change made", moment.changeMade],
+  ];
+  return (
+    <Section heading="A concrete engineering moment">
+      <div className="space-y-4">
+        {blocks.map(([label, body]) => (
+          <div key={label}>
+            <p className="mono-label !text-text-primary !text-[12px]">{label}</p>
+            <p className="mt-2">{body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
