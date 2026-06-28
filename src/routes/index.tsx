@@ -93,6 +93,28 @@ function useThemePreference() {
   };
 }
 
+function useNearBottom(threshold = 240) {
+  const [nearBottom, setNearBottom] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = window.innerHeight;
+      setNearBottom(scrollTop + clientHeight >= scrollHeight - threshold);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [threshold]);
+
+  return nearBottom;
+}
+
 function useReveal() {
   useEffect(() => {
     if (
