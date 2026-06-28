@@ -259,11 +259,12 @@ function List({ items }: { items: string[] }) {
 
 function OwnershipSection({ ownership }: { ownership: NonNullable<Project["ownership"]> }) {
   const blocks: Array<{ label: string; items?: string[] }> = [
-    { label: "What the wider team or system did", items: ownership.team },
-    { label: "What I personally implemented", items: ownership.implemented },
-    { label: "What I contributed to", items: ownership.contributedTo },
-    { label: "What I investigated", items: ownership.investigated },
-    { label: "What I validated", items: ownership.validated },
+    { label: "Wider system context", items: ownership.team },
+    { label: "My contribution", items: ownership.contributedTo },
+    { label: "Components I personally implemented", items: ownership.implemented },
+    { label: "Components I integrated", items: ownership.integrated },
+    { label: "Components I investigated", items: ownership.investigated },
+    { label: "Components I validated", items: ownership.validated },
   ];
   const present = blocks.filter((b) => b.items && b.items.length > 0);
   if (present.length === 0) return null;
