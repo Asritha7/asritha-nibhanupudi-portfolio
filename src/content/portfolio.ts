@@ -43,11 +43,12 @@ export type ProjectCategory =
   | "Research";
 
 export type OwnershipBreakdown = {
-  team?: string[];          // what the wider team or system did
-  implemented?: string[];   // what I personally implemented
+  team?: string[];          // wider system context / what the wider team or system did
+  implemented?: string[];   // components I personally implemented
   contributedTo?: string[]; // what I contributed to
+  integrated?: string[];    // components I integrated
   investigated?: string[];  // what I investigated
-  validated?: string[];     // what I validated
+  validated?: string[];     // components I validated
 };
 
 // Private — never rendered. Used to track claim provenance internally.
