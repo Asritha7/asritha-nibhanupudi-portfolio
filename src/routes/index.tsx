@@ -37,10 +37,10 @@ const work = [
 ];
 
 const earlier = [
-  { label: "SONAR Rock vs Mine (Python/ML)", href: links.github },
+  { label: "SONAR Rock vs Mine (Python/ML)", href: "https://github.com/Asritha7" },
   { label: "Soil Moisture Monitoring (ESP32)", href: "" },
   { label: "Audio Transmission via Li-Fi", href: "" },
-  { label: "YouTube Comment Analysis (Python)", href: links.github },
+  { label: "YouTube Comment Analysis (Python)", href: "https://github.com/Asritha7" },
   { label: "Website Blocker (Python)", href: "" },
   { label: "PCB Design & Fabrication (KiCad)", href: "" },
 ];
