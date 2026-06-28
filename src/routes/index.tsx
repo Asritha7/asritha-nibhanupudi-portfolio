@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Sunset } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import {
@@ -58,7 +58,8 @@ const nav = [
   { id: "contact", label: "Contact" },
 ];
 
-type ThemeMode = "light" | "dark";
+type ThemeMode = "light" | "amber" | "dark";
+const THEME_ORDER: ThemeMode[] = ["light", "amber", "dark"];
 
 function useThemePreference() {
   const [theme, setTheme] = useState<ThemeMode>("light");
@@ -67,7 +68,9 @@ function useThemePreference() {
   useEffect(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
     const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    setTheme(saved === "dark" || saved === "light" ? saved : preferred);
+    setTheme(
+      saved === "dark" || saved === "light" || saved === "amber" ? (saved as ThemeMode) : preferred,
+    );
     setReady(true);
   }, []);
 
@@ -80,7 +83,8 @@ function useThemePreference() {
 
   return {
     theme,
-    toggleTheme: () => setTheme((c) => (c === "dark" ? "light" : "dark")),
+    cycleTheme: () =>
+      setTheme((c) => THEME_ORDER[(THEME_ORDER.indexOf(c) + 1) % THEME_ORDER.length]),
   };
 }
 
@@ -105,7 +109,7 @@ function useReveal() {
 
 function Portfolio() {
   useReveal();
-  const { theme, toggleTheme } = useThemePreference();
+  const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
