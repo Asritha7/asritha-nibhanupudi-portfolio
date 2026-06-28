@@ -544,20 +544,32 @@ function Portfolio() {
                 Published <em className="italic" style={{ color: "var(--accent-terra)" }}>research</em>.
               </h2>
             </div>
-            <div className="reveal">
-              <a
-                href={RESEARCH.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-[3px] bg-terra p-6 text-dark-foreground transition-colors hover:bg-terra-dark md:p-7"
-              >
-                <p className="mono-label !text-dark-foreground/80">{RESEARCH.venue} · {RESEARCH.note}</p>
+            <div className="reveal space-y-4">
+              <div className="rounded-[3px] border border-hairline bg-panel p-6 md:p-7">
+                <p className="mono-label">{RESEARCH.venue} · {RESEARCH.note}</p>
                 <h3 className="font-serif-display mt-3 text-[22px] leading-snug">{RESEARCH.title}</h3>
-                <span className="mono-label mt-4 inline-flex items-center gap-1 !text-dark-foreground group-hover:underline">
-                  Read paper →
-                </span>
-              </a>
+                <p className="mt-3 text-[15px] text-text-secondary">{RESEARCH.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    to={PROJECT_ROUTE["rfid-pin-authentication-research"]}
+                    onClick={() => track("research_opened", { surface: "detail" })}
+                    className="mono-label inline-flex items-center gap-1 rounded-[3px] border border-hairline px-3 py-2 hover:!text-terra hover:bg-warm-fill"
+                  >
+                    Read research detail →
+                  </Link>
+                  <a
+                    href={RESEARCH.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track("research_opened", { surface: "ieee" })}
+                    className="mono-label inline-flex items-center gap-1 rounded-[3px] bg-terra px-3 py-2 !text-dark-foreground hover:bg-terra-dark"
+                  >
+                    Read paper on IEEE ↗
+                  </a>
+                </div>
+              </div>
             </div>
+
           </div>
         </section>
 
