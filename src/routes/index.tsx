@@ -7,9 +7,9 @@ const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
 const INDEX_DESC =
-  "Software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems.";
+  "Software engineer at Goldman Sachs building API gateway infrastructure, cloud tooling, and observability for distributed systems.";
 const INDEX_URL = "https://asritha.dev";
-const INDEX_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3";
+const INDEX_OG_IMAGE = "https://asritha.dev/og-image.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,18 +17,17 @@ export const Route = createFileRoute("/")({
       { title: "Asritha Nibhanupudi - Software Engineer" },
       { name: "description", content: INDEX_DESC },
       { property: "og:url", content: INDEX_URL },
-      { property: "og:type", content: "website" },
       { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { property: "og:description", content: INDEX_DESC },
       { property: "og:image", content: INDEX_OG_IMAGE },
-      { property: "og:image:width", content: "1344" },
-      { property: "og:image:height", content: "768" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Asritha Nibhanupudi - Software Engineer at Goldman Sachs" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "twitter:domain", content: "asritha.dev" },
-      { property: "twitter:url", content: INDEX_URL },
       { name: "twitter:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { name: "twitter:description", content: INDEX_DESC },
       { name: "twitter:image", content: INDEX_OG_IMAGE },
+      { name: "twitter:image:alt", content: "Asritha Nibhanupudi - Software Engineer at Goldman Sachs" },
     ],
     links: [{ rel: "canonical", href: "https://asritha.dev/" }],
   }),
