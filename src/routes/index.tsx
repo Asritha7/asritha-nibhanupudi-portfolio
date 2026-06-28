@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Sunset } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import {
@@ -58,7 +58,8 @@ const nav = [
   { id: "contact", label: "Contact" },
 ];
 
-type ThemeMode = "light" | "dark";
+type ThemeMode = "light" | "amber" | "dark";
+const THEME_ORDER: ThemeMode[] = ["light", "amber", "dark"];
 
 function useThemePreference() {
   const [theme, setTheme] = useState<ThemeMode>("light");
@@ -67,7 +68,9 @@ function useThemePreference() {
   useEffect(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
     const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    setTheme(saved === "dark" || saved === "light" ? saved : preferred);
+    setTheme(
+      saved === "dark" || saved === "light" || saved === "amber" ? (saved as ThemeMode) : preferred,
+    );
     setReady(true);
   }, []);
 
@@ -80,7 +83,8 @@ function useThemePreference() {
 
   return {
     theme,
-    toggleTheme: () => setTheme((c) => (c === "dark" ? "light" : "dark")),
+    cycleTheme: () =>
+      setTheme((c) => THEME_ORDER[(THEME_ORDER.indexOf(c) + 1) % THEME_ORDER.length]),
   };
 }
 
@@ -105,7 +109,7 @@ function useReveal() {
 
 function Portfolio() {
   useReveal();
-  const { theme, toggleTheme } = useThemePreference();
+  const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -128,21 +132,23 @@ function Portfolio() {
             ))}
             <button
               type="button"
-              onClick={toggleTheme}
+              onClick={cycleTheme}
               className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary transition-colors hover:text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+              aria-label={`Theme: ${theme}. Click to switch to ${THEME_ORDER[(THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length]}.`}
+              title={`Theme: ${theme}`}
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "light" ? <Sun size={18} /> : theme === "amber" ? <Sunset size={18} /> : <Moon size={18} />}
             </button>
           </nav>
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
-              onClick={toggleTheme}
+              onClick={cycleTheme}
               className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+              aria-label={`Theme: ${theme}. Click to switch to ${THEME_ORDER[(THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length]}.`}
+              title={`Theme: ${theme}`}
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "light" ? <Sun size={18} /> : theme === "amber" ? <Sunset size={18} /> : <Moon size={18} />}
             </button>
             <button
               type="button"
