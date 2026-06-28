@@ -258,7 +258,7 @@ export const PROJECTS: Project[] = [
       "Expanded automated coverage to more than 150 workflows, removed repetitive manual release-validation steps, and gave reviewers a clearer signal on whether a failure was a real regression.",
     confirmedMetrics: ["150+ workflows covered by the framework"],
     learned:
-      "Most 'flaky tests' are really framework bugs in disguise. Fixing the framework's async model once paid off across every workflow that used it.",
+      "Many recurring failures in this framework came from inconsistent asynchronous handling or shared automation behaviour rather than application regressions. Fixing the framework's async model once paid off across every workflow that used it.",
     wouldImprove:
       "With more time I would invest in a structured failure-classifier that groups CI failures by root cause (environment vs application vs framework) so that on-call reviewers see triage hints instead of a raw failure log.",
     ownership: {
@@ -306,7 +306,7 @@ export const PROJECTS: Project[] = [
     decision: {
       decision:
         "Drive realm and client setup through the Keycloak Admin REST API from scripts instead of editing realm configuration by hand per environment.",
-      why: "The intermittent failures kept tracing back to drift between environments: a client redirect URI updated in one environment but not another. Scripted setup made the drift impossible.",
+      why: "The intermittent failures kept tracing back to drift between environments: a client redirect URI updated in one environment but not another. Scripted setup significantly reduced drift for the configuration managed through the automation.",
       tradeoff:
         "Setup scripts became a new artifact to maintain, and any future change to identity configuration has to go through the scripts rather than the admin UI.",
     },
@@ -327,7 +327,7 @@ export const PROJECTS: Project[] = [
     outcome:
       "Configuration-driven authentication failures became much rarer after standardising realm and client setup and adding CI/CD validation checks. Environment-to-environment drift was caught earlier in the release process.",
     learned:
-      "Most authentication failures are configuration failures. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
+      "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
     wouldImprove:
       "I would add an explicit environment-diff report that compares realm and client configuration across environments on every pipeline run, so drift surfaces visually rather than only via failing flows.",
     ownership: {
@@ -473,7 +473,7 @@ export const PROJECTS: Project[] = [
     outcome:
       "Recurring deployment and pipeline failure modes were diagnosed and addressed, and reviewers had a more consistent way to triage a failing deployment.",
     learned:
-      "Most 'flaky' deployment failures have a real root cause hiding in Kubernetes events or in a config mismatch. Consistent environments cost less than one bad incident.",
+      "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
     wouldImprove:
       "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so on-call engineers do not have to recreate that context by hand.",
     ownership: {
@@ -708,7 +708,7 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
     limitation:
       "Scripts only cover the configuration that has been encoded. Anything still set by hand in the admin UI can still drift; the discipline only works if every change goes through the scripts.",
     lesson:
-      "Most authentication failures are configuration failures. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
+      "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
   },
   {
     slug: "validating-kafka-strimzi-upgrades",
@@ -744,7 +744,7 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
     limitation:
       "Some failures (image pull, network policy) only show up in cluster-wide logs that a developer may not have access to. Those still need to be escalated to whoever owns the platform.",
     lesson:
-      "Most 'flaky' deployment failures have a real root cause hiding in events or config. Consistent environments cost less than one bad incident.",
+      "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
   },
 ];
 
