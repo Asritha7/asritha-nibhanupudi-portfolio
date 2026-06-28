@@ -3,26 +3,39 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
+import ogImageAsset from "@/assets/og-image.jpg.asset.json";
 const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
 
 const INDEX_DESC =
   "Asritha Nibhanupudi - software engineer at Goldman Sachs building API gateway infrastructure, cloud platform tooling, and observability for distributed systems. Based in Bengaluru.";
-const INDEX_URL = "https://asritha.dev/";
+const INDEX_URL = "http://asritha.dev";
+const INDEX_OG_IMAGE = `https://asritha.dev${ogImageAsset.url}`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Asritha Nibhanupudi - Software Engineer" },
       { name: "description", content: INDEX_DESC },
+      { property: "og:url", content: INDEX_URL },
+      { property: "og:type", content: "website" },
       { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
       { property: "og:description", content: INDEX_DESC },
-      { property: "og:url", content: INDEX_URL },
+      { property: "og:image", content: INDEX_OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "twitter:domain", content: "asritha.dev" },
+      { property: "twitter:url", content: INDEX_URL },
+      { name: "twitter:title", content: "Asritha Nibhanupudi - Software Engineer" },
+      { name: "twitter:description", content: INDEX_DESC },
+      { name: "twitter:image", content: INDEX_OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: INDEX_URL }],
+    links: [{ rel: "canonical", href: "https://asritha.dev/" }],
   }),
   component: Portfolio,
 });
+
 
 
 const nav = [
