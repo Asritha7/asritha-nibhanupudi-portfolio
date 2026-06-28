@@ -372,7 +372,20 @@ function Portfolio() {
             <summary className="mono-label cursor-pointer hover:!text-terra">+ Earlier &amp; academic projects</summary>
             <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-text-secondary sm:grid-cols-2 lg:grid-cols-3">
               {earlier.map((p) => (
-                <li key={p} className="border-b border-hairline py-2">{p}</li>
+                <li key={p.label} className="border-b border-hairline py-2">
+                  {p.href ? (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 transition-colors hover:!text-terra"
+                    >
+                      {p.label} ↗
+                    </a>
+                  ) : (
+                    p.label
+                  )}
+                </li>
               ))}
             </ul>
           </details>
