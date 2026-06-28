@@ -301,7 +301,7 @@ function Portfolio() {
                 Featured Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Selected professional engineering work. Each item is labelled by type and links to a sanitized
+                Selected professional engineering work. Each item is labelled by type and links to a
                 case study that distinguishes what the wider team owned from what I personally contributed.
               </p>
             </div>
@@ -329,9 +329,6 @@ function Portfolio() {
                         <li key={t} className="!text-[11px]">· {t}</li>
                       ))}
                     </ul>
-                    {c.confidential ? (
-                      <p className="mono-label mt-3 !text-[11px]">Sanitized · confidential professional work</p>
-                    ) : null}
                     <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
                       {projectCtaLabel(c)} →
                     </span>

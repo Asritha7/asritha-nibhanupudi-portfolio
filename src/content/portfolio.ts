@@ -834,6 +834,6 @@ export function projectCtaLabel(p: Pick<Project, "projectType">): string {
     case "Engineering Implementation":
     case "Professional Work":
     default:
-      return "Read sanitized case study";
+      return "Read case study";
   }
 }
