@@ -507,21 +507,32 @@ function ContactForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (website) return; // honeypot tripped - silently drop
     if (!validate()) return;
     setState("submitting");
     try {
-      const subject = `Portfolio inquiry from ${name.trim()}`;
-      const body = `${message.trim()}\n\n-\nFrom: ${name.trim()} <${email.trim()}>`;
-      const href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = href;
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+          website,
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
       setState("success");
+      setName("");
+      setEmail("");
+      setMessage("");
     } catch {
       setState("error");
     }
   };
+
 
   const fieldClass =
     "w-full rounded-[3px] border border-dark-foreground/25 bg-dark-foreground/[0.04] px-4 py-3 text-[15px] text-dark-foreground placeholder:text-dark-foreground/40 outline-none transition-colors focus:border-[var(--accent-terra)] focus:bg-dark-foreground/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-terra)]";
@@ -598,21 +609,18 @@ function ContactForm() {
         disabled={state === "submitting"}
         className="mt-6 w-full rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-terra)]"
       >
-        {state === "submitting" ? "Opening…" : "Send message →"}
+        {state === "submitting" ? "Sending…" : "Send message →"}
       </button>
 
-      <p className="mono-label mt-4 !text-[11px] !text-dark-foreground/50">
-        Your message opens in your email app. Nothing is stored on this site.
-      </p>
-
       {state === "success" ? (
-        <p role="status" className="mono-label mt-3 !text-[var(--accent-terra)]">Opening your email app… thank you!</p>
+        <p role="status" className="mono-label mt-4 !text-[var(--accent-terra)]">Thank you! Your message has been sent.</p>
       ) : null}
       {state === "error" ? (
-        <p role="alert" className="mono-label mt-3 !text-[var(--accent-terra)]">
+        <p role="alert" className="mono-label mt-4 !text-[var(--accent-terra)]">
           Something went wrong. Email me directly at <a href={LINKS.email} className="underline">{SITE.email}</a>.
         </p>
       ) : null}
     </form>
   );
 }
+

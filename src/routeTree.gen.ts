@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkObservabilityRouteImport } from './routes/work.observability'
 import { Route as WorkKafkaKubernetesRouteImport } from './routes/work.kafka-kubernetes'
 import { Route as WorkApiInfrastructureRouteImport } from './routes/work.api-infrastructure'
+import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -40,6 +41,11 @@ const WorkApiInfrastructureRoute = WorkApiInfrastructureRouteImport.update({
   path: '/work/api-infrastructure',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
+  id: '/api/public/contact',
+  path: '/api/public/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/work/api-infrastructure': typeof WorkApiInfrastructureRoute
   '/work/kafka-kubernetes': typeof WorkKafkaKubernetesRoute
   '/work/observability': typeof WorkObservabilityRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/work/api-infrastructure': typeof WorkApiInfrastructureRoute
   '/work/kafka-kubernetes': typeof WorkKafkaKubernetesRoute
   '/work/observability': typeof WorkObservabilityRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +70,7 @@ export interface FileRoutesById {
   '/work/api-infrastructure': typeof WorkApiInfrastructureRoute
   '/work/kafka-kubernetes': typeof WorkKafkaKubernetesRoute
   '/work/observability': typeof WorkObservabilityRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,6 +80,7 @@ export interface FileRouteTypes {
     | '/work/api-infrastructure'
     | '/work/kafka-kubernetes'
     | '/work/observability'
+    | '/api/public/contact'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
     | '/work/api-infrastructure'
     | '/work/kafka-kubernetes'
     | '/work/observability'
+    | '/api/public/contact'
   id:
     | '__root__'
     | '/'
@@ -85,6 +96,7 @@ export interface FileRouteTypes {
     | '/work/api-infrastructure'
     | '/work/kafka-kubernetes'
     | '/work/observability'
+    | '/api/public/contact'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,6 +105,7 @@ export interface RootRouteChildren {
   WorkApiInfrastructureRoute: typeof WorkApiInfrastructureRoute
   WorkKafkaKubernetesRoute: typeof WorkKafkaKubernetesRoute
   WorkObservabilityRoute: typeof WorkObservabilityRoute
+  ApiPublicContactRoute: typeof ApiPublicContactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkApiInfrastructureRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/contact': {
+      id: '/api/public/contact'
+      path: '/api/public/contact'
+      fullPath: '/api/public/contact'
+      preLoaderRoute: typeof ApiPublicContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -141,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkApiInfrastructureRoute: WorkApiInfrastructureRoute,
   WorkKafkaKubernetesRoute: WorkKafkaKubernetesRoute,
   WorkObservabilityRoute: WorkObservabilityRoute,
+  ApiPublicContactRoute: ApiPublicContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
