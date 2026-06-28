@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as NotesRouteImport } from './routes/notes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkUimSensitiveAttributeEncryptionRouteImport } from './routes/work.uim-sensitive-attribute-encryption'
@@ -23,6 +24,11 @@ import { Route as ApiPublicContactRouteImport } from './routes/api/public/contac
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +83,7 @@ const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
     | '/work/kafka-strimzi-upgrade'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
     | '/work/kafka-strimzi-upgrade'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
     | '/work/kafka-strimzi-upgrade'
@@ -153,6 +165,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NotesRoute: typeof NotesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkAutomationFrameworkRoute: typeof WorkAutomationFrameworkRoute
   WorkKafkaStrimziUpgradeRoute: typeof WorkKafkaStrimziUpgradeRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -241,6 +261,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NotesRoute: NotesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkAutomationFrameworkRoute: WorkAutomationFrameworkRoute,
   WorkKafkaStrimziUpgradeRoute: WorkKafkaStrimziUpgradeRoute,
