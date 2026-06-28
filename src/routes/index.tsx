@@ -78,10 +78,10 @@ const experience = [
 
 const skills = [
   { label: "Cloud & Platform", items: ["AWS", "CDK", "ECS Fargate", "Aurora PostgreSQL", "Lambda", "Nginx"] },
-  { label: "Distributed & Infra", items: ["Kubernetes", "Apache Kafka", "Strimzi", "Linux"] },
+  { label: "Distributed & Infra", items: ["Kubernetes", "Apache Kafka", "Strimzi", "REST APIs", "Linux"] },
   { label: "CI/CD & Automation", items: ["GitLab CI/CD", "Cypress", "Keycloak", "OpenSearch"] },
   { label: "Observability", items: ["Prometheus", "Grafana"] },
-  { label: "Languages", items: ["TypeScript", "Python", "Java", "SQL", "C++", "REST APIs"] },
+  { label: "Languages", items: ["TypeScript", "Python", "Java", "SQL", "C++"] },
 ];
 
 const links = {
