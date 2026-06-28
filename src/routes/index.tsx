@@ -142,14 +142,47 @@ function useReveal() {
 }
 
 
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState<string>("");
+  useEffect(() => {
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+function smoothScrollTo(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 76;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+}
+
 function Portfolio() {
   useReveal();
   const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
   const nearBottom = useNearBottom();
+  const sectionIds = nav.filter((n) => !("route" in n && n.route)).map((n) => n.id);
+  const activeSection = useActiveSection(sectionIds);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background text-foreground">
+
       {/* skip link */}
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[3px] focus:bg-terra focus:px-3 focus:py-2 focus:text-panel">
         Skip to content
