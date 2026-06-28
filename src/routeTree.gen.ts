@@ -18,6 +18,7 @@ import { Route as WorkRfidPinAuthenticationResearchRouteImport } from './routes/
 import { Route as WorkKubernetesCicdReliabilityRouteImport } from './routes/work.kubernetes-cicd-reliability'
 import { Route as WorkKeycloakIdentityFlowRouteImport } from './routes/work.keycloak-identity-flow'
 import { Route as WorkKafkaStrimziUpgradeRouteImport } from './routes/work.kafka-strimzi-upgrade'
+import { Route as WorkAwsMicroservicesCdkEcsRouteImport } from './routes/work.aws-microservices-cdk-ecs'
 import { Route as WorkAutomationFrameworkRouteImport } from './routes/work.automation-framework'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 
@@ -70,6 +71,12 @@ const WorkKafkaStrimziUpgradeRoute = WorkKafkaStrimziUpgradeRouteImport.update({
   path: '/work/kafka-strimzi-upgrade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkAwsMicroservicesCdkEcsRoute =
+  WorkAwsMicroservicesCdkEcsRouteImport.update({
+    id: '/work/aws-microservices-cdk-ecs',
+    path: '/work/aws-microservices-cdk-ecs',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const WorkAutomationFrameworkRoute = WorkAutomationFrameworkRouteImport.update({
   id: '/work/automation-framework',
   path: '/work/automation-framework',
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
+  '/work/aws-microservices-cdk-ecs': typeof WorkAwsMicroservicesCdkEcsRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
@@ -99,6 +107,7 @@ export interface FileRoutesByTo {
   '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
+  '/work/aws-microservices-cdk-ecs': typeof WorkAwsMicroservicesCdkEcsRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
@@ -113,6 +122,7 @@ export interface FileRoutesById {
   '/notes': typeof NotesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/automation-framework': typeof WorkAutomationFrameworkRoute
+  '/work/aws-microservices-cdk-ecs': typeof WorkAwsMicroservicesCdkEcsRoute
   '/work/kafka-strimzi-upgrade': typeof WorkKafkaStrimziUpgradeRoute
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
+    | '/work/aws-microservices-cdk-ecs'
     | '/work/kafka-strimzi-upgrade'
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
+    | '/work/aws-microservices-cdk-ecs'
     | '/work/kafka-strimzi-upgrade'
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
@@ -154,6 +166,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/sitemap.xml'
     | '/work/automation-framework'
+    | '/work/aws-microservices-cdk-ecs'
     | '/work/kafka-strimzi-upgrade'
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
@@ -168,6 +181,7 @@ export interface RootRouteChildren {
   NotesRoute: typeof NotesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkAutomationFrameworkRoute: typeof WorkAutomationFrameworkRoute
+  WorkAwsMicroservicesCdkEcsRoute: typeof WorkAwsMicroservicesCdkEcsRoute
   WorkKafkaStrimziUpgradeRoute: typeof WorkKafkaStrimziUpgradeRoute
   WorkKeycloakIdentityFlowRoute: typeof WorkKeycloakIdentityFlowRoute
   WorkKubernetesCicdReliabilityRoute: typeof WorkKubernetesCicdReliabilityRoute
@@ -242,6 +256,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkKafkaStrimziUpgradeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/aws-microservices-cdk-ecs': {
+      id: '/work/aws-microservices-cdk-ecs'
+      path: '/work/aws-microservices-cdk-ecs'
+      fullPath: '/work/aws-microservices-cdk-ecs'
+      preLoaderRoute: typeof WorkAwsMicroservicesCdkEcsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/automation-framework': {
       id: '/work/automation-framework'
       path: '/work/automation-framework'
@@ -264,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotesRoute: NotesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkAutomationFrameworkRoute: WorkAutomationFrameworkRoute,
+  WorkAwsMicroservicesCdkEcsRoute: WorkAwsMicroservicesCdkEcsRoute,
   WorkKafkaStrimziUpgradeRoute: WorkKafkaStrimziUpgradeRoute,
   WorkKeycloakIdentityFlowRoute: WorkKeycloakIdentityFlowRoute,
   WorkKubernetesCicdReliabilityRoute: WorkKubernetesCicdReliabilityRoute,
