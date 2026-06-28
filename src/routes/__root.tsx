@@ -11,7 +11,14 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import faviconAsset from "../assets/favicon.png.asset.json";
+import ogImageAsset from "../assets/og-image.jpg.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+const SITE_URL = "https://asritha.dev";
+const OG_IMAGE_URL = `${SITE_URL}${ogImageAsset.url}`;
+const SITE_DESC =
+  "Software engineer at Goldman Sachs working across cloud platform engineering, API gateway infrastructure, distributed systems, and observability. Based in Bengaluru.";
+
 
 function NotFoundComponent() {
   return (
@@ -58,19 +65,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Asritha Nibhanupudi - Software Engineer" },
-      { name: "description", content: "Analyst, Systems Engineering at Goldman Sachs. Cloud platform engineering & distributed systems." },
+      { name: "description", content: SITE_DESC },
       { name: "author", content: "Asritha Nibhanupudi" },
+      { name: "theme-color", content: "#C45A3A" },
+      { property: "og:site_name", content: "Asritha Nibhanupudi" },
       { property: "og:title", content: "Asritha Nibhanupudi - Software Engineer" },
-      { property: "og:description", content: "Analyst, Systems Engineering at Goldman Sachs. Cloud platform engineering & distributed systems." },
+      { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:alt", content: "Asritha Nibhanupudi - Software Engineer portfolio" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@asritha7" },
+      { name: "twitter:creator", content: "@asritha7" },
       { name: "twitter:title", content: "Asritha Nibhanupudi - Software Engineer" },
-      { name: "twitter:description", content: "Analyst, Systems Engineering at Goldman Sachs. Cloud platform engineering & distributed systems." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/177295f5-81f1-45f5-b5f8-f9af2b3369b3" },
+      { name: "twitter:description", content: SITE_DESC },
+      { name: "twitter:image", content: OG_IMAGE_URL },
+      { name: "twitter:image:alt", content: "Asritha Nibhanupudi - Software Engineer portfolio" },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
       { rel: "icon", type: "image/png", href: faviconAsset.url },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -79,7 +100,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Asritha Nibhanupudi",
+          url: SITE_URL,
+          image: OG_IMAGE_URL,
+          jobTitle: "Software Engineer",
+          worksFor: { "@type": "Organization", name: "Goldman Sachs" },
+          description: SITE_DESC,
+          sameAs: [
+            "https://github.com/Asritha7",
+            "https://www.linkedin.com/in/asritha-nibhanupudi/",
+          ],
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
