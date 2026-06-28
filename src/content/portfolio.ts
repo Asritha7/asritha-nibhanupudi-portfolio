@@ -794,6 +794,15 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
       "Some failures (image pull, network policy) only show up in cluster-wide logs that a developer may not have access to. Those still need to be escalated to whoever owns the platform.",
     lesson:
       "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
+    practicalSteps: [
+      "Deployment failed - read Kubernetes events on the namespace first",
+      "Inspect the failing pod description for image, configuration, probe, resource, or scheduling errors",
+      "Read the current container logs, then the previous container logs if the pod has restarted",
+      "Compare the deployment configuration against a known-good environment",
+      "Only then open the CI orchestration log to confirm the symptom matches the cluster-level cause",
+    ],
+    whenNotToApply:
+      "When the failure is clearly outside the cluster - for example a build-step failure that never produced an image - the CI log is the right starting point instead.",
   },
 ];
 
