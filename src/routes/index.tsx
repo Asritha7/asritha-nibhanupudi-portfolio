@@ -36,12 +36,12 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Asritha Nibhanupudi — Software Engineer" },
+      { property: "og:image:alt", content: "Asritha Nibhanupudi - Software Engineer" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESC },
       { name: "twitter:image", content: OG_IMAGE },
-      { name: "twitter:image:alt", content: "Asritha Nibhanupudi — Software Engineer" },
+      { name: "twitter:image:alt", content: "Asritha Nibhanupudi - Software Engineer" },
     ],
     links: [{ rel: "canonical", href: "https://asritha.dev/" }],
   }),
@@ -232,7 +232,7 @@ function Portfolio() {
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">01 — Case studies</span>
+              <span className="mono-label">01 - Case studies</span>
               <h2 id="work-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Featured <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
               </h2>
@@ -280,7 +280,7 @@ function Portfolio() {
         <section id="experience" aria-labelledby="exp-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">02 — Experience</span>
+              <span className="mono-label">02 - Experience</span>
               <h2 id="exp-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Professional <em className="italic" style={{ color: "var(--accent-terra)" }}>timeline</em>.
               </h2>
@@ -291,7 +291,7 @@ function Portfolio() {
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent-terra)" }} />
                   <p className="mono-label">{e.date} · {e.place}</p>
                   <h3 className="font-serif-display mt-2 text-[22px] md:text-[24px]">
-                    {e.role} <span className="text-text-secondary"> — {e.org}</span>
+                    {e.role} <span className="text-text-secondary"> - {e.org}</span>
                   </h3>
                   <p className="mt-3 max-w-[64ch] text-[16.5px] text-text-secondary">{e.scope}</p>
                   <ul className="mt-4 space-y-2 text-[16px] text-text-secondary">
@@ -322,7 +322,7 @@ function Portfolio() {
         <section id="principles" aria-labelledby="principles-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">03 — Principles</span>
+              <span className="mono-label">03 - Principles</span>
               <h2 id="principles-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 How I <em className="italic" style={{ color: "var(--accent-terra)" }}>think</em>.
               </h2>
@@ -342,7 +342,7 @@ function Portfolio() {
         <section id="capabilities" aria-labelledby="cap-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">04 — Capabilities</span>
+              <span className="mono-label">04 - Capabilities</span>
               <h2 id="cap-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Technical <em className="italic" style={{ color: "var(--accent-terra)" }}>capabilities</em>.
               </h2>
@@ -368,7 +368,7 @@ function Portfolio() {
         <section aria-labelledby="repos-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">05 — Open source</span>
+              <span className="mono-label">05 - Open source</span>
               <h2 id="repos-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Public <em className="italic" style={{ color: "var(--accent-terra)" }}>engineering</em> work.
               </h2>
@@ -394,7 +394,7 @@ function Portfolio() {
         <section aria-labelledby="research-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
             <div className="reveal">
-              <span className="mono-label">06 — Research</span>
+              <span className="mono-label">06 - Research</span>
               <h2 id="research-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Published <em className="italic" style={{ color: "var(--accent-terra)" }}>research</em>.
               </h2>
@@ -438,7 +438,7 @@ function Portfolio() {
         <section id="contact" aria-labelledby="contact-heading" className="mx-auto max-w-[1280px] px-6 py-24 md:px-[46px] md:py-28">
           <div className="reveal grid grid-cols-1 gap-14 md:grid-cols-[1fr_1fr] md:gap-20">
             <div>
-              <span className="mono-label !text-dark-foreground/60">07 — Contact</span>
+              <span className="mono-label !text-dark-foreground/60">07 - Contact</span>
               <h2 id="contact-heading" className="font-serif-display mt-6 text-[clamp(38px,5.6vw,60px)]">
                 Let's talk about <em className="italic" style={{ color: "var(--accent-terra)" }}>software</em>.
               </h2>
@@ -509,12 +509,12 @@ function ContactForm() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (website) return; // honeypot tripped — silently drop
+    if (website) return; // honeypot tripped - silently drop
     if (!validate()) return;
     setState("submitting");
     try {
       const subject = `Portfolio inquiry from ${name.trim()}`;
-      const body = `${message.trim()}\n\n—\nFrom: ${name.trim()} <${email.trim()}>`;
+      const body = `${message.trim()}\n\n-\nFrom: ${name.trim()} <${email.trim()}>`;
       const href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = href;
       setState("success");
