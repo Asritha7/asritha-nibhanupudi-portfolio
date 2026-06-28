@@ -475,7 +475,7 @@ export const PROJECTS: Project[] = [
     learned:
       "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
     wouldImprove:
-      "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so on-call engineers do not have to recreate that context by hand.",
+      "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so engineers reviewing pipeline failures do not have to recreate that context by hand.",
     ownership: {
       team: ["The broader Kubernetes platform and pipeline infrastructure was owned by the wider team"],
       contributedTo: ["Deployment workflow improvements based on recurring patterns"],
