@@ -246,7 +246,7 @@ function Portfolio() {
           </div>
         </div>
         {menuOpen ? (
-          <nav id="mobile-nav" aria-label="Mobile" className="border-t border-hairline bg-background px-6 py-4 md:hidden">
+          <nav id="mobile-nav" aria-label="Mobile" className="max-h-[70vh] overflow-y-auto border-t border-hairline bg-background px-6 py-4 md:hidden">
             <div className="grid grid-cols-2 gap-3">
               {nav.map((n) =>
                 "route" in n && n.route ? (
@@ -254,10 +254,18 @@ function Portfolio() {
                     {n.label}
                   </Link>
                 ) : (
-                  <a key={n.id} href={`#${n.id}`} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
+                  <a
+                    key={n.id}
+                    href={`#${n.id}`}
+                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); setTimeout(() => smoothScrollTo(n.id), 10); history.replaceState(null, "", `#${n.id}`); }}
+                    aria-current={activeSection === n.id ? "true" : undefined}
+                    data-active={activeSection === n.id ? "true" : undefined}
+                    className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill data-[active=true]:!text-terra data-[active=true]:border-terra"
+                  >
                     {n.label}
                   </a>
                 ),
+
               )}
             </div>
 
