@@ -200,11 +200,19 @@ function Portfolio() {
                   {n.label}
                 </Link>
               ) : (
-                <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra">
+                <a
+                  key={n.id}
+                  href={`#${n.id}`}
+                  onClick={(e) => { e.preventDefault(); smoothScrollTo(n.id); history.replaceState(null, "", `#${n.id}`); }}
+                  aria-current={activeSection === n.id ? "true" : undefined}
+                  data-active={activeSection === n.id ? "true" : undefined}
+                  className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra data-[active=true]:!text-terra data-[active=true]:underline data-[active=true]:underline-offset-[6px] data-[active=true]:decoration-2"
+                >
                   {n.label}
                 </a>
               ),
             )}
+
 
             <button
               type="button"
