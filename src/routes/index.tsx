@@ -138,11 +138,18 @@ function Portfolio() {
             {SITE.name}
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
-            {nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra">
-                {n.label}
-              </a>
-            ))}
+            {nav.map((n) =>
+              "route" in n && n.route ? (
+                <Link key={n.id} to={n.route} className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra">
+                  {n.label}
+                </Link>
+              ) : (
+                <a key={n.id} href={`#${n.id}`} className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra">
+                  {n.label}
+                </a>
+              ),
+            )}
+
             <button
               type="button"
               onClick={cycleTheme}
