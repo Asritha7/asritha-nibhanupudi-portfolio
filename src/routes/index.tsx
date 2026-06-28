@@ -146,6 +146,7 @@ function Portfolio() {
   useReveal();
   const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
+  const nearBottom = useNearBottom();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
