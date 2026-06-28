@@ -677,135 +677,239 @@ export const PUBLIC_REPOS = [
   },
 ];
 
-// Engineering Notes - short, sanitized technical notes.
+// Engineering Notes - longer, sanitized technical notes intended to be useful
+// references, not summaries of the case studies.
 export type NoteChecklist = { heading: string; items: string[] };
+
+export type DecisionStep = { step: string; detail?: string };
 
 export type EngineeringNote = {
   slug: string;
   title: string;
   summary: string;
+  introduction: string;
   problem: string;
   whyDifficult: string;
   approach: string;
-  technicalDecision: string;
-  limitation: string;
-  lesson: string;
-  // optional, rendered only when present
+  importantDecision: { title: string; body: string };
+  conclusion: string;
+  // optional structured content
   practicalSteps?: string[];
   checklists?: NoteChecklist[];
-  whenNotToApply?: string;
+  decisionFlow?: DecisionStep[];          // for the Kubernetes note
+  subsections?: { heading: string; body: string }[]; // freeform extra sections
+  limitations: string[];
+  whenNotToApply: string;
 };
 
 export const ENGINEERING_NOTES: EngineeringNote[] = [
   {
     slug: "automating-keycloak-identity-workflows",
-    title: "Automating Keycloak identity workflows",
+    title: "Reducing Keycloak configuration drift with repeatable automation",
     summary:
-      "What I learned scripting realm, client, and role setup against the Keycloak Admin REST API instead of clicking through the admin UI per environment.",
+      "A practical note on driving Keycloak realm, client, and identity-provider configuration from code so the same desired state can be re-applied across environments.",
+    introduction:
+      "In this note I describe a general pattern for treating Keycloak configuration as desired state and reconciling it through automation, rather than configuring each environment through the admin UI. The goal is to make configuration repeatable and reviewable, not to claim that all authentication issues come from configuration.",
     problem:
-      "Identity-provider configuration was drifting between environments, and the same client redirect URI mismatch kept causing intermittent authentication failures.",
+      "Authentication behaviour can differ across environments when realm, client, redirect URI, identity-provider, or authentication-flow configuration is changed by hand. Small differences between environments tend to surface as intermittent login or token failures that are hard to attribute, because the runtime symptom rarely names the misconfigured field.",
     whyDifficult:
-      "Failures only reproduced in some environments. The admin UI was easy to use but invisible to source control, so there was no audit trail for who changed what.",
+      "Manual changes through the admin UI are easy to make but invisible to source control, so there is no shared record of what changed, when, or why. Drift accumulates slowly and is usually noticed only when a specific flow breaks in one environment.",
     approach:
-      "Move realm and client setup into scripts that call the Keycloak Admin REST API. Add CI checks that re-apply the desired configuration on every pipeline run.",
-    technicalDecision:
-      "Idempotent setup scripts - safe to re-run - instead of one-shot exports. Each script reads the current configuration, computes a diff, and only applies what is missing or wrong.",
-    limitation:
-      "Scripts only cover the configuration that has been encoded. Anything still set by hand in the admin UI can still drift; the discipline only works if every change goes through the scripts.",
-    lesson:
-      "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
+      "Express the configuration that matters as a desired state, read the existing state from the Keycloak Admin REST API, and reconcile the two in a way that is safe to re-run. Keep the scope narrow: only the fields the workflow is willing to own should be reconciled. Everything else should be left alone so the automation does not silently overwrite changes it does not understand.",
+    subsections: [
+      {
+        heading: "Desired state versus existing state",
+        body:
+          "The general idea is to: read the desired configuration from a checked-in source, read the existing configuration from Keycloak, compare only the approved fields, create resources that are missing, update only intended differences, validate critical settings (such as redirect URIs and authentication settings), and return a clear failure message when validation fails. Each of these steps is described as a pattern; the exact implementation depends on the project.",
+      },
+      {
+        heading: "Idempotency",
+        body:
+          "Rerunning the workflow should not create duplicate clients, roles, flows, or identity-provider entries. The pattern is to look up resources by a stable identifier (for example client ID or alias), create them only when absent, and update only the approved subset of fields when they exist. This is an idempotency goal, not a guarantee — it holds only for the fields the workflow actually manages.",
+      },
+      {
+        heading: "Token expiry during longer workflows",
+        body:
+          "Administrative access tokens have a limited lifetime. Workflows that run for more than a few minutes (large realms, many clients, retries) can outlive the token they started with. A practical approach is to acquire the token close to where it is used, check for token-expiry errors from the Admin API, and reacquire the token instead of failing the whole run. Token acquisition should not be logged or echoed.",
+      },
+      {
+        heading: "Secret management",
+        body:
+          "Client secrets, admin credentials, and identity-provider secrets should not be hardcoded in scripts, committed to source control, written to logs, or shipped in client-side configuration. They should be read from the environment or a secrets manager at the point of use, and the workflow should fail with a clear, non-revealing error when a required secret is missing.",
+      },
+    ],
     practicalSteps: [
-      "Obtain an administrative token against the realm",
-      "Read the existing realm or client configuration",
-      "Compare the existing values against the desired configuration",
-      "Create missing resources (realm, client, role) only when absent",
-      "Update only the approved properties that differ from desired",
-      "Validate redirect URIs and authentication settings before exit",
-      "Fail with a specific diagnostic message when a mismatch cannot be reconciled",
+      "Retrieve an administrative access token",
+      "Read the current realm or client configuration",
+      "Compare approved properties with the desired configuration",
+      "Create resources that are missing",
+      "Update approved properties that differ",
+      "Validate redirect URIs and authentication settings",
+      "Return a specific error when configuration validation fails",
+    ],
+    importantDecision: {
+      title: "Reconcile only the fields the workflow owns",
+      body:
+        "It is tempting to push the entire Keycloak export through automation. In this workflow, scoping the reconciliation to a narrow set of approved fields was more useful: it kept the change surface small, made review easier, and avoided overwriting fields that other teams or operators set deliberately.",
+    },
+    limitations: [
+      "Configuration not represented in automation can still drift",
+      "Manual changes made directly in the admin UI can still create inconsistencies",
+      "Environment-specific secrets require separate handling outside the workflow",
+      "Automation does not prevent Keycloak product or infrastructure failures",
     ],
     whenNotToApply:
-      "When the identity-provider configuration is owned by a separate team that does not want change driven through scripts, or when the workflow genuinely needs a one-time export-and-import rather than ongoing reconciliation.",
+      "A simple one-off local environment, or a short-lived experiment, may not justify building a complete desired-state workflow. In those cases a documented manual setup is usually enough.",
+    conclusion:
+      "In this workflow, treating Keycloak configuration as desired state and reconciling a narrow, approved set of fields reduced the kind of drift that previously caused environment-specific authentication failures. The approach is most useful when the same configuration has to exist in more than one environment.",
   },
+
   {
     slug: "validating-kafka-strimzi-upgrades",
-    title: "A practical checklist for validating Kafka and Strimzi upgrades",
+    title: "A practical Kafka and Strimzi upgrade validation checklist",
     summary:
-      "How I separate operator-side checks from broker-side checks during an upgrade rehearsal so failures get attributed to the right layer.",
+      "A checklist-shaped note for Kafka and Strimzi upgrade rehearsals, organised so failures get attributed to the right layer rather than to 'the upgrade'.",
+    introduction:
+      "This note collects the checks I have found useful when rehearsing a Kafka and Strimzi upgrade. It is structured as separate checklists for before, during the operator upgrade, during the Kafka upgrade, and after, because in these rehearsals operator-side and broker-side failures looked similar from the outside until they were observed separately.",
     problem:
-      "Upgrades to Kafka or the Strimzi operator carry real risk - message-flow regressions, operator surprises, pod recovery issues - and the failure modes look similar from the outside.",
+      "Upgrades to Kafka or the Strimzi operator can introduce message-flow regressions, operator reconciliation surprises, or pod-recovery behaviour that masks the actual impact. Without an explicit checklist, it is easy to declare an upgrade successful while a subtle regression is still in flight.",
     whyDifficult:
-      "Operator reconciliation behaviour can change between minor versions, and pods can recover on their own after a few minutes. Both effects mask the actual upgrade impact.",
+      "Operator reconciliation behaviour can change between minor versions, and pods can recover on their own after a few minutes. Both effects make it harder to tell whether a symptom is the upgrade itself, a transient issue, or an application-side effect reacting to a broker restart.",
     approach:
-      "Run the rehearsal in distinct phases: pre-upgrade snapshot, operator upgrade and reconcile verification, broker upgrade and consumer-group verification, then a rollback dry-run. Validate each phase from CI/CD before moving to the next.",
-    technicalDecision:
-      "Treat operator state and broker state as two separate signals during the rehearsal instead of a single combined check. The rehearsal got longer, but failures became attributable.",
-    limitation:
-      "The checklist is only as good as the post-upgrade comparison. Without a structured diff of operator and broker state before and after, subtle regressions can still slip through.",
-    lesson:
-      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. Validation only helps when it clearly separates 'flaky' from 'broken'.",
+      "Treat the rehearsal as four distinct phases (before, operator upgrade, Kafka upgrade, after) and validate each phase before moving to the next. Keep operator state and broker state as separate signals throughout, because mixing them obscures which layer changed.",
     checklists: [
       {
-        heading: "Before upgrade",
+        heading: "Before the upgrade",
         items: [
           "Record current Kafka and Strimzi versions",
-          "Capture relevant topic and consumer-group state",
-          "Check operator reconciliation status",
-          "Confirm broker and application health",
-          "Review compatibility requirements for the target versions",
+          "Review supported compatibility combinations",
+          "Confirm operator reconciliation is healthy",
+          "Confirm brokers and dependent applications are healthy",
+          "Record relevant topic and consumer-group state",
+          "Confirm producer and consumer validation paths",
+          "Review rollback assumptions",
+          "Capture current warnings or known issues",
         ],
       },
       {
-        heading: "During upgrade",
+        heading: "During the Strimzi operator upgrade",
         items: [
-          "Observe operator rollout progression",
-          "Watch reconciliation events as they occur",
-          "Verify broker restart behaviour pod-by-pod",
-          "Monitor producer and consumer behaviour through the rollout",
-          "Record unexpected warnings or errors as they appear",
+          "Watch operator rollout status",
+          "Inspect reconciliation events",
+          "Check custom-resource status",
+          "Confirm that expected resources remain managed",
+          "Record unexpected warnings or errors",
         ],
       },
       {
-        heading: "After upgrade",
+        heading: "During the Kafka upgrade",
+        items: [
+          "Observe broker restart behaviour",
+          "Confirm brokers rejoin correctly",
+          "Monitor application connectivity",
+          "Validate producer behaviour",
+          "Validate consumer behaviour",
+          "Watch consumer-group stability",
+          "Record message-flow failures",
+        ],
+      },
+      {
+        heading: "After the upgrade",
         items: [
           "Produce and consume validation messages",
-          "Confirm consumer offsets and group stability",
-          "Verify application connectivity end-to-end",
-          "Check deployment and operator health",
-          "Revalidate rollback assumptions before signing off",
+          "Confirm consumer offsets behave as expected",
+          "Confirm applications reconnect successfully",
+          "Verify operator and broker health",
+          "Review logs for new warnings",
+          "Recheck rollback assumptions",
+          "Document observed compatibility issues",
         ],
       },
     ],
-    whenNotToApply:
-      "When the upgrade is part of a fully managed Kafka offering where operator and broker behaviour are not surfaced to the consumer of the service.",
-  },
-  {
-    slug: "investigating-kubernetes-deployment-failures",
-    title: "How I investigate Kubernetes deployment failures",
-    summary:
-      "Why I start from Kubernetes events and pod descriptions rather than the CI pipeline log when a deployment fails.",
-    problem:
-      "Deployments failed intermittently across environments with a mix of pod-level, configuration, and pipeline-stage root causes, and the CI log usually only showed symptoms.",
-    whyDifficult:
-      "Pipeline logs and application failures look the same to a casual reader. Re-running the pipeline often masked real, reproducible failures by appearing to 'fix' them.",
-    approach:
-      "Start every investigation with kubectl get events and kubectl describe pod on the failing deployment. Only open the CI log afterwards, to confirm the symptom matches the cause already visible in the cluster.",
-    technicalDecision:
-      "Read Kubernetes events first, CI logs second. The extra cluster-context step felt slower for the first few minutes but converged on the actual cause faster overall.",
-    limitation:
-      "Some failures (image pull, network policy) only show up in cluster-wide logs that a developer may not have access to. Those still need to be escalated to whoever owns the platform.",
-    lesson:
-      "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
-    practicalSteps: [
-      "Deployment failed - read Kubernetes events on the namespace first",
-      "Inspect the failing pod description for image, configuration, probe, resource, or scheduling errors",
-      "Read the current container logs, then the previous container logs if the pod has restarted",
-      "Compare the deployment configuration against a known-good environment",
-      "Only then open the CI orchestration log to confirm the symptom matches the cluster-level cause",
+    importantDecision: {
+      title: "Treat operator and broker upgrades as separate validation phases",
+      body:
+        "Running the operator upgrade and the Kafka upgrade as a single combined check made it hard to attribute failures in these rehearsals. Separating them lengthened the rehearsal, but a regression in operator reconciliation no longer looked the same as a broker-side issue, which made each one easier to investigate.",
+    },
+    limitations: [
+      "A checklist cannot prove that all production workloads, traffic patterns, schemas, or failure modes are safe",
+      "Rehearsal traffic is rarely identical to production traffic",
+      "Some regressions only appear under load or over longer time windows",
+      "The checklist is only as useful as the comparison between pre-upgrade and post-upgrade state",
     ],
     whenNotToApply:
-      "When the failure is clearly outside the cluster - for example a build-step failure that never produced an image - the CI log is the right starting point instead.",
+      "Exact validation steps vary based on Kafka version, Strimzi version, deployment architecture, and the guarantees the applications need. A fully managed Kafka offering where operator and broker behaviour are not surfaced may need a different shape of checklist.",
+    conclusion:
+      "During these upgrade rehearsals, the most useful single change was splitting validation into operator-side and broker-side phases. The checklist above is the form that ended up being practical to run; it is intentionally not a claim of zero-risk upgrades.",
+  },
+
+  {
+    slug: "investigating-kubernetes-deployment-failures",
+    title: "Investigating Kubernetes deployment failures before blaming CI",
+    summary:
+      "A decision flow for narrowing down a failed Kubernetes deployment using cluster-level evidence first, and turning to CI orchestration once the cluster-side picture is clear.",
+    introduction:
+      "This note describes the order in which I investigate a failed Kubernetes deployment. In the observed deployments, starting from Kubernetes events and pod descriptions identified the cause faster than starting from the CI pipeline log, because the pipeline log usually shows the symptom rather than the underlying cluster behaviour.",
+    problem:
+      "Deployments can fail intermittently across environments with a mix of pod-level, configuration, and pipeline-stage causes. The CI log often shows only that the deployment did not become healthy in time, which is not enough information to choose where to look next.",
+    whyDifficult:
+      "A pipeline failure message and an application failure message can look similar to a casual reader. Re-running the pipeline sometimes makes a real, reproducible failure appear to fix itself, which encourages classifying real issues as flaky.",
+    approach:
+      "Use cluster-level evidence first: events, pod description, current and previous container logs, and configuration comparison. Only inspect CI orchestration after the cluster picture is clear, so the pipeline log is read as confirmation rather than as the primary signal.",
+    decisionFlow: [
+      { step: "Deployment failed", detail: "Start from cluster-level evidence rather than the CI log." },
+      { step: "Check Kubernetes events", detail: "Scheduling, image-pull, mounting, probe, or resource issues often appear here first." },
+      { step: "Describe the affected pod", detail: "Container state, restart count, conditions, events, image, mounted configuration, and probe settings." },
+      { step: "Check image, configuration, probe, resource, and scheduling errors", detail: "Map each event or condition to one of these categories before going further." },
+      { step: "Read current and previous container logs", detail: "Previous-container logs are essential after a restart - the current log may be empty or misleading." },
+      { step: "Compare environment-specific configuration", detail: "ConfigMaps, Secrets, image tags, environment variables, resource requests, manifests." },
+      { step: "Inspect CI orchestration", detail: "Only after the cluster-level evidence is understood, confirm the symptom matches the cause." },
+    ],
+    subsections: [
+      {
+        heading: "Start with events",
+        body:
+          "Kubernetes events often identify scheduling, image-pull, volume-mounting, probe, or resource issues earlier than a generic pipeline failure message. They are a useful first stop because they describe what the cluster tried to do and where it stopped.",
+      },
+      {
+        heading: "Describe the pod",
+        body:
+          "A pod description surfaces container state, restart count, conditions, recent events, image information, mounted configuration, and readiness and liveness probe settings. Together these usually narrow the cause to a small number of categories.",
+      },
+      {
+        heading: "Check logs (current and previous)",
+        body:
+          "Current container logs show what the running process is saying now. Previous-container logs show what the process said before the last restart. After a CrashLoopBackOff or OOMKill, the previous logs are usually the ones that explain the failure.",
+      },
+      {
+        heading: "Compare configuration",
+        body:
+          "Differences in ConfigMaps, Secrets, image tags, environment variables, resource requests, or deployment manifests can make an issue appear environment-specific. A structured comparison against a known-good environment often turns 'flaky in staging' into a specific configuration delta.",
+      },
+      {
+        heading: "Inspect CI after Kubernetes evidence",
+        body:
+          "Pipeline orchestration should be investigated after determining whether the cluster rejected, failed, or started the workload incorrectly. By that point the CI log usually confirms the cluster-side cause rather than introducing a new theory.",
+      },
+    ],
+    importantDecision: {
+      title: "Cluster evidence first, pipeline log second",
+      body:
+        "Reading Kubernetes events and pod descriptions before opening the CI log added a few minutes at the start of an investigation but, in the failures I investigated, converged on the actual cause faster overall because it avoided spending time on pipeline theories that the cluster could already disprove.",
+    },
+    limitations: [
+      "Some failures originate in external dependencies (registries, network, cloud provider) and need evidence from outside the cluster",
+      "Some errors disappear before investigation begins, especially after a retry",
+      "Kubernetes events have limited retention",
+      "A pod reporting healthy does not guarantee the application is behaving correctly",
+    ],
+    whenNotToApply:
+      "Networking, cloud-provider, storage, or purely application-level failures may require investigation beyond the pod and the pipeline. If the failure is clearly outside the cluster - for example a build step that never produced an image - the CI log is the right starting point instead.",
+    conclusion:
+      "In the observed deployments, the single most useful habit was reading Kubernetes events and the pod description before opening the CI log. The decision flow above is the shape that habit ended up taking.",
   },
 ];
+
 
 // Testimonials - only render when manually approved.
 export type Testimonial = {
