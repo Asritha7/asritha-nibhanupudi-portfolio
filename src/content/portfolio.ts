@@ -469,42 +469,8 @@ export const PROJECTS: Project[] = [
 
   // ---------------- ADDITIONAL ----------------
   {
-    slug: "uim-sensitive-attribute-encryption",
-    title: "Sensitive-Attribute Encryption in Oracle UIM",
-    projectType: "Engineering Implementation",
-    year: "2025",
-    shortDescription:
-      "Secure handling of sensitive UIM attributes using AES-256 encryption, role-based decryption controls, API-level access, and upgrade and rollback support.",
-    myContribution:
-      "Contributed to and demonstrated the secure-attribute handling: AES-256 encryption, role-controlled decryption, an opt-in decryption parameter at the API boundary, and upgrade and rollback scripts with backward compatibility.",
-    ownershipWording: "Contributed to / demonstrated",
-    professionalContext:
-      "Oracle Unified Inventory Management (UIM) - enterprise inventory platform. Work concerned secure handling of sensitive attributes within the existing platform, not independent ownership of the complete feature.",
-    approach: [
-      "AES-256 encryption applied to sensitive attributes at the persistence layer",
-      "Role-controlled decryption via a dedicated access group",
-      "Opt-in decryption parameter at the API boundary so plaintext is never returned by default",
-      "Upgrade scripts to encrypt existing data in place",
-      "Rollback scripts to safely revert to the prior state",
-      "Compatibility maintained across Java and PL/SQL layers",
-      "Backward compatibility preserved for existing clients",
-    ],
-    technologies: ["Java", "PL/SQL", "Oracle UIM", "AES-256"],
-    challenges: [
-      "Preserving backward compatibility while changing how attributes are stored",
-      "Coordinating upgrade and rollback paths across Java and PL/SQL layers",
-    ],
-    lessons: [
-      "Secure defaults (plaintext never returned unless explicitly requested) prevent accidental exposure",
-      "Reversible migrations matter as much as the forward path",
-    ],
-    confidential: true,
-    featured: false,
-    categories: ["Security", "Backend"],
-    tags: ["Java", "PL/SQL", "AES-256", "Oracle UIM"],
-  },
-  {
     slug: "rfid-pin-authentication-research",
+
     title: "Multi-Level RFID and PIN Authentication Research",
     projectType: "Published Research",
     year: "2024",
@@ -774,7 +740,6 @@ export const PROJECT_ROUTE: Record<string, string> = {
   "keycloak-identity-flow": "/work/keycloak-identity-flow",
   "kafka-strimzi-upgrade": "/work/kafka-strimzi-upgrade",
   "kubernetes-cicd-reliability": "/work/kubernetes-cicd-reliability",
-  "uim-sensitive-attribute-encryption": "/work/uim-sensitive-attribute-encryption",
   "rfid-pin-authentication-research": "/work/rfid-pin-authentication-research",
 };
 
