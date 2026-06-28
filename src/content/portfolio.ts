@@ -533,9 +533,7 @@ export const PROJECTS: Project[] = [
 export type CaseStudy = Project;
 export const CASE_STUDIES: Project[] = PROJECTS.filter((p) => p.featured);
 // Additional homepage section excludes research - research has its own dedicated section.
-export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter(
-  (p) => !p.featured && p.projectType !== "Published Research",
-);
+export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter((p) => !p.featured);
 
 export const PROJECT_CATEGORIES: ProjectCategory[] = [
   "Backend",
