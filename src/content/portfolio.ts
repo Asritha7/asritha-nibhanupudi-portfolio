@@ -677,6 +677,8 @@ export const PUBLIC_REPOS = [
 ];
 
 // Engineering Notes - short, sanitized technical notes.
+export type NoteChecklist = { heading: string; items: string[] };
+
 export type EngineeringNote = {
   slug: string;
   title: string;
@@ -687,6 +689,10 @@ export type EngineeringNote = {
   technicalDecision: string;
   limitation: string;
   lesson: string;
+  // optional, rendered only when present
+  practicalSteps?: string[];
+  checklists?: NoteChecklist[];
+  whenNotToApply?: string;
 };
 
 export const ENGINEERING_NOTES: EngineeringNote[] = [
