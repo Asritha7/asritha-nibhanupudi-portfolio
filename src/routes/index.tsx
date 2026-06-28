@@ -301,7 +301,7 @@ function Portfolio() {
                 Featured Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Selected professional engineering work. Each item is labelled by type and links to a sanitized
+                Selected professional engineering work. Each item is labelled by type and links to a
                 case study that distinguishes what the wider team owned from what I personally contributed.
               </p>
             </div>
