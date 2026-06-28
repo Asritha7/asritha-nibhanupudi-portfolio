@@ -539,3 +539,52 @@ function Portfolio() {
     </div>
   );
 }
+
+function ContactForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim().slice(0, 100);
+    const trimmedEmail = email.trim().slice(0, 200);
+    const trimmedMsg = message.trim().slice(0, 2000);
+    if (!trimmedName || !trimmedEmail || !trimmedMsg) return;
+    const subject = `Portfolio inquiry from ${trimmedName}`;
+    const body = `${trimmedMsg}\n\n—\nFrom: ${trimmedName} <${trimmedEmail}>`;
+    const href = `mailto:nibhanupudiasritha@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+    setSent(true);
+  };
+
+  const fieldClass =
+    "w-full rounded-[3px] border border-dark-foreground/20 bg-dark-foreground/[0.04] px-4 py-3 text-[15px] text-dark-foreground placeholder:text-dark-foreground/40 outline-none transition-colors focus:border-[var(--accent-terra)] focus:bg-dark-foreground/[0.07]";
+
+  return (
+    <form onSubmit={onSubmit} className="rounded-[3px] border border-dark-foreground/15 bg-dark-foreground/[0.03] p-6 md:p-8">
+      <p className="mono-label !text-dark-foreground/60">Send a message</p>
+      <div className="mt-6 space-y-4">
+        <div>
+          <label htmlFor="cf-name" className="mono-label !text-dark-foreground/60 !text-[11px]">Name</label>
+          <input id="cf-name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className={`${fieldClass} mt-2`} placeholder="Your name" />
+        </div>
+        <div>
+          <label htmlFor="cf-email" className="mono-label !text-dark-foreground/60 !text-[11px]">Email</label>
+          <input id="cf-email" type="email" required maxLength={200} value={email} onChange={(e) => setEmail(e.target.value)} className={`${fieldClass} mt-2`} placeholder="you@domain.com" />
+        </div>
+        <div>
+          <label htmlFor="cf-msg" className="mono-label !text-dark-foreground/60 !text-[11px]">Message</label>
+          <textarea id="cf-msg" required maxLength={2000} rows={5} value={message} onChange={(e) => setMessage(e.target.value)} className={`${fieldClass} mt-2 resize-y`} placeholder="What are you working on?" />
+        </div>
+      </div>
+      <button type="submit" className="mt-6 w-full rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark">
+        Send message →
+      </button>
+      {sent ? (
+        <p className="mono-label mt-4 !text-[var(--accent-terra)]">Opening your email app… thank you!</p>
+      ) : null}
+    </form>
+  );
+}
