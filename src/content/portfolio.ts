@@ -57,10 +57,25 @@ export type PrivateClaim = {
   approvedForPublicUse: boolean;
 };
 
+export type VerifiedMetric = {
+  label: string;
+  value: string;
+  approvedForPublicUse: boolean;
+};
+
+export type EngineeringMoment = {
+  symptom: string;
+  initialAssumption: string;
+  investigation: string;
+  rootCause: string;
+  changeMade: string;
+};
+
 export type Project = {
   // identity
   title: string;
   slug: string;
+  shortTitle?: string;
   projectType: ProjectType;
   year: string;
 
@@ -68,6 +83,7 @@ export type Project = {
   shortDescription: string;
   myContribution: string;
   ownershipWording?: string;
+  scopeNote?: string; // rendered near start of case study when present
 
   // case-study depth (rendered only when present)
   professionalContext?: string; // "Context"
@@ -80,14 +96,20 @@ export type Project = {
   technologies?: string[];
   challenges?: string[];
   outcome?: string;             // qualitative when no verified metric
-  confirmedMetrics?: string[];  // only manually-verified counts
+  beforeState?: string;
+  afterState?: string;
+  verifiedMetrics?: VerifiedMetric[];
+  confirmedMetrics?: string[];  // legacy
+  engineeringMoment?: EngineeringMoment;
   learned?: string;             // "What I learned"
   wouldImprove?: string;        // "What I would improve"
   ownership?: OwnershipBreakdown;
   lessons?: string[];           // short bullet lessons (legacy)
 
-  // research
+  // links
   publicationUrl?: string;
+  repositoryUrl?: string;
+  liveUrl?: string;
 
   // flags
   confidential: boolean;
@@ -97,6 +119,7 @@ export type Project = {
 
   // internal only
   privateClaims?: PrivateClaim[];
+  claimEvidence?: PrivateClaim[];
 };
 
 export const PROJECTS: Project[] = [
