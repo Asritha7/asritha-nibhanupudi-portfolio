@@ -4,7 +4,7 @@ export const SITE = {
   name: "Asritha Nibhanupudi",
   role: "Software Engineer",
   location: "Bengaluru, India",
-  education: "B.Tech, Electronics & Communications — VNR VJIET",
+  education: "B.Tech, Electronics & Communications - VNR VJIET",
   email: "nibhanupudiasritha@gmail.com",
 };
 
@@ -105,9 +105,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Additional latency hop in exchange for a stable contract and centralised policy",
     ],
     failureScenarios: [
-      "Region or on-prem path becomes unhealthy — circuit breaker trips and traffic shifts to the healthy path",
-      "Edge configuration regression — caught by integration tests in CI before rollout",
-      "Auth provider degradation — gateway fails closed for protected routes and surfaces a clear error",
+      "Region or on-prem path becomes unhealthy - circuit breaker trips and traffic shifts to the healthy path",
+      "Edge configuration regression - caught by integration tests in CI before rollout",
+      "Auth provider degradation - gateway fails closed for protected routes and surfaces a clear error",
     ],
     reliability: [
       "Health-checked upstreams with explicit timeouts",
@@ -118,7 +118,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Provided a single, stable entry point for hybrid traffic. " + PLACEHOLDER,
     lessons: [
       "A small amount of routing observability pays for itself the first time a partial outage happens",
-      "Treat gateway config as application code — review it, test it, roll it back the same way",
+      "Treat gateway config as application code - review it, test it, roll it back the same way",
     ],
   },
   {
@@ -175,9 +175,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Standard dashboards trade some service-specific nuance for consistency",
     ],
     failureScenarios: [
-      "Scrape target down — alert fires before service degradation is user-visible",
-      "Alert flapping — tuned thresholds and 'for' durations to dampen noise",
-      "Dashboard misread during incident — runbook links embedded in each panel",
+      "Scrape target down - alert fires before service degradation is user-visible",
+      "Alert flapping - tuned thresholds and 'for' durations to dampen noise",
+      "Dashboard misread during incident - runbook links embedded in each panel",
     ],
     reliability: [
       "SLIs reviewed with service owners rather than imposed",
@@ -245,9 +245,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Test surface area grows with each Kafka/operator version supported",
     ],
     failureScenarios: [
-      "Consumer-group rebalance during upgrade — validated message delivery semantics post-upgrade",
-      "Operator stuck reconciliation — surfaced via timeout with operator logs attached to the run",
-      "Flaky network in CI — retried only specific transient steps, not the whole upgrade",
+      "Consumer-group rebalance during upgrade - validated message delivery semantics post-upgrade",
+      "Operator stuck reconciliation - surfaced via timeout with operator logs attached to the run",
+      "Flaky network in CI - retried only specific transient steps, not the whole upgrade",
     ],
     reliability: [
       "Deterministic provisioning so the same pipeline yields the same result",
@@ -267,10 +267,10 @@ export const EXPERIENCE = [
   {
     role: "Analyst, Systems Engineering",
     org: "Goldman Sachs",
-    date: "May 2026 — Present",
+    date: "May 2026 - Present",
     place: "Bengaluru · On-site",
     scope:
-      "Software engineering on the Subledger Technology platform for Asset & Wealth Management — cloud platform, API infrastructure, and observability.",
+      "Software engineering on the Subledger Technology platform for Asset & Wealth Management - cloud platform, API infrastructure, and observability.",
     contributions: [
       "Contributed to a hybrid API gateway layer spanning on-prem and multi-region AWS",
       "Built AWS-native microservices using CDK (TypeScript), ECS Fargate, Aurora PostgreSQL, and Lambda",
@@ -280,9 +280,9 @@ export const EXPERIENCE = [
     stack: ["AWS", "CDK", "ECS Fargate", "Aurora", "Lambda", "Prometheus", "Grafana", "Java"],
   },
   {
-    role: "Software Engineer — Automation & Infrastructure",
+    role: "Software Engineer - Automation & Infrastructure",
     org: "Oracle",
-    date: "Aug 2024 — Apr 2026",
+    date: "Aug 2024 - Apr 2026",
     place: "Hyderabad",
     scope:
       "Engineering productivity, CI/CD, and platform reliability for enterprise services on Kubernetes.",
@@ -299,7 +299,7 @@ export const EXPERIENCE = [
   {
     role: "Project Intern",
     org: "Oracle",
-    date: "Jan 2024 — Jul 2024",
+    date: "Jan 2024 - Jul 2024",
     place: "Hyderabad",
     scope: "Test automation contributions on enterprise pipelines.",
     contributions: [
@@ -309,9 +309,9 @@ export const EXPERIENCE = [
     stack: ["Cypress", "JavaScript", "GitLab CI"],
   },
   {
-    role: "Web Developer — Intern",
+    role: "Web Developer - Intern",
     org: "Oasis Infobyte",
-    date: "Jul 2023 — Aug 2023",
+    date: "Jul 2023 - Aug 2023",
     place: "Remote",
     scope: "Front-end implementation of responsive marketing pages.",
     contributions: [
@@ -329,7 +329,7 @@ export const PRINCIPLES = [
   },
   {
     title: "Observability is part of the system design",
-    body: "Metrics, logs, and traces are decided alongside the API and the data model — not added after the first incident.",
+    body: "Metrics, logs, and traces are decided alongside the API and the data model - not added after the first incident.",
   },
   {
     title: "Automate repeatable engineering work",
@@ -337,7 +337,7 @@ export const PRINCIPLES = [
   },
   {
     title: "Make technical trade-offs explicit",
-    body: "Every design choice rules something out. Writing down what — and why — keeps the team honest later.",
+    body: "Every design choice rules something out. Writing down what - and why - keeps the team honest later.",
   },
   {
     title: "Build systems that are understandable and maintainable",

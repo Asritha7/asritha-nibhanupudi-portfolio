@@ -8,7 +8,7 @@ const url = "https://asritha.dev/work/api-infrastructure";
 export const Route = createFileRoute("/work/api-infrastructure")({
   head: () => ({
     meta: [
-      { title: `${study.title} — Asritha Nibhanupudi` },
+      { title: `${study.title} - Asritha Nibhanupudi` },
       { name: "description", content: study.blurb },
       { property: "og:type", content: "article" },
       { property: "og:url", content: url },
