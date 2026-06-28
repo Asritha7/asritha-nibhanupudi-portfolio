@@ -16,7 +16,10 @@ import {
   CAPABILITIES,
   RESEARCH,
   PUBLIC_REPOS,
+  TESTIMONIALS,
 } from "@/content/portfolio";
+import { track } from "@/lib/analytics";
+
 
 const portrait = portraitAsset.url;
 const resume = resumeAsset.url;
