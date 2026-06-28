@@ -43,11 +43,12 @@ export type ProjectCategory =
   | "Research";
 
 export type OwnershipBreakdown = {
-  team?: string[];          // what the wider team or system did
-  implemented?: string[];   // what I personally implemented
+  team?: string[];          // wider system context / what the wider team or system did
+  implemented?: string[];   // components I personally implemented
   contributedTo?: string[]; // what I contributed to
+  integrated?: string[];    // components I integrated
   investigated?: string[];  // what I investigated
-  validated?: string[];     // what I validated
+  validated?: string[];     // components I validated
 };
 
 // Private — never rendered. Used to track claim provenance internally.
@@ -130,7 +131,7 @@ export const PROJECTS: Project[] = [
     projectType: "Professional Work",
     year: "2026",
     shortDescription:
-      "Contributed to an AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda, including infrastructure definitions, routing, authentication and integration validation.",
+      "Contributed to a defined AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda, including infrastructure definitions, routing, authentication, and integration validation.",
     myContribution:
       "Implemented and contributed to defined service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda.",
     ownershipWording: "Contributed to",
@@ -193,8 +194,10 @@ export const PROJECTS: Project[] = [
         "Integration tests running against real AWS resources from CI for the services I worked on",
       ],
       contributedTo: [
-        "The hybrid API gateway layer that spans on-prem and multi-region AWS",
         "Conventions for routing and auth expressed as IaC",
+      ],
+      integrated: [
+        "The hybrid API gateway layer that spans on-prem and multi-region AWS, from the service side",
       ],
       investigated: ["Aurora failover and Lambda cold-start behaviour on critical paths within my scope"],
       validated: ["Service behaviour end-to-end via integration tests gated in CI for the services I worked on"],
@@ -452,7 +455,7 @@ export const PROJECTS: Project[] = [
     decision: {
       decision:
         "Start every deployment investigation from Kubernetes events and pod descriptions rather than from CI pipeline logs.",
-      why: "CI logs were showing symptoms; the actual cause (image pull, readiness probe, config map mismatch) was almost always visible in events much earlier.",
+      why: "CI logs were showing symptoms; in the failures I investigated, the actual cause (image pull, readiness probe, config map mismatch) was typically visible in events much earlier.",
       tradeoff:
         "Investigations took an extra cluster-context step before opening the CI log, which felt slower for the first few minutes but converged on the real cause faster overall.",
     },
@@ -475,7 +478,7 @@ export const PROJECTS: Project[] = [
     learned:
       "Several deployment failures initially classified as flaky had identifiable causes in Kubernetes events, deployment configuration, or environment state. Consistent environments cost less than one bad incident.",
     wouldImprove:
-      "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so on-call engineers do not have to recreate that context by hand.",
+      "I would automate a small post-failure diagnostic step in the pipeline that collects pod descriptions, recent events, and config map versions into a single artifact so engineers reviewing pipeline failures do not have to recreate that context by hand.",
     ownership: {
       team: ["The broader Kubernetes platform and pipeline infrastructure was owned by the wider team"],
       contributedTo: ["Deployment workflow improvements based on recurring patterns"],
