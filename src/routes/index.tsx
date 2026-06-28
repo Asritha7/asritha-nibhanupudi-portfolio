@@ -329,9 +329,6 @@ function Portfolio() {
                         <li key={t} className="!text-[11px]">· {t}</li>
                       ))}
                     </ul>
-                    {c.confidential ? (
-                      <p className="mono-label mt-3 !text-[11px]">Sanitized · confidential professional work</p>
-                    ) : null}
                     <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
                       {projectCtaLabel(c)} →
                     </span>
