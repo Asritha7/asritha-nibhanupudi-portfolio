@@ -432,14 +432,25 @@ export const RESEARCH = {
   href: LINKS.research,
 };
 
-export const EARLIER_PROJECTS = [
-  { label: "SONAR Rock vs Mine (Python/ML)", href: "https://github.com/Asritha7" },
-  { label: "YouTube Comment Analysis (Python)", href: "https://github.com/Asritha7" },
-  { label: "Soil Moisture Monitoring (ESP32)", href: "" },
-  { label: "Audio Transmission via Li-Fi", href: "" },
-  { label: "Website Blocker (Python)", href: "" },
-  { label: "PCB Design & Fabrication (KiCad)", href: "" },
+export const PUBLIC_REPOS = [
+  {
+    name: "SONAR-RockVsMine-Prediction-ML-Python",
+    href: "https://github.com/Asritha7/SONAR-RockVsMine-Prediction-ML-Python",
+    type: "Machine learning - Python",
+    description:
+      "Binary classifier on the UCI SONAR dataset that predicts whether a sonar return is a rock or a mine using logistic regression.",
+    tech: ["Python", "NumPy", "pandas", "scikit-learn"],
+  },
+  {
+    name: "YouTube-Comment-Analysis-Python",
+    href: "https://github.com/Asritha7/YouTube-Comment-Analysis-Python",
+    type: "Data analysis - Python",
+    description:
+      "Pulls comments, likes, and dislikes for a given YouTube video via the YouTube Data API and segregates them by keywords.",
+    tech: ["Python", "YouTube Data API", "Google Cloud Console"],
+  },
 ];
+
 
 // Map slug to typed route path for type-safe <Link to=...>
 export const PROJECT_ROUTE: Record<string, string> = {
