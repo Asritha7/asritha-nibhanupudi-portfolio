@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { HistoryBackLink } from "@/components/HistoryBackLink";
+import { ProjectCover, coverVariantForSlug } from "@/components/ProjectCover";
 import { CONFIDENTIALITY_NOTICE, firstSentence, type Project } from "@/content/portfolio";
 import { track } from "@/lib/analytics";
 
