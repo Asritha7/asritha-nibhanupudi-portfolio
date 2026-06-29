@@ -182,7 +182,7 @@ export function NoteArticle({ note }: { note: EngineeringNote }) {
               </Link>
             ) : (
               <span className="mono-label inline-block opacity-40 px-4 py-3 !text-[11px]">
-                — first note —
+                - first note -
               </span>
             )}
           </div>
@@ -205,7 +205,7 @@ export function NoteArticle({ note }: { note: EngineeringNote }) {
               </Link>
             ) : (
               <span className="mono-label inline-block opacity-40 px-4 py-3 !text-[11px]">
-                — last note —
+                - last note -
               </span>
             )}
           </div>

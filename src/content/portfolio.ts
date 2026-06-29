@@ -51,7 +51,7 @@ export type OwnershipBreakdown = {
   validated?: string[];     // components I validated
 };
 
-// Private — never rendered. Used to track claim provenance internally.
+// Private - never rendered. Used to track claim provenance internally.
 export type PrivateClaim = {
   claim: string;
   privateSource: string;
@@ -741,7 +741,7 @@ export const ENGINEERING_NOTES: EngineeringNote[] = [
       {
         heading: "Idempotency",
         body:
-          "Rerunning the workflow should not create duplicate clients, roles, flows, or identity-provider entries. The pattern is to look up resources by a stable identifier (for example client ID or alias), create them only when absent, and update only the approved subset of fields when they exist. This is an idempotency goal, not a guarantee — it holds only for the fields the workflow actually manages.",
+          "Rerunning the workflow should not create duplicate clients, roles, flows, or identity-provider entries. The pattern is to look up resources by a stable identifier (for example client ID or alias), create them only when absent, and update only the approved subset of fields when they exist. This is an idempotency goal, not a guarantee - it holds only for the fields the workflow actually manages.",
       },
       {
         heading: "Token expiry during longer workflows",
@@ -968,7 +968,7 @@ export function firstSentence(s?: string): string {
   return (m ? m[0] : s).trim();
 }
 
-// Notes — slug to dedicated article route, plus topic tags and a simple
+// Notes - slug to dedicated article route, plus topic tags and a simple
 // reading-time estimate calculated from the article fields.
 export const NOTE_ROUTE: Record<string, string> = {
   "automating-keycloak-identity-workflows": "/notes/keycloak-configuration-drift",
