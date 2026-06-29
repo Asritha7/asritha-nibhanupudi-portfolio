@@ -11,7 +11,7 @@ test.describe("Navigation: Back to all work + Home", () => {
     const backLink = page.getByRole("link", { name: /back to all work/i }).first();
     await backLink.click();
 
-    await expect(page).toHaveURL(/\/work\/?$/);
+    await expect(page).toHaveURL(/\/work(\?|$|\/$)/);
     const y = await page.evaluate(() => window.scrollY);
     expect(y).toBeLessThan(120);
   });

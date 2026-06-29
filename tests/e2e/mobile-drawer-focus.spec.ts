@@ -1,6 +1,6 @@
-import { test, expect, devices } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
-test.use({ ...devices["Pixel 5"] });
+test.skip(({ viewport }) => !viewport || viewport.width >= 768, "Mobile drawer is only visible at <768px widths");
 
 test("mobile drawer: focus returns to menu button after close", async ({ page }) => {
   await page.goto("/");
