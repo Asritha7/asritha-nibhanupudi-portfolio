@@ -436,7 +436,7 @@ export const PROJECTS: Project[] = [
     outcome:
       "Provided upgrade validation evidence that supported safer Kafka and Strimzi rollouts on Kubernetes and made operator-side regressions easier to spot during rehearsal.",
     learned:
-      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. Validation is only useful when it clearly separates 'flaky' from 'broken'.",
+      "During these upgrade rehearsals, several difficult failures appeared in operator reconciliation rather than broker behaviour. In these rehearsals, validation was most useful when it clearly separated transient behaviour from confirmed regressions.",
     wouldImprove:
       "I would automate the comparison of operator state and broker state before and after the upgrade into a single diff artifact attached to the pipeline run, instead of relying on kubectl inspection by hand.",
     ownership: {
