@@ -389,6 +389,9 @@ export const PROJECTS: Project[] = [
     myContribution:
       "Contributed to upgrade validation - verified producer and consumer behaviour, Kubernetes deployment changes, pod and service recovery, and message-flow stability across versions.",
     ownershipWording: "Contributed to",
+    summaryProblem: "Kafka and Strimzi upgrades risked message-flow and operator-side regressions.",
+    summaryRole: "Contributed to upgrade validation across producer, consumer, and operator behaviour.",
+    summaryResult: "Rehearsals separated operator-side issues from broker issues, supporting safer rollouts.",
     professionalContext:
       "Apache Kafka deployed via the Strimzi operator on Kubernetes. The wider team owned the Kafka architecture; this work focused on validation of upgrades, not ownership of the platform.",
     problem:
