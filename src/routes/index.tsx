@@ -257,7 +257,10 @@ function Portfolio() {
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
-      if (event.shiftKey && document.activeElement === first) {
+      if (!drawer.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
       } else if (!event.shiftKey && document.activeElement === last) {
@@ -272,11 +275,16 @@ function Portfolio() {
 
   useEffect(() => {
     if (!menuOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const onResize = () => {
       if (window.matchMedia("(min-width: 768px)").matches) setMenuOpen(false);
     };
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("resize", onResize);
+    };
   }, [menuOpen]);
 
   const scrollToSection = (id: string) => {
@@ -815,7 +823,7 @@ function Portfolio() {
         </section>
 
         <footer className="border-t border-dark-foreground/10">
-          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-8 md:px-[46px]">
+          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 pt-8 pb-24 sm:py-8 md:px-[46px]">
             <p className="mono-label !text-dark-foreground/60">© 2026 {SITE.name.toUpperCase()} · {SITE.location.toUpperCase()}</p>
             <ul className="flex flex-wrap gap-x-7 gap-y-2">
               {[
