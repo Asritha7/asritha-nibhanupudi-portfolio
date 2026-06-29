@@ -345,7 +345,7 @@ export const PROJECTS: Project[] = [
       "Keeping identity-provider configuration consistent as environments evolved",
     ],
     outcome:
-      "Configuration-driven authentication failures became much rarer after standardising realm and client setup and adding CI/CD validation checks. Environment-to-environment drift was caught earlier in the release process.",
+      "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier in the release process.",
     learned:
       "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
     wouldImprove:
