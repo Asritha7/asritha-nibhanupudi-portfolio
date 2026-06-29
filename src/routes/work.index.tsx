@@ -133,8 +133,10 @@ function WorkIndex() {
               <Link
                 to={PROJECT_ROUTE[p.slug]}
                 onClick={() => track("case_study_opened", { slug: p.slug })}
-                className="group block h-full rounded-[3px] border border-hairline bg-panel p-6 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                className="group block h-full overflow-hidden rounded-[3px] border border-hairline bg-panel transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
               >
+                <ProjectCover variant={coverVariantForSlug(p.slug)} ratio="3/2" rounded={false} className="border-0 border-b border-hairline" />
+                <div className="p-6">
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="mono-label">{p.projectType.toUpperCase()}</span>
                   <span className="mono-label">{p.year}</span>
