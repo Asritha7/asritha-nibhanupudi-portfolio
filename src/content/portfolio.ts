@@ -225,6 +225,10 @@ export const PROJECTS: Project[] = [
       "Reusable Cypress-based automation framework with REST API and shell-script integrations, executed from CI/CD to validate releases.",
     myContribution:
       "Developed and expanded the framework, added REST API and shell integrations, and wired it into CI/CD pipelines.",
+    cardContribution:
+      "Developed reusable Cypress utilities and connected workflow automation to CI/CD execution and failure diagnostics.",
+    cardResult:
+      "Expanded reusable coverage across 150+ workflows while making recurring failures easier to investigate.",
     ownershipWording: "Developed and contributed to",
     professionalContext:
       "Engineering automation system for enterprise services deployed on Kubernetes. Used by release pipelines to validate end-to-end workflows before each rollout.",
