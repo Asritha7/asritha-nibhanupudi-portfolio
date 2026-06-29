@@ -111,20 +111,35 @@ export function ProjectCover({
 function CoverArt({ variant }: { variant: CoverVariant }) {
   switch (variant) {
     case "aws-microservices-cdk-ecs":
+    case "aws-integration":
       return <AwsCover />;
     case "automation-framework":
       return <AutomationCover />;
     case "keycloak-identity-flow":
+    case "keycloak-identity":
       return <KeycloakCover />;
     case "kafka-strimzi-upgrade":
+    case "kafka-upgrade":
       return <KafkaCover />;
     case "kubernetes-cicd-reliability":
+    case "kubernetes-debugging":
       return <K8sCover />;
     case "rfid-pin-authentication-research":
+    case "rfid-authentication":
       return <RfidCover />;
     case "note":
       return <NoteCover />;
+    case "note-keycloak":
+    case "engineering-note-keycloak":
+      return <NoteCover accent="keycloak" />;
+    case "note-kafka":
+    case "engineering-note-kafka":
+      return <NoteCover accent="kafka" />;
+    case "note-kubernetes":
+    case "engineering-note-kubernetes":
+      return <NoteCover accent="kubernetes" />;
     case "public":
+    case "learning-project":
       return <PublicCover />;
   }
 }
