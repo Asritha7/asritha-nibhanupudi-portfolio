@@ -139,6 +139,10 @@ export const PROJECTS: Project[] = [
       "Contributed to a defined AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda, including infrastructure definitions, routing, authentication, and integration validation.",
     myContribution:
       "Implemented and contributed to defined service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda.",
+    cardContribution:
+      "Contributed to service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda.",
+    cardResult:
+      "Moved key routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     ownershipWording: "Contributed to",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
