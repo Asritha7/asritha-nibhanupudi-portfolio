@@ -12,6 +12,7 @@ import {
   SITE,
 } from "@/content/portfolio";
 import { track } from "@/lib/analytics";
+import { ProjectCover, coverVariantForSlug } from "@/components/ProjectCover";
 
 const TITLE = "Work - Asritha Nibhanupudi";
 const DESC =
