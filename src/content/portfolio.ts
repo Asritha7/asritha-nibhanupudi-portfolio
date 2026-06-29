@@ -421,7 +421,7 @@ export const PROJECTS: Project[] = [
       ],
     },
     confidential: true,
-    featured: true,
+    featured: false,
     categories: ["Distributed Systems", "Cloud"],
     tags: ["Apache Kafka", "Strimzi", "Kubernetes", "GitLab CI"],
   },
