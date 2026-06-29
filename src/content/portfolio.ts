@@ -301,6 +301,10 @@ export const PROJECTS: Project[] = [
       "Automated Keycloak identity-provider workflows and root-caused intermittent authentication failures across environments.",
     myContribution:
       "Automated Keycloak workflows via REST APIs, shell scripting, and Cypress; investigated intermittent auth failures and standardised configuration across environments.",
+    cardContribution:
+      "Automated selected Keycloak realm, client, and identity-flow configuration through REST APIs, scripts, and CI/CD validation.",
+    cardResult:
+      "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier.",
     ownershipWording: "Implemented and contributed to",
     professionalContext:
       "Enterprise services using Keycloak as the identity provider across multiple environments. Work focused on automation, configuration consistency, and failure prevention - not on building an independent authentication product.",
