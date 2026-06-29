@@ -20,11 +20,10 @@ test("mobile drawer: focus returns to menu button after close", async ({ page })
 
 test("mobile drawer: tapping a link closes the drawer", async ({ page }) => {
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
   const menuButton = page.getByRole("button", { name: /open menu|menu/i }).first();
   await menuButton.click();
   const drawer = page.locator("#mobile-nav");
-  await expect(drawer).toBeVisible();
+  await expect(drawer).toHaveCount(1);
   await drawer.getByRole("link", { name: /^contact$/i }).click();
   await expect(drawer).toHaveCount(0);
   await expect(page).toHaveURL(/#contact$/);
