@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HistoryBackLink } from "@/components/HistoryBackLink";
+import { ProjectCover } from "@/components/ProjectCover";
 import { ENGINEERING_NOTES, SITE } from "@/content/portfolio";
 
 const TITLE = "Engineering Notes - Asritha Nibhanupudi";
