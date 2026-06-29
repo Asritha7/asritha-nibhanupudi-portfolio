@@ -109,48 +109,114 @@ const PANEL = "var(--panel)";
 
 /* ---------- 1. AWS microservices ---------- */
 function AwsCover() {
-  // grid of service blocks; one (top-right) highlighted as "my scope".
-  const cells = [
-    { x: 40, y: 38 },
-    { x: 110, y: 38 },
-    { x: 180, y: 38 },
-    { x: 40, y: 96 },
-    { x: 110, y: 96 },
-    { x: 180, y: 96 },
-  ];
+  // Architecture: API Gateway (left) → ECS Fargate service tier (3 services, each with
+  // running tasks) → data layer (right). A dashed boundary marks "my scope".
+  const services = [110, 160, 210]; // x centers
   return (
     <svg {...SVG_PROPS}>
-      {/* routing paths */}
-      <g stroke={INK} strokeWidth="0.6" opacity="0.35" fill="none">
-        <path d="M 70 56 H 110" />
-        <path d="M 140 56 H 180" />
-        <path d="M 70 114 H 110" />
-        <path d="M 140 114 H 180" />
-        <path d="M 56 70 V 96" />
-        <path d="M 126 70 V 96" />
-        <path d="M 196 70 V 96" />
-        <path d="M 240 75 H 270" />
-        <path d="M 240 114 H 270" />
-      </g>
-      {cells.map((c, i) => (
-        <rect
-          key={i}
-          x={c.x}
-          y={c.y}
-          width="40"
-          height="32"
-          rx="2"
+      {/* faint cloud boundary */}
+      <path
+        d="M 14 132 Q 8 108 26 102 Q 22 78 50 78 Q 56 58 84 64 Q 102 46 128 60 Q 156 48 176 66 Q 210 54 226 76 Q 256 74 260 96 Q 286 100 282 124 Q 296 138 280 150 L 30 150 Q 8 148 14 132 Z"
+        fill="none"
+        stroke={INK}
+        strokeWidth="0.6"
+        opacity="0.22"
+        strokeDasharray="2 3"
+      />
+
+      {/* API Gateway (hex) */}
+      <g>
+        <polygon
+          points="40,82 56,90 56,108 40,116 24,108 24,90"
           fill={PANEL}
-          stroke={HAIR}
-          strokeWidth="0.8"
+          stroke={INK}
+          strokeWidth="1"
         />
+        <path d="M 32 99 H 48 M 36 95 H 44 M 36 103 H 44" stroke={INK} strokeWidth="0.7" opacity="0.6" />
+      </g>
+
+      {/* connector from gateway into service tier */}
+      <path d="M 56 99 H 82" stroke={INK} strokeWidth="0.9" opacity="0.55" />
+      <path d="M 78 96 L 84 99 L 78 102" fill="none" stroke={INK} strokeWidth="0.9" opacity="0.55" />
+
+      {/* ECS service tier: 3 services, each with 3 task circles */}
+      {services.map((x, i) => (
+        <g key={i}>
+          <rect
+            x={x - 22}
+            y={64}
+            width="44"
+            height="70"
+            rx="3"
+            fill={PANEL}
+            stroke={INK}
+            strokeWidth="0.9"
+          />
+          {/* service header bar */}
+          <rect x={x - 22} y={64} width="44" height="10" rx="3" fill={INK} opacity="0.78" />
+          <rect x={x - 18} y={68} width="22" height="2" rx="1" fill={PANEL} opacity="0.9" />
+          {/* tasks */}
+          {[86, 102, 118].map((ty, ti) => (
+            <g key={ti}>
+              <circle
+                cx={x - 10}
+                cy={ty}
+                r="3.2"
+                fill={ti === 0 ? ACCENT : PANEL}
+                stroke={INK}
+                strokeWidth="0.7"
+              />
+              <line x1={x - 4} y1={ty} x2={x + 14} y2={ty} stroke={INK} strokeWidth="0.6" opacity="0.45" />
+            </g>
+          ))}
+        </g>
       ))}
-      {/* my scope - highlighted service */}
-      <rect x="250" y="56" width="48" height="68" rx="2" fill="none" stroke={ACCENT} strokeWidth="1.2" strokeDasharray="3 2" />
-      <rect x="258" y="64" width="32" height="22" rx="2" fill={ACCENT} opacity="0.85" />
-      <rect x="258" y="92" width="32" height="24" rx="2" fill={PANEL} stroke={ACCENT} strokeWidth="0.8" />
-      {/* faint horizon */}
-      <line x1="0" y1="160" x2="320" y2="160" stroke={HAIR} strokeWidth="0.6" />
+
+      {/* inter-service mesh lines (faint) */}
+      <g stroke={INK} strokeWidth="0.6" opacity="0.3">
+        <path d="M 132 80 H 138" />
+        <path d="M 182 80 H 188" />
+        <path d="M 132 118 H 138" />
+        <path d="M 182 118 H 188" />
+      </g>
+
+      {/* connector to data tier */}
+      <path d="M 232 99 H 256" stroke={INK} strokeWidth="0.9" opacity="0.55" />
+      <path d="M 252 96 L 258 99 L 252 102" fill="none" stroke={INK} strokeWidth="0.9" opacity="0.55" />
+
+      {/* Data layer (cylinder) */}
+      <g>
+        <ellipse cx="278" cy="78" rx="18" ry="5" fill={PANEL} stroke={INK} strokeWidth="0.9" />
+        <path d="M 260 78 V 118 Q 278 124 296 118 V 78" fill={PANEL} stroke={INK} strokeWidth="0.9" />
+        <ellipse cx="278" cy="78" rx="18" ry="5" fill="none" stroke={INK} strokeWidth="0.7" opacity="0.7" />
+        <ellipse cx="278" cy="92" rx="18" ry="5" fill="none" stroke={INK} strokeWidth="0.5" opacity="0.45" />
+        <ellipse cx="278" cy="106" rx="18" ry="5" fill="none" stroke={INK} strokeWidth="0.5" opacity="0.35" />
+      </g>
+
+      {/* "My scope" highlight around the middle service */}
+      <rect
+        x={services[1] - 30}
+        y={56}
+        width="60"
+        height="86"
+        rx="4"
+        fill="none"
+        stroke={ACCENT}
+        strokeWidth="1.4"
+        strokeDasharray="4 3"
+      />
+      <rect
+        x={services[1] - 30}
+        y={56}
+        width="60"
+        height="86"
+        rx="4"
+        fill={ACCENT}
+        opacity="0.08"
+      />
+
+      {/* baseline */}
+      <line x1="14" y1="158" x2="306" y2="158" stroke={HAIR} strokeWidth="0.6" />
     </svg>
   );
 }
