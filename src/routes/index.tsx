@@ -571,39 +571,41 @@ function Portfolio() {
                       onClick={() => track("case_study_opened", { slug: c.slug })}
                       className="group block overflow-hidden rounded-[3px] border border-hairline bg-panel transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
                     >
-                      <ProjectCover variant={coverVariantForSlug(c.slug)} ratio="3/2" rounded={false} className="border-0 border-b border-hairline" />
-                      <div className="p-6 md:p-8">
-                      <div className="flex items-baseline justify-between gap-4">
-                        <span className="mono-label">0{i + 1} · {c.projectType}</span>
-                        <span className="mono-label">{c.year}</span>
-                      </div>
-                      <h3 className="font-serif-display mt-3 text-[22px] md:text-[26px]">{c.title}</h3>
-                      <dl className="mt-4 space-y-2 text-[15.5px] text-text-secondary">
-                        {problemLine ? (
-                          <div>
-                            <dt className="inline text-text-primary">Problem: </dt>
-                            <dd className="inline">{problemLine}</dd>
+                      <div className="flex flex-col gap-0 sm:flex-row sm:items-stretch">
+                        <ProjectCover
+                          variant={coverVariantForSlug(c.slug)}
+                          ratio="3/2"
+                          rounded={false}
+                          className="border-0 border-b border-hairline sm:w-[140px] sm:flex-none sm:border-b-0 sm:border-r"
+                        />
+                        <div className="p-6 md:p-7 flex-1">
+                          <div className="flex items-baseline justify-between gap-4">
+                            <span className="mono-label">0{i + 1} · {c.projectType}</span>
+                            <span className="mono-label">{c.year}</span>
                           </div>
-                        ) : null}
-                        <div>
-                          <dt className="inline text-text-primary">My contribution: </dt>
-                          <dd className="inline">{c.myContribution}</dd>
+                          <h3 className="font-serif-display mt-3 text-[22px] md:text-[24px]">{c.title}</h3>
+                          <dl className="mt-3 space-y-1.5 text-[15px] text-text-secondary">
+                            {problemLine ? (
+                              <div>
+                                <dt className="inline text-text-primary">Problem: </dt>
+                                <dd className="inline">{problemLine}</dd>
+                              </div>
+                            ) : null}
+                            <div>
+                              <dt className="inline text-text-primary">My contribution: </dt>
+                              <dd className="inline">{c.myContribution}</dd>
+                            </div>
+                            {resultLine ? (
+                              <div>
+                                <dt className="inline text-text-primary">Result: </dt>
+                                <dd className="inline">{resultLine}</dd>
+                              </div>
+                            ) : null}
+                          </dl>
+                          <span className="mono-label mt-4 inline-flex items-center gap-1 group-hover:!text-terra">
+                            {projectCtaLabel(c)} →
+                          </span>
                         </div>
-                        {resultLine ? (
-                          <div>
-                            <dt className="inline text-text-primary">Result: </dt>
-                            <dd className="inline">{resultLine}</dd>
-                          </div>
-                        ) : null}
-                      </dl>
-                      <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
-                        {c.tags.slice(0, 5).map((t) => (
-                          <li key={t} className="!text-[11px]">· {t}</li>
-                        ))}
-                      </ul>
-                      <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
-                        {projectCtaLabel(c)} →
-                      </span>
                       </div>
                     </Link>
                   </li>
