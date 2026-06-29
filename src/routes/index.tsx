@@ -499,6 +499,54 @@ function Portfolio() {
         })()}
 
 
+        {/* How I Work - personal debugging loop */}
+        <section aria-labelledby="loop-heading" className="border-t border-hairline py-16 md:py-20">
+          <div className="reveal grid grid-cols-1 gap-8 md:grid-cols-[220px_1fr] md:gap-16">
+            <div>
+              <span className="mono-label">HOW I WORK</span>
+              <h2 id="loop-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
+                My debugging <em className="italic" style={{ color: "var(--accent-terra)" }}>loop</em>.
+              </h2>
+              <p className="mt-3 max-w-[42ch] text-[15px] text-text-secondary">
+                I'm drawn to problems that first appear random but become explainable once the system state,
+                environment, and failure evidence are compared carefully. Once the cause is understood, I look
+                for a way to prevent the same manual investigation from repeating.
+              </p>
+            </div>
+            <ol
+              className="grid grid-cols-1 gap-3 md:grid-cols-5 md:gap-2"
+              aria-label="My debugging loop"
+            >
+              {[
+                { step: "Observe", body: "Start with the actual failure evidence rather than the first assumption." },
+                { step: "Compare", body: "Look for differences across environments, configurations, versions, or execution paths." },
+                { step: "Isolate", body: "Reduce the problem until the failing component or condition is clear." },
+                { step: "Fix", body: "Address the root cause with the smallest defensible change." },
+                { step: "Automate", body: "Encode repeatable validation or recovery steps where it is safe to do so." },
+              ].map((s, i, arr) => (
+                <li
+                  key={s.step}
+                  className="loop-step relative rounded-[3px] border border-hairline bg-panel p-4"
+                >
+                  <span className="mono-label !text-[10.5px]">0{i + 1}</span>
+                  <h3 className="font-serif-display mt-1 text-[17px]">{s.step}</h3>
+                  <p className="mt-1.5 text-[13.5px] text-text-secondary">{s.body}</p>
+                  {i < arr.length - 1 ? (
+                    <span
+                      aria-hidden="true"
+                      className="loop-arrow mono-label absolute hidden md:block"
+                      style={{ right: "-10px", top: "50%", transform: "translateY(-50%)" }}
+                    >
+                      →
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+
         {/* Featured Engineering Work */}
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
