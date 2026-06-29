@@ -238,6 +238,9 @@ export const PROJECTS: Project[] = [
     cardResult:
       "Expanded reusable coverage across 150+ workflows while making recurring failures easier to investigate.",
     ownershipWording: "Developed and contributed to",
+    summaryProblem: "Release validation depended on repetitive manual steps that hid regressions.",
+    summaryRole: "Built reusable framework primitives and wired them into CI/CD execution.",
+    summaryResult: "Coverage grew past 150 workflows with clearer signal on real regressions.",
     professionalContext:
       "Engineering automation system for enterprise services deployed on Kubernetes. Used by release pipelines to validate end-to-end workflows before each rollout.",
     problem:
