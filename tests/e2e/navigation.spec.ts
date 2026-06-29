@@ -31,7 +31,7 @@ test.describe("Navigation: Back to all work + Home", () => {
 });
 
 test.describe("Hash deep links smooth-scroll to section", () => {
-  const sections = ["about", "work", "experience", "skills", "contact"];
+  const sections = ["work", "experience", "principles", "capabilities", "contact"];
 
   for (const id of sections) {
     test(`deep link /#${id} scrolls section into view`, async ({ page }) => {

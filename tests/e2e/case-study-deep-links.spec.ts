@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 const ROUTES = [
   "/work",
   "/work/aws-microservices-cdk-ecs",
-  "/work/automation-framework-modernization",
+  "/work/automation-framework",
   "/work/keycloak-identity-flow",
   "/work/kafka-strimzi-upgrade",
   "/work/kubernetes-cicd-reliability",
