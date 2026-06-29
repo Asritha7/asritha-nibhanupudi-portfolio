@@ -955,3 +955,38 @@ export function firstSentence(s?: string): string {
   const m = s.match(/^[^.!?]+[.!?]/);
   return (m ? m[0] : s).trim();
 }
+
+// Notes — slug to dedicated article route, plus topic tags and a simple
+// reading-time estimate calculated from the article fields.
+export const NOTE_ROUTE: Record<string, string> = {
+  "automating-keycloak-identity-workflows": "/notes/keycloak-configuration-drift",
+  "validating-kafka-strimzi-upgrades": "/notes/kafka-strimzi-upgrade-checklist",
+  "investigating-kubernetes-deployment-failures": "/notes/kubernetes-deployment-debugging",
+};
+
+export const NOTE_TAGS: Record<string, string[]> = {
+  "automating-keycloak-identity-workflows": ["Keycloak", "Identity", "Automation"],
+  "validating-kafka-strimzi-upgrades": ["Kafka", "Strimzi", "Upgrades"],
+  "investigating-kubernetes-deployment-failures": ["Kubernetes", "Debugging", "CI/CD"],
+};
+
+export function noteReadingTimeMinutes(n: EngineeringNote): number {
+  const parts: string[] = [
+    n.summary,
+    n.introduction,
+    n.problem,
+    n.whyDifficult,
+    n.approach,
+    n.importantDecision.title,
+    n.importantDecision.body,
+    n.conclusion,
+    n.whenNotToApply,
+    ...(n.limitations ?? []),
+    ...(n.practicalSteps ?? []),
+    ...((n.checklists ?? []).flatMap((c) => [c.heading, ...c.items])),
+    ...((n.decisionFlow ?? []).flatMap((d) => [d.step, d.detail ?? ""])),
+    ...((n.subsections ?? []).flatMap((s) => [s.heading, s.body])),
+  ];
+  const words = parts.join(" ").trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(2, Math.round(words / 220));
+}
