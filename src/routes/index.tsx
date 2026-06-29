@@ -567,8 +567,9 @@ function Portfolio() {
             </div>
             <ul className="reveal grid grid-cols-1 gap-5">
               {CASE_STUDIES.slice(0, 3).map((c, i) => {
-                const problemLine = firstSentence(c.problem);
-                const resultLine = firstSentence(c.outcome);
+                const contribution = c.cardContribution ?? c.myContribution;
+                const result = c.cardResult ?? firstSentence(c.outcome);
+                const tags = c.tags.slice(0, 5);
                 return (
                   <li key={c.slug}>
                     <Link
@@ -581,32 +582,24 @@ function Portfolio() {
                           variant={coverVariantForSlug(c.slug)}
                           ratio="3/2"
                           rounded={false}
-                          className="border-0 border-b border-hairline sm:w-[140px] sm:flex-none sm:border-b-0 sm:border-r"
+                          className="border-0 border-b border-hairline sm:w-[180px] sm:flex-none sm:border-b-0 sm:border-r"
                         />
                         <div className="p-6 md:p-7 flex-1">
                           <div className="flex items-baseline justify-between gap-4">
-                            <span className="mono-label">0{i + 1} · {c.projectType}</span>
-                            <span className="mono-label">{c.year}</span>
+                            <span className="mono-label">0{i + 1} · {c.projectType} · {c.year}</span>
                           </div>
                           <h3 className="font-serif-display mt-3 text-[22px] md:text-[24px]">{c.title}</h3>
-                          <dl className="mt-3 space-y-1.5 text-[15px] text-text-secondary">
-                            {problemLine ? (
-                              <div>
-                                <dt className="inline text-text-primary">Problem: </dt>
-                                <dd className="inline">{problemLine}</dd>
-                              </div>
-                            ) : null}
-                            <div>
-                              <dt className="inline text-text-primary">My contribution: </dt>
-                              <dd className="inline">{c.myContribution}</dd>
-                            </div>
-                            {resultLine ? (
-                              <div>
-                                <dt className="inline text-text-primary">Result: </dt>
-                                <dd className="inline">{resultLine}</dd>
-                              </div>
-                            ) : null}
-                          </dl>
+                          <p className="mt-3 text-[15px] text-text-secondary">{contribution}</p>
+                          {result ? (
+                            <p className="mt-2 text-[15px] text-text-secondary">{result}</p>
+                          ) : null}
+                          {tags.length ? (
+                            <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
+                              {tags.map((t) => (
+                                <li key={t} className="!text-[11px]">· {t}</li>
+                              ))}
+                            </ul>
+                          ) : null}
                           <span className="mono-label mt-4 inline-flex items-center gap-1 group-hover:!text-terra">
                             {projectCtaLabel(c)} →
                           </span>
