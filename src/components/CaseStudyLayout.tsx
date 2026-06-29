@@ -7,8 +7,9 @@ import { track } from "@/lib/analytics";
 
 export function CaseStudyLayout({ study }: { study: Project }) {
   const coreTech = (study.technologies ?? study.tags ?? []).slice(0, 5);
-  const summaryProblem = firstSentence(study.problem) || study.shortDescription;
-  const summaryResult = firstSentence(study.outcome);
+  const summaryProblem = study.summaryProblem || firstSentence(study.problem) || study.shortDescription;
+  const summaryRole = study.summaryRole || study.myContribution;
+  const summaryResult = study.summaryResult || firstSentence(study.outcome);
   const summaryScope = study.scopeNote || study.ownershipWording;
 
   const hasTechDetails = Boolean(
