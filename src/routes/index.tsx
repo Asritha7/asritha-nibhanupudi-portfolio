@@ -509,76 +509,51 @@ function Portfolio() {
               </p>
             </div>
             <ul className="reveal grid grid-cols-1 gap-5">
-              {CASE_STUDIES.map((c, i) => (
-                <li key={c.slug}>
-                  <Link
-                    to={PROJECT_ROUTE[c.slug]}
-                    onClick={() => track("case_study_opened", { slug: c.slug })}
-                    className="group block rounded-[3px] border border-hairline bg-panel p-6 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra md:p-8"
-                  >
-
-                    <div className="flex items-baseline justify-between gap-4">
-                      <span className="mono-label">0{i + 1} · {c.projectType}</span>
-                      <span className="mono-label">{c.year}</span>
-                    </div>
-                    <h3 className="font-serif-display mt-3 text-[22px] md:text-[26px]">{c.title}</h3>
-                    <p className="mt-3 text-[16px] text-text-secondary">{c.shortDescription}</p>
-                    <p className="mt-2 text-[15px] text-text-secondary">
-                      <span className="text-text-primary">My contribution: </span>
-                      {c.myContribution}
-                    </p>
-                    <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
-                      {c.tags.slice(0, 5).map((t) => (
-                        <li key={t} className="!text-[11px]">· {t}</li>
-                      ))}
-                    </ul>
-                    <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
-                      {projectCtaLabel(c)} →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Additional Engineering */}
-          <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
-            <div className="reveal">
-              <span className="mono-label">Additional Engineering Work</span>
-              <h3 className="font-serif-display mt-4 text-[clamp(22px,2.4vw,26px)]">
-                Additional engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>work</em>.
-              </h3>
-              <p className="mt-3 text-[14.5px] text-text-secondary">
-                Shorter writeups across engineering implementation work.
-              </p>
-            </div>
-            <ul className="reveal grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {ADDITIONAL_PROJECTS.map((p) => (
-                <li key={p.slug}>
-                  <Link
-                    to={PROJECT_ROUTE[p.slug]}
-                    onClick={() => track(p.projectType === "Published Research" ? "research_opened" : "case_study_opened", { slug: p.slug })}
-                    className="group flex h-full flex-col rounded-[3px] border border-hairline bg-panel p-5 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
-                  >
-
-                    <span className="mono-label !text-[11px]">{p.projectType.toUpperCase()}</span>
-                    <h4 className="font-serif-display mt-2 text-[18px] leading-snug">{p.title}</h4>
-                    <p className="mt-2 text-[14px] text-text-secondary">{p.shortDescription}</p>
-                    <p className="mt-2 text-[13.5px] text-text-secondary">
-                      <span className="text-text-primary">Contribution: </span>
-                      {p.myContribution}
-                    </p>
-                    <ul className="mono-label mt-3 flex flex-wrap gap-x-2 gap-y-1.5">
-                      {p.tags.slice(0, 4).map((t) => (
-                        <li key={t} className="!text-[10.5px]">· {t}</li>
-                      ))}
-                    </ul>
-                    <span className="mono-label mt-auto pt-4 inline-flex items-center gap-1 group-hover:!text-terra">
-                      {projectCtaLabel(p)} →
-                    </span>
-                  </Link>
-                </li>
-              ))}
+              {CASE_STUDIES.slice(0, 3).map((c, i) => {
+                const problemLine = firstSentence(c.problem);
+                const resultLine = firstSentence(c.outcome);
+                return (
+                  <li key={c.slug}>
+                    <Link
+                      to={PROJECT_ROUTE[c.slug]}
+                      onClick={() => track("case_study_opened", { slug: c.slug })}
+                      className="group block rounded-[3px] border border-hairline bg-panel p-6 transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra md:p-8"
+                    >
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="mono-label">0{i + 1} · {c.projectType}</span>
+                        <span className="mono-label">{c.year}</span>
+                      </div>
+                      <h3 className="font-serif-display mt-3 text-[22px] md:text-[26px]">{c.title}</h3>
+                      <dl className="mt-4 space-y-2 text-[15.5px] text-text-secondary">
+                        {problemLine ? (
+                          <div>
+                            <dt className="inline text-text-primary">Problem: </dt>
+                            <dd className="inline">{problemLine}</dd>
+                          </div>
+                        ) : null}
+                        <div>
+                          <dt className="inline text-text-primary">My contribution: </dt>
+                          <dd className="inline">{c.myContribution}</dd>
+                        </div>
+                        {resultLine ? (
+                          <div>
+                            <dt className="inline text-text-primary">Result: </dt>
+                            <dd className="inline">{resultLine}</dd>
+                          </div>
+                        ) : null}
+                      </dl>
+                      <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
+                        {c.tags.slice(0, 5).map((t) => (
+                          <li key={t} className="!text-[11px]">· {t}</li>
+                        ))}
+                      </ul>
+                      <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
+                        {projectCtaLabel(c)} →
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -591,6 +566,7 @@ function Portfolio() {
             </Link>
           </div>
         </section>
+
 
 
         {/* Experience */}
