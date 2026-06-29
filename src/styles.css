@@ -224,3 +224,14 @@
   outline-offset: 2px;
   border-radius: 3px;
 }
+
+/* Project cover - subtle motion only when motion is allowed */
+.project-cover svg { display: block; transition: transform 320ms ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .group:hover .project-cover svg,
+  .project-cover:hover svg { transform: scale(1.025); }
+}
+
+/* Debugging loop step */
+.loop-step { position: relative; }
+.loop-arrow { color: var(--accent-terra); opacity: 0.7; }
