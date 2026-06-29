@@ -65,7 +65,7 @@ export function CaseStudyLayout({ study }: { study: Project }) {
             {summaryProblem ? (
               <SummaryRow label="Problem">{summaryProblem}</SummaryRow>
             ) : null}
-            <SummaryRow label="My role">{study.myContribution}</SummaryRow>
+            <SummaryRow label="My role">{summaryRole}</SummaryRow>
             {summaryResult ? (
               <SummaryRow label="Result">{summaryResult}</SummaryRow>
             ) : null}
