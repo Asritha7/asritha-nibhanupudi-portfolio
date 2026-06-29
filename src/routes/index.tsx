@@ -500,55 +500,6 @@ function Portfolio() {
         })()}
 
 
-        {/* How I Work - personal debugging loop */}
-        <section aria-labelledby="loop-heading" className="border-t border-hairline py-14 md:py-16">
-          <div className="reveal grid grid-cols-1 gap-8 md:grid-cols-[220px_1fr] md:gap-16">
-            <div>
-              <span className="mono-label">HOW I WORK</span>
-              <h2 id="loop-heading" className="font-serif-display mt-4 text-[clamp(22px,2.6vw,28px)]">
-                My debugging <em className="italic" style={{ color: "var(--accent-terra)" }}>loop</em>.
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
-                I enjoy the moment when a failure stops looking random and starts becoming a system I
-                can reason about. I usually begin with the evidence, compare the states that differ,
-                isolate the failing condition, make the smallest defensible fix, and automate
-                repeatable checks where it is safe to do so.
-              </p>
-            </div>
-            <ol
-              aria-label="Personal debugging loop: Observe, Compare, Isolate, Fix, Automate"
-              className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-5"
-            >
-              {[
-                { n: "01", t: "Observe", d: "Start with the actual failure evidence rather than the first assumption." },
-                { n: "02", t: "Compare", d: "Look for differences across environments, configurations, versions, or execution paths." },
-                { n: "03", t: "Isolate", d: "Reduce the problem until the failing component or condition is clear." },
-                { n: "04", t: "Fix",     d: "Address the root cause with the smallest defensible change." },
-                { n: "05", t: "Automate", d: "Encode repeatable validation or recovery steps where it is safe to do so." },
-              ].map((s, i, arr) => (
-                <li
-                  key={s.n}
-                  className="relative rounded-[3px] border border-hairline bg-panel p-4 md:p-4"
-                >
-                  <div className="flex items-baseline gap-2">
-                    <span className="mono-label !text-[11px] !text-terra">{s.n}</span>
-                    <h3 className="font-serif-display text-[16px] md:text-[17px]">{s.t}</h3>
-                  </div>
-                  <p className="mt-2 text-[13.5px] leading-snug text-text-secondary">{s.d}</p>
-                  {i < arr.length - 1 ? (
-                    <span
-                      aria-hidden="true"
-                      className="mono-label !text-[11px] !text-terra absolute right-3 -bottom-3 md:bottom-auto md:right-[-14px] md:top-1/2 md:-translate-y-1/2"
-                    >
-                      <span className="md:hidden">↓</span>
-                      <span className="hidden md:inline">→</span>
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
 
 
 
