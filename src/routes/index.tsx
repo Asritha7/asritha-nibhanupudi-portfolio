@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Sun, Moon, Sunset, ArrowUp } from "lucide-react";
 import portraitAsset from "@/assets/portrait.jpg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
@@ -143,12 +143,40 @@ function useReveal() {
 
 
 function useActiveSection(ids: string[]) {
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    const hash = window.location.hash.replace("#", "");
+    return ids.includes(hash) ? hash : "";
+  });
+
   useEffect(() => {
+    const setFromHashOrScroll = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (ids.includes(hash)) {
+        setActive(hash);
+        return;
+      }
+
+      const current = ids.find((id) => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top <= 120 && rect.bottom > 120;
+      });
+
+      setActive(current ?? "");
+    };
+
+    setFromHashOrScroll();
+    window.addEventListener("hashchange", setFromHashOrScroll);
+
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
-    if (sections.length === 0) return;
+    if (sections.length === 0) {
+      return () => window.removeEventListener("hashchange", setFromHashOrScroll);
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -159,9 +187,21 @@ function useActiveSection(ids: string[]) {
       { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
     );
     sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+    return () => {
+      window.removeEventListener("hashchange", setFromHashOrScroll);
+      io.disconnect();
+    };
   }, [ids]);
   return active;
+}
+
+function usePageHashScroll() {
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+    const timeout = window.setTimeout(() => smoothScrollTo(hash), 0);
+    return () => window.clearTimeout(timeout);
+  }, []);
 }
 
 function smoothScrollTo(id: string) {
@@ -172,13 +212,85 @@ function smoothScrollTo(id: string) {
   window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
 }
 
+function replaceHash(id: string) {
+  const state = window.history.state ?? {};
+  window.history.replaceState(
+    state,
+    "",
+    `${window.location.pathname}${window.location.search}#${id}`,
+  );
+}
+
 function Portfolio() {
   useReveal();
+  usePageHashScroll();
   const { theme, cycleTheme } = useThemePreference();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
   const nearBottom = useNearBottom();
-  const sectionIds = nav.filter((n) => !("route" in n && n.route)).map((n) => n.id);
+  const sectionIds = useMemo(() => nav.filter((n) => !("route" in n && n.route)).map((n) => n.id), []);
   const activeSection = useActiveSection(sectionIds);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const drawer = mobileNavRef.current;
+    if (!drawer) return;
+
+    const selector =
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusable = Array.from(drawer.querySelectorAll<HTMLElement>(selector)).filter(
+      (el) => !el.hasAttribute("disabled") && !el.getAttribute("aria-hidden"),
+    );
+    focusable[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        window.setTimeout(() => menuButtonRef.current?.focus(), 0);
+        return;
+      }
+
+      if (event.key !== "Tab" || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (!drawer.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onResize = () => {
+      if (window.matchMedia("(min-width: 768px)").matches) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("resize", onResize);
+    };
+  }, [menuOpen]);
+
+  const scrollToSection = (id: string) => {
+    smoothScrollTo(id);
+    replaceHash(id);
+  };
 
   return (
     <div className="min-h-screen overflow-x-clip bg-background text-foreground">
@@ -190,7 +302,7 @@ function Portfolio() {
 
       <header className="sticky top-0 z-50 border-b border-hairline bg-background/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-[46px]">
-          <a href="#top" className="mono-label !font-bold !text-text-primary !text-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra rounded-[3px]">
+          <a href="#top" onClick={(e) => { e.preventDefault(); scrollToSection("top"); }} className="mono-label !font-bold !text-text-primary !text-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra rounded-[3px]">
             {SITE.name}
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
@@ -203,7 +315,7 @@ function Portfolio() {
                 <a
                   key={n.id}
                   href={`#${n.id}`}
-                  onClick={(e) => { e.preventDefault(); smoothScrollTo(n.id); history.replaceState(null, "", `#${n.id}`); }}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(n.id); }}
                   aria-current={activeSection === n.id ? "true" : undefined}
                   data-active={activeSection === n.id ? "true" : undefined}
                   className="mono-label transition-colors hover:!text-terra focus-visible:!text-terra rounded-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terra data-[active=true]:!text-terra data-[active=true]:underline data-[active=true]:underline-offset-[6px] data-[active=true]:decoration-2"
@@ -228,39 +340,58 @@ function Portfolio() {
             <button
               type="button"
               onClick={cycleTheme}
-              className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary"
+                className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-hairline bg-panel text-text-primary transition-colors hover:text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
               aria-label={`Theme: ${theme}. Click to switch to ${THEME_ORDER[(THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length]}.`}
               title={`Theme: ${theme}`}
             >
               {theme === "light" ? <Sun size={18} /> : theme === "amber" ? <Sunset size={18} /> : <Moon size={18} />}
             </button>
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((o) => !o)}
-              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5"
+              className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5 hover:!text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
+              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               Menu
             </button>
           </div>
         </div>
         {menuOpen ? (
-          <nav id="mobile-nav" aria-label="Mobile" className="max-h-[70vh] overflow-y-auto border-t border-hairline bg-background px-6 py-4 md:hidden">
+          <nav
+            id="mobile-nav"
+            ref={mobileNavRef}
+            aria-label="Mobile"
+            className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-hairline bg-background px-6 py-4 shadow-lg md:hidden"
+          >
+            <div className="mb-3 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  window.setTimeout(() => menuButtonRef.current?.focus(), 0);
+                }}
+                className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-1.5 hover:!text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+              >
+                Close
+              </button>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               {nav.map((n) =>
                 "route" in n && n.route ? (
-                  <Link key={n.id} to={n.route} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill">
+                  <Link key={n.id} to={n.route} onClick={() => setMenuOpen(false)} className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
                     {n.label}
                   </Link>
                 ) : (
                   <a
                     key={n.id}
                     href={`#${n.id}`}
-                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); setTimeout(() => smoothScrollTo(n.id), 10); history.replaceState(null, "", `#${n.id}`); }}
+                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.setTimeout(() => scrollToSection(n.id), 10); }}
                     aria-current={activeSection === n.id ? "true" : undefined}
                     data-active={activeSection === n.id ? "true" : undefined}
-                    className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill data-[active=true]:!text-terra data-[active=true]:border-terra"
+                    className="mono-label rounded-[3px] border border-hairline bg-panel px-3 py-2 hover:!text-terra hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra data-[active=true]:!text-terra data-[active=true]:border-terra"
                   >
                     {n.label}
                   </a>
@@ -692,7 +823,7 @@ function Portfolio() {
         </section>
 
         <footer className="border-t border-dark-foreground/10">
-          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-8 md:px-[46px]">
+          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 pt-8 pb-24 sm:py-8 md:px-[46px]">
             <p className="mono-label !text-dark-foreground/60">© 2026 {SITE.name.toUpperCase()} · {SITE.location.toUpperCase()}</p>
             <ul className="flex flex-wrap gap-x-7 gap-y-2">
               {[
@@ -714,9 +845,12 @@ function Portfolio() {
         {/* Scroll-to-top button */}
         <button
           type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-hairline bg-panel text-text-primary shadow-md transition-all duration-300 hover:bg-warm-fill hover:text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra ${nearBottom ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
-          aria-label="Back to top"
+          onClick={() => {
+            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+          }}
+          className={`fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-panel text-text-primary shadow-md transition-all duration-300 hover:bg-warm-fill hover:text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra sm:bottom-6 sm:right-6 sm:h-12 sm:w-12 ${nearBottom ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
+          aria-label="Scroll back to the top of the page"
           aria-hidden={!nearBottom}
           tabIndex={nearBottom ? 0 : -1}
         >

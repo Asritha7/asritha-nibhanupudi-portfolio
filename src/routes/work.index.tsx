@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { z } from "zod";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { HistoryBackLink } from "@/components/HistoryBackLink";
 import {
   PROJECTS,
   PROJECT_CATEGORIES,
@@ -79,9 +80,7 @@ function WorkIndex() {
           <Link to="/" className="mono-label !font-bold !text-text-primary !text-base">
             {SITE.name}
           </Link>
-          <Link to="/" className="mono-label hover:!text-terra">
-            ← Home
-          </Link>
+          <HistoryBackLink href="/" label="← Home" />
         </div>
       </header>
 
