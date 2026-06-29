@@ -762,6 +762,8 @@ function Portfolio() {
                   >
                     View repository ↗
                   </a>
+                  </div>
+                  </div>
                 </li>
               ))}
             </ul>
