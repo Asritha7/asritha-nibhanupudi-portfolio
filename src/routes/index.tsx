@@ -738,8 +738,11 @@ function Portfolio() {
               {PUBLIC_REPOS.map((r) => (
                 <li
                   key={r.name}
-                  className="rounded-[3px] border border-hairline bg-panel p-5 md:p-6"
+                  className="overflow-hidden rounded-[3px] border border-hairline bg-panel"
                 >
+                  <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr]">
+                  <ProjectCover variant="public" ratio="3/2" rounded={false} className="border-0 sm:border-r sm:border-hairline" />
+                  <div className="p-5 md:p-6">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <h3 className="font-serif-display text-[18px] md:text-[20px]">{r.name}</h3>
                     <span className="mono-label !text-[11px]">{r.type}</span>
