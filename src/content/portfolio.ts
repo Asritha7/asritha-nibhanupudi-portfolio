@@ -291,7 +291,7 @@ export const PROJECTS: Project[] = [
         "Reusable framework primitives for waits, polling, and retries",
         "REST API and shell-script integration helpers",
       ],
-      contributedTo: ["The overall CI/CD pipeline design"],
+      contributedTo: ["CI/CD integration and execution design for the automation framework"],
       investigated: ["Recurring flaky-failure patterns across workflows"],
       validated: ["Workflow coverage across release candidates"],
     },
