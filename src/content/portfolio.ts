@@ -149,9 +149,9 @@ export const PROJECTS: Project[] = [
     cardResult:
       "Moved key routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     ownershipWording: "Contributed to",
-    summaryProblem: "New services lacked a repeatable AWS deployment pattern.",
-    summaryRole: "Contributed to service infrastructure and integration within a defined scope.",
-    summaryResult: "Routing, auth, and deployment config moved from console setup into reviewable IaC.",
+    summaryProblem: "New services needed a repeatable AWS deployment pattern.",
+    summaryRole: "Contributed to defined service infrastructure and integration components.",
+    summaryResult: "Moved selected deployment configuration into version-controlled infrastructure definitions.",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
     professionalContext:
