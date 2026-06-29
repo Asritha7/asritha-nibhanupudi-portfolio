@@ -23,7 +23,11 @@ export function HistoryBackLink({
       return;
     }
 
-    if (typeof window !== "undefined" && window.history.length > 1) {
+    const historyIndex = window.history.state?.__TSR_index;
+    const hasRouterHistory = typeof historyIndex === "number" && historyIndex > 0;
+    const hasSameOriginReferrer = document.referrer.startsWith(window.location.origin);
+
+    if (typeof window !== "undefined" && (hasRouterHistory || hasSameOriginReferrer)) {
       event.preventDefault();
       window.history.back();
     }
