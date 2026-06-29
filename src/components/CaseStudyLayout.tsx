@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { HistoryBackLink } from "@/components/HistoryBackLink";
+import { ProjectCover, coverVariantForSlug } from "@/components/ProjectCover";
 import { CONFIDENTIALITY_NOTICE, firstSentence, type Project } from "@/content/portfolio";
 import { track } from "@/lib/analytics";
 
@@ -42,6 +43,10 @@ export function CaseStudyLayout({ study }: { study: Project }) {
         <p className="mono-label">{study.projectType.toUpperCase()} · {study.year}</p>
         <h1 className="font-serif-display mt-4 text-[clamp(34px,5vw,52px)]">{study.title}</h1>
         <p className="mt-6 max-w-[60ch] text-[19px] text-text-secondary">{study.shortDescription}</p>
+
+        <div className="mt-8">
+          <ProjectCover variant={coverVariantForSlug(study.slug)} ratio="16/9" />
+        </div>
 
         {study.confidential ? (
           <p className="mt-6 rounded-[3px] border border-hairline bg-warm-fill p-4 text-[14px] text-text-secondary">
