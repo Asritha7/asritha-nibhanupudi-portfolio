@@ -317,6 +317,9 @@ export const PROJECTS: Project[] = [
     cardResult:
       "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier.",
     ownershipWording: "Implemented and contributed to",
+    summaryProblem: "Auth failures appeared intermittently as identity-provider config drifted between environments.",
+    summaryRole: "Scripted realm and client setup and automated flow validation in CI.",
+    summaryResult: "Covered configuration moved from manual per-environment setup to scripted, CI-validated setup.",
     professionalContext:
       "Enterprise services using Keycloak as the identity provider across multiple environments. Work focused on automation, configuration consistency, and failure prevention - not on building an independent authentication product.",
     problem:
