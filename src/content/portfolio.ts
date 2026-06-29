@@ -83,6 +83,11 @@ export type Project = {
   // surface copy
   shortDescription: string;
   myContribution: string;
+  // Compact homepage-card copy (two paragraphs). When present, the homepage
+  // card renders these instead of the labelled Problem/Contribution/Result
+  // block so the card stays under ~45 visible words.
+  cardContribution?: string;
+  cardResult?: string;
   ownershipWording?: string;
   scopeNote?: string; // rendered near start of case study when present
 
@@ -134,6 +139,10 @@ export const PROJECTS: Project[] = [
       "Contributed to a defined AWS-native microservice scope using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda, including infrastructure definitions, routing, authentication, and integration validation.",
     myContribution:
       "Implemented and contributed to defined service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL and Lambda.",
+    cardContribution:
+      "Contributed to service infrastructure and integration components using TypeScript CDK, ECS Fargate, Aurora PostgreSQL, and Lambda.",
+    cardResult:
+      "Moved key routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     ownershipWording: "Contributed to",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
@@ -216,6 +225,10 @@ export const PROJECTS: Project[] = [
       "Reusable Cypress-based automation framework with REST API and shell-script integrations, executed from CI/CD to validate releases.",
     myContribution:
       "Developed and expanded the framework, added REST API and shell integrations, and wired it into CI/CD pipelines.",
+    cardContribution:
+      "Developed reusable Cypress utilities and connected workflow automation to CI/CD execution and failure diagnostics.",
+    cardResult:
+      "Expanded reusable coverage across 150+ workflows while making recurring failures easier to investigate.",
     ownershipWording: "Developed and contributed to",
     professionalContext:
       "Engineering automation system for enterprise services deployed on Kubernetes. Used by release pipelines to validate end-to-end workflows before each rollout.",
@@ -288,6 +301,10 @@ export const PROJECTS: Project[] = [
       "Automated Keycloak identity-provider workflows and root-caused intermittent authentication failures across environments.",
     myContribution:
       "Automated Keycloak workflows via REST APIs, shell scripting, and Cypress; investigated intermittent auth failures and standardised configuration across environments.",
+    cardContribution:
+      "Automated selected Keycloak realm, client, and identity-flow configuration through REST APIs, scripts, and CI/CD validation.",
+    cardResult:
+      "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier.",
     ownershipWording: "Implemented and contributed to",
     professionalContext:
       "Enterprise services using Keycloak as the identity provider across multiple environments. Work focused on automation, configuration consistency, and failure prevention - not on building an independent authentication product.",
@@ -328,7 +345,7 @@ export const PROJECTS: Project[] = [
       "Keeping identity-provider configuration consistent as environments evolved",
     ],
     outcome:
-      "Configuration-driven authentication failures became much rarer after standardising realm and client setup and adding CI/CD validation checks. Environment-to-environment drift was caught earlier in the release process.",
+      "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier in the release process.",
     learned:
       "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
     wouldImprove:
@@ -567,23 +584,20 @@ export const EXPERIENCE = [
       "Onboarded Java microservices to Prometheus and Grafana for consistent service-level visibility",
       "Implemented routing, auth, and integration tests as infrastructure-as-code",
     ],
-    stack: ["AWS", "CDK", "ECS Fargate", "Aurora", "Lambda", "Prometheus", "Grafana", "Java"],
+    stack: ["AWS", "TypeScript", "Java", "Observability", "CDK", "ECS Fargate", "Aurora", "Lambda", "Prometheus", "Grafana"],
   },
   {
-    role: "Software Engineer - Automation & Infrastructure",
+    role: "Associate Quality Analyst",
     org: "Oracle",
     date: "Aug 2024 - Apr 2026",
     place: "Hyderabad",
     scope:
-      "Engineering productivity, CI/CD, and platform reliability for enterprise services on Kubernetes.",
+      "Software engineering, automation, and infrastructure responsibilities for enterprise services. Engineering productivity, CI/CD, and platform reliability on Kubernetes.",
     contributions: [
-      "Contributed to Kafka and Strimzi upgrade validation on Kubernetes",
-      "Built and integrated 150+ modular Cypress workflows into GitLab CI for release validation",
-      "Investigated Kubernetes deployment failures and improved CI/CD reliability",
-      "Automated Keycloak and OpenSearch operations via REST APIs and shell scripting",
-      "Mentored junior engineers on CI/CD and Kubernetes debugging",
+      "Built and integrated 150+ modular Cypress workflows into GitLab CI, plus REST API integrations for Keycloak and OpenSearch",
+      "Investigated Kubernetes deployment failures and authentication issues, and contributed CI/CD reliability improvements",
     ],
-    stack: ["Kubernetes", "Kafka", "Strimzi", "GitLab CI", "Cypress", "Keycloak", "OpenSearch", "Bash"],
+    stack: ["Cypress", "Kubernetes", "Keycloak", "GitLab CI", "Strimzi", "Kafka", "OpenSearch", "Bash"],
   },
   {
     role: "Project Intern",
