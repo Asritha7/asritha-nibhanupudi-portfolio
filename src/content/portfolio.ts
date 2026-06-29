@@ -94,6 +94,11 @@ export type Project = {
   // case-study depth (rendered only when present)
   professionalContext?: string; // "Context"
   problem?: string;
+  // Optional compressed summary copy used in the case-study Summary panel.
+  // Falls back to derived first-sentence of problem/outcome when absent.
+  summaryProblem?: string;
+  summaryRole?: string;
+  summaryResult?: string;
   constraints?: string[];
   approach?: string[];          // "Technical approach"
   decision?: { decision: string; why: string; tradeoff: string };
