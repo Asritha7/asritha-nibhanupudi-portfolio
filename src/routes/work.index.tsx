@@ -155,6 +155,7 @@ function WorkIndex() {
                 <span className="mono-label mt-5 inline-flex items-center gap-1 group-hover:!text-terra">
                   {projectCtaLabel(p)} →
                 </span>
+                </div>
               </Link>
             </li>
           ))}
