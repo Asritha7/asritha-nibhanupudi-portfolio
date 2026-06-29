@@ -469,6 +469,9 @@ export const PROJECTS: Project[] = [
     myContribution:
       "Investigated deployment failures (pod startup, CrashLoopBackOff, configuration mismatches), pipeline-stage failures, and environment-specific issues; contributed deployment workflow improvements.",
     ownershipWording: "Investigated and contributed to",
+    summaryProblem: "Deployments failed intermittently across pod, config, and pipeline-stage causes.",
+    summaryRole: "Investigated failures from cluster events first and contributed workflow improvements.",
+    summaryResult: "Recurring failure modes were triaged consistently and addressed at their actual layer.",
     professionalContext:
       "Enterprise services deployed on Kubernetes with GitLab CI pipelines. This work focused on deployment reliability and CI/CD diagnosis, not on owning a broader Kubernetes platform.",
     problem:
