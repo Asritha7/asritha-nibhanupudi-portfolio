@@ -416,6 +416,9 @@ function Portfolio() {
               I build <em className="italic" style={{ color: "var(--accent-terra)" }}>reliable</em> software systems that scale.
             </h1>
             <p className="mt-8 max-w-[58ch] text-[19px] text-text-secondary">{HERO.description}</p>
+            <p className="mt-4 max-w-[58ch] text-[16.5px] italic text-text-secondary">
+              I enjoy the moment when a failure stops looking random and starts becoming a system I can reason about.
+            </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Link to="/work" className="rounded-[3px] bg-terra px-5 py-3 text-[15px] font-medium text-panel transition-colors hover:bg-terra-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra">
                 View my work →
