@@ -481,23 +481,29 @@ function Portfolio() {
             "Linux", "AWS", "Keycloak", "OAuth2 / OIDC",
             "Prometheus", "Grafana", "Jenkins", "GitLab CI", "Git",
           ];
-          const row = [...MARQUEE, ...MARQUEE];
           return (
             <div
-              aria-hidden="true"
               className="marquee-strip full-bleed overflow-hidden border-y border-hairline"
               style={{ background: "var(--marquee-bg)" }}
             >
               <div className="marquee-track flex gap-10 py-4 whitespace-nowrap">
-                {row.map((t, i) => (
+                {MARQUEE.map((t, i) => (
                   <span key={i} className="mono-label !text-[12px]">
                     {t} <span className="opacity-50">·</span>
                   </span>
                 ))}
+                <span aria-hidden="true" className="flex gap-10">
+                  {MARQUEE.map((t, i) => (
+                    <span key={i} className="mono-label !text-[12px]">
+                      {t} <span className="opacity-50">·</span>
+                    </span>
+                  ))}
+                </span>
               </div>
             </div>
           );
         })()}
+
 
         {/* Featured Engineering Work */}
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
@@ -508,9 +514,9 @@ function Portfolio() {
                 Featured Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Selected professional engineering work. Each item is labelled by type and links to a
-                case study that distinguishes what the wider team owned from what I personally contributed.
+                Selected work across cloud systems, automation, authentication and reliability—with clear context on what I personally contributed.
               </p>
+
             </div>
             <ul className="reveal grid grid-cols-1 gap-5">
               {CASE_STUDIES.slice(0, 3).map((c, i) => {
