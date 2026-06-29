@@ -477,7 +477,7 @@ function RfidCover() {
 }
 
 /* ---------- 7. Engineering note (editorial sketch) ---------- */
-function NoteCover() {
+function NoteCover({ accent: _accent }: { accent?: "keycloak" | "kafka" | "kubernetes" } = {}) {
   return (
     <svg {...SVG_PROPS}>
       {/* notebook page */}
