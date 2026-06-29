@@ -225,12 +225,8 @@
   border-radius: 3px;
 }
 
-/* Project cover - subtle motion only when motion is allowed */
-.project-cover svg { display: block; transition: transform 320ms ease; }
-@media (prefers-reduced-motion: no-preference) {
-  .group:hover .project-cover svg,
-  .project-cover:hover svg { transform: scale(1.025); }
-}
+/* Project cover - no hover transform, prevents any perceived "zoom" on cards */
+.project-cover svg { display: block; }
 
 /* Debugging loop step */
 .loop-step { position: relative; }
