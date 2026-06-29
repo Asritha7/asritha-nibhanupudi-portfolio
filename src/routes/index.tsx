@@ -19,6 +19,7 @@ import {
   TESTIMONIALS,
 } from "@/content/portfolio";
 import { track } from "@/lib/analytics";
+import { ProjectCover, coverVariantForSlug } from "@/components/ProjectCover";
 
 
 const portrait = portraitAsset.url;
