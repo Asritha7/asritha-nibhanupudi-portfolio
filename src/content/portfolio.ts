@@ -535,7 +535,12 @@ export const PROJECTS: Project[] = [
 // Backwards-compat aliases.
 export type CaseStudy = Project;
 export const CASE_STUDIES: Project[] = PROJECTS.filter((p) => p.featured);
-export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter((p) => !p.featured);
+// Additional Engineering Work: non-featured professional/implementation work
+// only. Research lives in its own Published Research section so it never
+// appears twice on the homepage.
+export const ADDITIONAL_PROJECTS: Project[] = PROJECTS.filter(
+  (p) => !p.featured && p.projectType !== "Published Research",
+);
 
 export const PROJECT_CATEGORIES: ProjectCategory[] = [
   "Backend",
