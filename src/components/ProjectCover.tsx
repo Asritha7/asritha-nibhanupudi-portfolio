@@ -27,7 +27,7 @@ const RATIO_CLASS: Record<Ratio, string> = {
 
 const ALT: Record<CoverVariant, string> = {
   "aws-microservices-cdk-ecs":
-    "Abstract illustration of microservice blocks connected by routing paths, with one service scope highlighted.",
+    "Abstract architecture sketch: an API gateway routing into a tier of three ECS Fargate services with running tasks, connected to a data store, with one service highlighted as the scope of my work.",
   "automation-framework":
     "Abstract illustration of reusable automation modules moving through a delivery pipeline with branching validation states.",
   "keycloak-identity-flow":
