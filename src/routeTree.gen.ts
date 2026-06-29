@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as NotesIndexRouteImport } from './routes/notes.index'
 import { Route as WorkRfidPinAuthenticationResearchRouteImport } from './routes/work.rfid-pin-authentication-research'
 import { Route as WorkKubernetesCicdReliabilityRouteImport } from './routes/work.kubernetes-cicd-reliability'
 import { Route as WorkKeycloakIdentityFlowRouteImport } from './routes/work.keycloak-identity-flow'
@@ -43,6 +44,11 @@ const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const NotesIndexRoute = NotesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NotesRoute,
 } as any)
 const WorkRfidPinAuthenticationResearchRoute =
   WorkRfidPinAuthenticationResearchRouteImport.update({
@@ -115,12 +121,12 @@ export interface FileRoutesByFullPath {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
+  '/notes/': typeof NotesIndexRoute
   '/work/': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/notes': typeof NotesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/notes/kafka-strimzi-upgrade-checklist': typeof NotesKafkaStrimziUpgradeChecklistRoute
   '/notes/keycloak-configuration-drift': typeof NotesKeycloakConfigurationDriftRoute
@@ -131,6 +137,7 @@ export interface FileRoutesByTo {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
+  '/notes': typeof NotesIndexRoute
   '/work': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
@@ -148,6 +155,7 @@ export interface FileRoutesById {
   '/work/keycloak-identity-flow': typeof WorkKeycloakIdentityFlowRoute
   '/work/kubernetes-cicd-reliability': typeof WorkKubernetesCicdReliabilityRoute
   '/work/rfid-pin-authentication-research': typeof WorkRfidPinAuthenticationResearchRoute
+  '/notes/': typeof NotesIndexRoute
   '/work/': typeof WorkIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
 }
@@ -166,12 +174,12 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
+    | '/notes/'
     | '/work/'
     | '/api/public/contact'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/notes'
     | '/sitemap.xml'
     | '/notes/kafka-strimzi-upgrade-checklist'
     | '/notes/keycloak-configuration-drift'
@@ -182,6 +190,7 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
+    | '/notes'
     | '/work'
     | '/api/public/contact'
   id:
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/work/keycloak-identity-flow'
     | '/work/kubernetes-cicd-reliability'
     | '/work/rfid-pin-authentication-research'
+    | '/notes/'
     | '/work/'
     | '/api/public/contact'
   fileRoutesById: FileRoutesById
@@ -245,6 +255,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/work/'
       preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/notes/': {
+      id: '/notes/'
+      path: '/'
+      fullPath: '/notes/'
+      preLoaderRoute: typeof NotesIndexRouteImport
+      parentRoute: typeof NotesRoute
     }
     '/work/rfid-pin-authentication-research': {
       id: '/work/rfid-pin-authentication-research'
@@ -323,6 +340,7 @@ interface NotesRouteChildren {
   NotesKafkaStrimziUpgradeChecklistRoute: typeof NotesKafkaStrimziUpgradeChecklistRoute
   NotesKeycloakConfigurationDriftRoute: typeof NotesKeycloakConfigurationDriftRoute
   NotesKubernetesDeploymentDebuggingRoute: typeof NotesKubernetesDeploymentDebuggingRoute
+  NotesIndexRoute: typeof NotesIndexRoute
 }
 
 const NotesRouteChildren: NotesRouteChildren = {
@@ -331,6 +349,7 @@ const NotesRouteChildren: NotesRouteChildren = {
   NotesKeycloakConfigurationDriftRoute: NotesKeycloakConfigurationDriftRoute,
   NotesKubernetesDeploymentDebuggingRoute:
     NotesKubernetesDeploymentDebuggingRoute,
+  NotesIndexRoute: NotesIndexRoute,
 }
 
 const NotesRouteWithChildren = NotesRoute._addFileChildren(NotesRouteChildren)

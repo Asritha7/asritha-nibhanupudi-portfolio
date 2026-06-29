@@ -94,6 +94,11 @@ export type Project = {
   // case-study depth (rendered only when present)
   professionalContext?: string; // "Context"
   problem?: string;
+  // Optional compressed summary copy used in the case-study Summary panel.
+  // Falls back to derived first-sentence of problem/outcome when absent.
+  summaryProblem?: string;
+  summaryRole?: string;
+  summaryResult?: string;
   constraints?: string[];
   approach?: string[];          // "Technical approach"
   decision?: { decision: string; why: string; tradeoff: string };
@@ -144,6 +149,11 @@ export const PROJECTS: Project[] = [
     cardResult:
       "Moved key routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     ownershipWording: "Contributed to",
+    summaryProblem: "New services needed a repeatable AWS deployment pattern.",
+    summaryRole:
+      "Contributed to defined service infrastructure and integration components.",
+    summaryResult:
+      "Moved selected routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
     professionalContext:
@@ -347,7 +357,7 @@ export const PROJECTS: Project[] = [
     outcome:
       "Configuration covered by the automation moved from manual per-environment setup to scripted, CI-validated setup, allowing mismatches to be detected earlier in the release process.",
     learned:
-      "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. Automating the configuration is more valuable than writing more tests against the authentication flow itself.",
+      "In this system, several recurring authentication failures were caused by configuration drift rather than by the authentication implementation itself. For this failure class, automating the affected configuration addressed the root cause more directly than adding additional flow-level checks.",
     wouldImprove:
       "I would add an explicit environment-diff report that compares realm and client configuration across environments on every pipeline run, so drift surfaces visually rather than only via failing flows.",
     ownership: {
