@@ -581,10 +581,8 @@ export const EXPERIENCE = [
     contributions: [
       "Contributed to a hybrid API gateway layer spanning on-prem and multi-region AWS",
       "Contributed to AWS-native microservices using CDK (TypeScript), ECS Fargate, Aurora PostgreSQL, and Lambda",
-      "Onboarded Java microservices to Prometheus and Grafana for consistent service-level visibility",
-      "Implemented routing, auth, and integration tests as infrastructure-as-code",
     ],
-    stack: ["AWS", "TypeScript", "Java", "Observability", "CDK", "ECS Fargate", "Aurora", "Lambda", "Prometheus", "Grafana"],
+    stack: ["AWS", "TypeScript", "Java", "Observability"],
   },
   {
     role: "Associate Quality Analyst",
@@ -592,12 +590,12 @@ export const EXPERIENCE = [
     date: "Aug 2024 - Apr 2026",
     place: "Hyderabad",
     scope:
-      "Software engineering, automation, and infrastructure responsibilities for enterprise services. Engineering productivity, CI/CD, and platform reliability on Kubernetes.",
+      "Software engineering, automation, and infrastructure responsibilities for enterprise services.",
     contributions: [
       "Built and integrated 150+ modular Cypress workflows into GitLab CI, plus REST API integrations for Keycloak and OpenSearch",
       "Investigated Kubernetes deployment failures and authentication issues, and contributed CI/CD reliability improvements",
     ],
-    stack: ["Cypress", "Kubernetes", "Keycloak", "GitLab CI", "Strimzi", "Kafka", "OpenSearch", "Bash"],
+    stack: ["Cypress", "Kubernetes", "Keycloak", "GitLab CI"],
   },
   {
     role: "Project Intern",
