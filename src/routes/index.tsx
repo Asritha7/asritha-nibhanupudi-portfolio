@@ -144,9 +144,9 @@ function useReveal() {
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>(() => {
-    if (typeof window === "undefined") return ids[0] ?? "";
+    if (typeof window === "undefined") return "";
     const hash = window.location.hash.replace("#", "");
-    return ids.includes(hash) ? hash : ids[0] ?? "";
+    return ids.includes(hash) ? hash : "";
   });
 
   useEffect(() => {
@@ -164,7 +164,7 @@ function useActiveSection(ids: string[]) {
         return rect.top <= 120 && rect.bottom > 120;
       });
 
-      setActive(current ?? ids[0] ?? "");
+      setActive(current ?? "");
     };
 
     setFromHashOrScroll();
