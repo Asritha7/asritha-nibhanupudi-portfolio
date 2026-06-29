@@ -1,7 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HistoryBackLink } from "@/components/HistoryBackLink";
 import { ProjectCover } from "@/components/ProjectCover";
-import { ENGINEERING_NOTES, SITE } from "@/content/portfolio";
+import {
+  ENGINEERING_NOTES,
+  NOTE_ROUTE,
+  NOTE_TAGS,
+  SITE,
+  noteReadingTimeMinutes,
+} from "@/content/portfolio";
 
 const TITLE = "Engineering Notes - Asritha Nibhanupudi";
 const DESC =
@@ -23,6 +29,13 @@ export const Route = createFileRoute("/notes")({
   component: NotesIndex,
 });
 
+function coverFor(slug: string) {
+  if (slug.includes("keycloak")) return "note-keycloak" as const;
+  if (slug.includes("kafka")) return "note-kafka" as const;
+  if (slug.includes("kubernetes")) return "note-kubernetes" as const;
+  return "note" as const;
+}
+
 function NotesIndex() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -35,179 +48,58 @@ function NotesIndex() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-[820px] px-6 py-16 md:px-10 md:py-24">
+      <main className="mx-auto max-w-[920px] px-6 py-16 md:px-10 md:py-24">
         <p className="mono-label">ENGINEERING NOTES</p>
         <h1 className="font-serif-display mt-4 text-[clamp(34px,5vw,52px)]">
-          Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>notes</em>.
+          Practical engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>notes</em>.
         </h1>
-        <p className="mt-6 max-w-[60ch] text-[18px] text-text-secondary">
-          Practical, sanitized engineering notes. No client names, no internal system names, no proprietary
-          details - the engineering shape of the problem, a checklist or decision flow, and the limits of
-          the approach.
+        <p className="mt-6 max-w-[64ch] text-[17px] text-text-secondary">
+          Short technical references drawn from production work. Each note links to its own page.
         </p>
 
-        {/* In-page table of contents */}
-        <nav aria-label="Notes table of contents" className="mt-10 rounded-[3px] border border-hairline bg-panel p-5">
-          <p className="mono-label !text-[11px]">On this page</p>
-          <ul className="mt-3 space-y-2 text-[15px]">
-            {ENGINEERING_NOTES.map((n) => (
+        <ul className="mt-12 grid grid-cols-1 gap-5">
+          {ENGINEERING_NOTES.map((n) => {
+            const tags = NOTE_TAGS[n.slug] ?? [];
+            const minutes = noteReadingTimeMinutes(n);
+            const href = NOTE_ROUTE[n.slug];
+            return (
               <li key={n.slug}>
-                <a href={`#${n.slug}`} className="text-text-secondary hover:!text-terra">
-                  · {n.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <ul className="mt-12 space-y-16">
-          {ENGINEERING_NOTES.map((n) => (
-            <li key={n.slug} id={n.slug} className="border-t border-hairline pt-10 scroll-mt-24">
-              <h2 className="font-serif-display text-[clamp(22px,2.6vw,28px)]">{n.title}</h2>
-              <div className="mt-4 max-w-[160px]">
-                <ProjectCover
-                  variant={
-                    n.slug.includes("keycloak")
-                      ? "note-keycloak"
-                      : n.slug.includes("kafka")
-                        ? "note-kafka"
-                        : n.slug.includes("kubernetes")
-                          ? "note-kubernetes"
-                          : "note"
-                  }
-                  ratio="3/2"
-                />
-              </div>
-              <p className="mt-4 text-[17px] text-text-secondary">{n.summary}</p>
-
-              <NoteBlock label="Introduction">{n.introduction}</NoteBlock>
-              <NoteBlock label="The recurring problem">{n.problem}</NoteBlock>
-              <NoteBlock label="Why it is difficult">{n.whyDifficult}</NoteBlock>
-              <NoteBlock label="Practical approach">{n.approach}</NoteBlock>
-
-              {n.practicalSteps?.length ? (
-                <div className="mt-6">
-                  <p className="mono-label !text-text-primary !text-[12px]">Sanitized setup sequence</p>
-                  <ol className="mt-3 space-y-2 text-[16.5px] leading-relaxed text-text-secondary">
-                    {n.practicalSteps.map((s, i) => (
-                      <li key={i} className="flex gap-3">
-                        <span className="mono-label !text-[12px] !text-terra shrink-0 pt-1">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span>{s}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              ) : null}
-
-              {n.decisionFlow?.length ? (
-                <div className="mt-6">
-                  <p className="mono-label !text-text-primary !text-[12px]">Decision flow</p>
-                  <p className="sr-only">
-                    Ordered list of investigation steps, each followed by a short detail. Steps are read in order.
-                  </p>
-                  <ol className="mt-3 space-y-3">
-                    {n.decisionFlow.map((d, i) => (
-                      <li
-                        key={i}
-                        className="rounded-[3px] border border-hairline bg-panel p-4"
-                      >
-                        <div className="flex items-baseline gap-3">
-                          <span className="mono-label !text-[11px] !text-terra shrink-0">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <p className="text-[16px] font-medium text-text-primary">{d.step}</p>
-                        </div>
-                        {d.detail ? (
-                          <p className="mt-1.5 ml-[34px] text-[14.5px] leading-relaxed text-text-secondary">
-                            {d.detail}
-                          </p>
-                        ) : null}
-                        {i < (n.decisionFlow?.length ?? 0) - 1 ? (
-                          <p
-                            aria-hidden="true"
-                            className="mono-label !text-[11px] !text-terra mt-3 ml-[8px]"
-                          >
-                            ↓
-                          </p>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              ) : null}
-
-              {n.checklists?.length
-                ? n.checklists.map((c) => (
-                    <div key={c.heading} className="mt-6">
-                      <p className="mono-label !text-text-primary !text-[12px]">{c.heading}</p>
-                      <ul className="mt-3 space-y-2 text-[16.5px] leading-relaxed text-text-secondary">
-                        {c.items.map((it, i) => (
-                          <li key={i} className="flex gap-3">
-                            <span
-                              className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
-                              style={{ background: "var(--accent-terra)" }}
-                            />
-                            <span>{it}</span>
-                          </li>
-                        ))}
-                      </ul>
+                <Link
+                  to={href}
+                  className="group block overflow-hidden rounded-[3px] border border-hairline bg-panel transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                >
+                  <div className="flex flex-col gap-0 sm:flex-row sm:items-stretch">
+                    <ProjectCover
+                      variant={coverFor(n.slug)}
+                      ratio="3/2"
+                      rounded={false}
+                      className="border-0 border-b border-hairline sm:w-[180px] sm:flex-none sm:border-b-0 sm:border-r"
+                    />
+                    <div className="flex-1 p-5 md:p-6">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="mono-label">ENGINEERING NOTE</span>
+                        <span className="mono-label">{minutes} min read</span>
+                      </div>
+                      <h2 className="font-serif-display mt-2 text-[20px] md:text-[22px]">{n.title}</h2>
+                      <p className="mt-2 max-w-[60ch] text-[14.5px] text-text-secondary">{n.summary}</p>
+                      {tags.length ? (
+                        <ul className="mono-label mt-3 flex flex-wrap gap-x-3 gap-y-2">
+                          {tags.slice(0, 3).map((t) => (
+                            <li key={t} className="!text-[11px]">· {t}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <span className="mono-label mt-3 inline-flex items-center gap-1 group-hover:!text-terra">
+                        Read note →
+                      </span>
                     </div>
-                  ))
-                : null}
-
-              {n.subsections?.length
-                ? n.subsections.map((s) => (
-                    <NoteBlock key={s.heading} label={s.heading}>
-                      {s.body}
-                    </NoteBlock>
-                  ))
-                : null}
-
-              <div className="mt-6 rounded-[3px] border border-hairline bg-panel p-5">
-                <p className="mono-label !text-text-primary !text-[12px]">
-                  One important decision - {n.importantDecision.title}
-                </p>
-                <p className="mt-2 text-[16px] leading-relaxed text-text-secondary">
-                  {n.importantDecision.body}
-                </p>
-              </div>
-
-              <div className="mt-6">
-                <p className="mono-label !text-text-primary !text-[12px]">Limitations</p>
-                <ul className="mt-3 space-y-2 text-[16.5px] leading-relaxed text-text-secondary">
-                  {n.limitations.map((l, i) => (
-                    <li key={i} className="flex gap-3">
-                      <span
-                        className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
-                        style={{ background: "var(--accent-terra)" }}
-                      />
-                      <span>{l}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <NoteBlock label="When this approach does not apply">{n.whenNotToApply}</NoteBlock>
-              <NoteBlock label="Conclusion">{n.conclusion}</NoteBlock>
-            </li>
-          ))}
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-
-        <div className="mt-16 border-t border-hairline pt-8">
-          <HistoryBackLink href="/" label="← Back home" />
-        </div>
       </main>
-    </div>
-  );
-}
-
-function NoteBlock({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mt-6">
-      <p className="mono-label !text-text-primary !text-[12px]">{label}</p>
-      <p className="mt-2 text-[16.5px] leading-relaxed text-text-secondary">{children}</p>
     </div>
   );
 }

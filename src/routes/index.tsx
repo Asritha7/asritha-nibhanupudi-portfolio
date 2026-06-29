@@ -8,6 +8,7 @@ import {
   LINKS,
   HERO,
   CASE_STUDIES,
+  ADDITIONAL_PROJECTS,
   PROJECT_ROUTE,
   projectCtaLabel,
   firstSentence,
@@ -628,7 +629,61 @@ function Portfolio() {
           </div>
         </section>
 
-
+        {/* Additional Engineering Work — non-featured professional work only.
+            Published Research is intentionally excluded so RFID appears only
+            once on the homepage, in its dedicated section. */}
+        {ADDITIONAL_PROJECTS.length > 0 ? (
+          <section
+            id="additional-work"
+            aria-labelledby="additional-heading"
+            className="border-t border-hairline py-20"
+          >
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
+              <div className="reveal">
+                <span className="mono-label">01b - Additional Engineering Work</span>
+                <h2 id="additional-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
+                  Additional Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
+                </h2>
+                <p className="mt-3 text-[15px] text-text-secondary">
+                  Further professional case studies. Each links to a sanitized write-up.
+                </p>
+              </div>
+              <ul className="reveal grid grid-cols-1 gap-4">
+                {ADDITIONAL_PROJECTS.map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      to={PROJECT_ROUTE[c.slug]}
+                      onClick={() => track("case_study_opened", { slug: c.slug })}
+                      className="group block overflow-hidden rounded-[3px] border border-hairline bg-panel transition-colors hover:bg-warm-fill focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                    >
+                      <div className="flex flex-col gap-0 sm:flex-row sm:items-stretch">
+                        <ProjectCover
+                          variant={coverVariantForSlug(c.slug)}
+                          ratio="3/2"
+                          rounded={false}
+                          className="border-0 border-b border-hairline sm:w-[120px] sm:flex-none sm:border-b-0 sm:border-r"
+                        />
+                        <div className="p-5 md:p-6 flex-1">
+                          <div className="flex items-baseline justify-between gap-4">
+                            <span className="mono-label">{c.projectType.toUpperCase()}</span>
+                            <span className="mono-label">{c.year}</span>
+                          </div>
+                          <h3 className="font-serif-display mt-2 text-[19px] md:text-[20px]">{c.title}</h3>
+                          <p className="mt-2 text-[14.5px] text-text-secondary">
+                            {firstSentence(c.problem) || c.shortDescription}
+                          </p>
+                          <span className="mono-label mt-3 inline-flex items-center gap-1 group-hover:!text-terra">
+                            {projectCtaLabel(c)} →
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
 
         {/* Experience */}
         <section id="experience" aria-labelledby="exp-heading" className="border-t border-hairline py-20">
@@ -638,6 +693,9 @@ function Portfolio() {
               <h2 id="exp-heading" className="font-serif-display mt-4 text-[clamp(26px,3vw,32px)]">
                 Professional <em className="italic" style={{ color: "var(--accent-terra)" }}>timeline</em>.
               </h2>
+              <p className="mt-3 text-[14px] text-text-secondary">
+                Shortened for scanning. Full details on the résumé.
+              </p>
             </div>
             <ol className="relative">
               {EXPERIENCE.map((e, i) => (
@@ -649,7 +707,7 @@ function Portfolio() {
                   </h3>
                   <p className="mt-3 max-w-[64ch] text-[16.5px] text-text-secondary">{e.scope}</p>
                   <ul className="mt-4 space-y-2 text-[16px] text-text-secondary">
-                    {e.contributions.map((c, j) => (
+                    {e.contributions.slice(0, 2).map((c, j) => (
                       <li key={j} className="flex gap-3">
                         <span className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent-terra)" }} />
                         <span>{c}</span>
@@ -658,7 +716,7 @@ function Portfolio() {
                   </ul>
                   {e.stack ? (
                     <ul className="mono-label mt-4 flex flex-wrap gap-x-3 gap-y-2">
-                      {e.stack.map((s) => (
+                      {e.stack.slice(0, 4).map((s) => (
                         <li key={s} className="!text-[11px]">· {s}</li>
                       ))}
                     </ul>
@@ -669,8 +727,19 @@ function Portfolio() {
                 </li>
               ))}
             </ol>
+            <div className="mt-4 md:col-start-2">
+              <a
+                href={resume}
+                download
+                onClick={() => track("resume_downloaded")}
+                className="mono-label inline-flex items-center gap-1 rounded-[3px] border border-hairline bg-panel px-4 py-2 hover:bg-warm-fill hover:!text-terra focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+              >
+                Download résumé ↓
+              </a>
+            </div>
           </div>
         </section>
+
 
         {/* Principles */}
         <section id="principles" aria-labelledby="principles-heading" className="border-t border-hairline py-20">
