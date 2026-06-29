@@ -65,7 +65,18 @@ function NotesIndex() {
             <li key={n.slug} id={n.slug} className="border-t border-hairline pt-10 scroll-mt-24">
               <h2 className="font-serif-display text-[clamp(22px,2.6vw,28px)]">{n.title}</h2>
               <div className="mt-4 max-w-[160px]">
-                <ProjectCover variant="note" ratio="3/2" />
+                <ProjectCover
+                  variant={
+                    n.slug.includes("keycloak")
+                      ? "note-keycloak"
+                      : n.slug.includes("kafka")
+                        ? "note-kafka"
+                        : n.slug.includes("kubernetes")
+                          ? "note-kubernetes"
+                          : "note"
+                  }
+                  ratio="3/2"
+                />
               </div>
               <p className="mt-4 text-[17px] text-text-secondary">{n.summary}</p>
 
