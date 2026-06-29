@@ -83,6 +83,11 @@ export type Project = {
   // surface copy
   shortDescription: string;
   myContribution: string;
+  // Compact homepage-card copy (two paragraphs). When present, the homepage
+  // card renders these instead of the labelled Problem/Contribution/Result
+  // block so the card stays under ~45 visible words.
+  cardContribution?: string;
+  cardResult?: string;
   ownershipWording?: string;
   scopeNote?: string; // rendered near start of case study when present
 
