@@ -499,10 +499,6 @@ function Portfolio() {
           );
         })()}
 
-
-
-
-
         {/* Featured Engineering Work */}
         <section id="work" aria-labelledby="work-heading" className="border-t border-hairline py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-16">
