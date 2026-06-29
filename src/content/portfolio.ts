@@ -149,6 +149,11 @@ export const PROJECTS: Project[] = [
     cardResult:
       "Moved key routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     ownershipWording: "Contributed to",
+    summaryProblem: "New services needed a repeatable AWS deployment pattern.",
+    summaryRole:
+      "Contributed to defined service infrastructure and integration components.",
+    summaryResult:
+      "Moved selected routing, authentication, and deployment configuration into version-controlled infrastructure definitions.",
     scopeNote:
       "This case study covers my contribution to a defined service and infrastructure scope rather than ownership of the wider platform.",
     professionalContext:
