@@ -8,6 +8,7 @@ import {
   LINKS,
   HERO,
   CASE_STUDIES,
+  ADDITIONAL_PROJECTS,
   PROJECT_ROUTE,
   projectCtaLabel,
   firstSentence,
