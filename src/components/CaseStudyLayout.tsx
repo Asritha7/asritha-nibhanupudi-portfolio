@@ -54,7 +54,7 @@ export function CaseStudyLayout({ study }: { study: Project }) {
           </p>
         ) : null}
 
-        {/* Summary panel — supports a two-minute review */}
+        {/* Summary panel - supports a two-minute review */}
         <aside
           aria-label="Case study summary"
           className="mt-8 rounded-[3px] border border-hairline bg-panel p-5 md:p-6"

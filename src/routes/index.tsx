@@ -514,7 +514,7 @@ function Portfolio() {
                 Featured Engineering <em className="italic" style={{ color: "var(--accent-terra)" }}>Work</em>.
               </h2>
               <p className="mt-3 text-[15px] text-text-secondary">
-                Selected work across cloud systems, automation, authentication and reliability—with clear context on what I personally contributed.
+                Selected work across cloud systems, automation, authentication and reliability-with clear context on what I personally contributed.
               </p>
 
             </div>
@@ -575,7 +575,7 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Additional Engineering Work — non-featured professional work only.
+        {/* Additional Engineering Work - non-featured professional work only.
             Published Research is intentionally excluded so RFID appears only
             once on the homepage, in its dedicated section. */}
         {ADDITIONAL_PROJECTS.length > 0 ? (
