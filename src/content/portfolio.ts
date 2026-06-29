@@ -414,7 +414,7 @@ export const PROJECTS: Project[] = [
     decision: {
       decision:
         "Validate operator-side reconciliation behaviour as a separate concern from broker behaviour, with its own checks in the upgrade rehearsal.",
-      why: "Upgrade pain tended to come from the Strimzi operator's reconciliation between versions, not from the brokers themselves, but the two were being treated as one signal.",
+      why: "During the upgrade rehearsals I worked on, several difficult failures originated in Strimzi operator reconciliation rather than broker behaviour, but the two were being treated as one signal.",
       tradeoff:
         "The rehearsal got longer because operator and broker checks now ran as distinct phases instead of one combined pass.",
     },
