@@ -669,7 +669,7 @@ export const PRINCIPLES = [
 export const CAPABILITIES: { label: string; items: string[] }[] = [
   {
     label: "Software Development",
-    items: ["TypeScript", "JavaScript", "Python", "Java", "SQL", "Bash"],
+    items: ["TypeScript", "JavaScript", "Python", "Java", "C++", "SQL", "Bash"],
   },
   {
     label: "Cloud and Service Infrastructure",
