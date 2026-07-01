@@ -477,7 +477,7 @@ function Portfolio() {
         {/* Tech marquee */}
         {(() => {
           const MARQUEE = [
-            "Python", "Java", "SQL", "REST APIs", "Kafka", "Kubernetes", "Strimzi",
+            "Python", "Java", "C++", "SQL", "REST APIs", "Kafka", "Kubernetes", "Strimzi",
             "Linux", "AWS", "Keycloak", "OAuth2 / OIDC",
             "Prometheus", "Grafana", "Jenkins", "GitLab CI", "Git",
           ];
